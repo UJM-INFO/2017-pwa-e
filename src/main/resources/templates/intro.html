@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Direct eSport</title>
+        <div th:include="fragments/head"></div>
+    </head>
+    <body id="intro">
+        <!-- Menu du haut-->
+        <header>              
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top justify-content-between">
+                <h1 class="navbar">Direct eSport</h1>
+                    <ul class="navbar-nav">
+                        <a href="/signup" class="btn btn-outline-light m-2">Inscription</a>
+                        <a href="/signin" class="btn btn-outline-light m-2">Connexion</a>
+                    </ul>
+            </nav>
+        </header>
+        <!-- Fin Menu du haut-->
+        
+        <!-- Section milieu -->
+        <div id="intromainblock">
+            <h1 id="introtitle">Bienvenue sur Direct eSport</h1>
+            <p>Suivez vos évenements eSport préférés en direct</p>
+
+            <div class="mx-auto text-center">
+                <a href="/home" class="btn btn-outline-light">Accès au site</a>
+            </div>
+        </div>
+        <!-- Fin Section milieu -->
+ 
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    </body>
+</html>
