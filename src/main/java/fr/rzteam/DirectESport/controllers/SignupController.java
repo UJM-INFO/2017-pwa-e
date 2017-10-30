@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.rzteam.DirectESport.controller;
+package fr.rzteam.DirectESport.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,13 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author chris
  */
 @Controller
-public class TestController
-{
+public class SignupController {
     
-    @RequestMapping("/url")
-    public String page(Model model)
-    {
-        return "bonjoir";
+    @RequestMapping("/signup")
+    public String page(Model model) {
+        model.addAttribute("attribute", "value");
+        return "signup";
     }
     
 }
