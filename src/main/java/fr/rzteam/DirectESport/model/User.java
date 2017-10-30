@@ -1,17 +1,29 @@
+/*
+* 
+*/
+
 package fr.rzteam.DirectESport.model;
 
+import fr.rzteam.DirectESport.model.UserRole;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import lombok.Data;
 
 /**
  *
- * @author Dimitri
+ * @Dimitri
  */
 @Entity
 @Data
-public class User 
-{
+public class User {
     @Id
     String pseudo;
     
@@ -19,17 +31,19 @@ public class User
     
     String password;
     
-    UserRole role;
-
-    public User()
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private Set<UserRole> roles = new HashSet<>();
+    
+    public User() 
     {}
     
-    public User(String pseudo, String name, String password, UserRole role) {
-        this.pseudo = pseudo;
-        this.name = name;
-        this.password = password;
-        this.role = role;
+    public User(String userName, String displayName, List<String> roles, String derivedPassword) 
+    {
+        this.pseudo = userName;
+        this.name = displayName;
+        this.roles.addAll(roles.stream().map(UserRole::valueOf).collect(Collectors.toList()));
+        this.password = derivedPassword;
     }
-    
     
 }
