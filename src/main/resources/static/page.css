@@ -1,0 +1,82 @@
+#intro
+{
+    background-image: url("background_blur.jpg");
+    background-size: 100%;
+}
+
+#introtitle
+{
+    font-family: 'Saira Semi Condensed', sans-serif;
+    font-weight: bold;
+    color: white;
+    font-size: 6em;
+    text-align: center;
+}
+
+#intro p
+{
+    text-align: center;
+    color: white;
+}
+
+#intromainblock
+{
+    margin-top: 15%;
+}
+
+/***********************************************/
+
+body
+{
+    font-family: 'Lora', serif;
+    color: #212529;
+    background-color: #f4fff5;
+}
+
+h1,h2,h3,h4,h5,h6
+{
+    font-family: 'Montserrat', sans-serif;
+}
+
+nav
+{
+    
+}
+
+#maintitle
+{
+    font-size: 2.5em;
+}
+
+header
+{
+	height: 80px;
+	color: white;
+	padding: 1% 2% 1% 2%;
+}
+
+section, footer
+{
+	margin: auto;
+	margin-top: 15px;
+	margin-bottom: 5px;
+	width: 60%;
+	padding: 10px;
+	background-color: #f8f9fa;
+}
+
+/*article
+{
+	padding: 10px 5px 10px 5px;
+	margin: auto;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	width: 70%;
+	border-radius: 10px;
+        border: #17A2B8 solid 1px;
+}*/
+
+aside
+{
+    /*float: right;*/
+}
