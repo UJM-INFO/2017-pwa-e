@@ -24,8 +24,13 @@ public class WebSecu extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
      http.authorizeRequests()
             .anyRequest().permitAll() //.hasAnyRole("ADMIN")
-     .and().formLogin().permitAll()
-             .and().logout().permitAll();
+     .and().formLogin().
+            loginPage("/signin").
+            loginProcessingUrl("/appLogin").
+            usernameParameter("app_username").
+            passwordParameter("app_password").
+            defaultSuccessUrl("/home").
+            permitAll().and().logout().logoutSuccessUrl("/home").permitAll();
   }
   
   @Inject
@@ -33,13 +38,13 @@ public class WebSecu extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-      /*
+      
       auth.inMemoryAuthentication()
         .withUser("robert").password("toto").roles("USER", "ADMIN")
         .and().withUser("bob").password("toto").roles("USER");
-*/
-      auth
+
+      /*auth
               .userDetailsService(userDetailsService)
-              .passwordEncoder(userDetailsService.encoder);
+              .passwordEncoder(userDetailsService.encoder);*/
   }
 }
