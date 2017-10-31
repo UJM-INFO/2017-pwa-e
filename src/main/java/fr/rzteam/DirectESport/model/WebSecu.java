@@ -23,9 +23,7 @@ public class WebSecu extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
      http.authorizeRequests()
-            .antMatchers("/data", "/").permitAll()
-            .antMatchers("/INIT5132827648368438437894").permitAll()
-            .anyRequest().authenticated() //.hasAnyRole("ADMIN")
+            .anyRequest().permitAll() //.hasAnyRole("ADMIN")
      .and().formLogin().permitAll()
              .and().logout().permitAll();
   }
