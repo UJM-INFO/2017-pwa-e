@@ -6,6 +6,7 @@
 package fr.rzteam.DirectESport.controllers;
 
 import javax.servlet.http.HttpSession;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,30 +18,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController
 {   
-    public boolean isConnected(Model model)
+    /**
+     * Fonction pour savoir si on est connecté
+     * @return vrai si connecté, faux sinon
+     */
+    public boolean isConnected()
     {
-        return false;
+        return (SecurityContextHolder.getContext().getAuthentication().getPrincipal() == "anonymousUser");
     }
     
     @RequestMapping("/")
-    public String basic(Model model)
+    public String basic()
     {
-        Boolean login = isConnected(model);
-        return login ? "homeSignedIn" : "intro";
-    }
-    
-    @RequestMapping("appLogin")
-    public String SetSession()
-    {
-	return "";
+        System.out.println("SESSION "+SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        
+        return "intro";
     }
     
     @RequestMapping("/home")
-    public String home(Model model)
+    public String home()
     {
-	
-        Boolean login = isConnected(model);
-        return login ? "homeSignedIn" : "homeNotSignedIn";
+        return isConnected() ? "homeSignedIn" : "homeNotSignedIn";
     }
     
     @RequestMapping("/test")
