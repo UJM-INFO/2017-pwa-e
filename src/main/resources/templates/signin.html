@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Direct eSport</title>
         <div th:include="fragments/head"></div>
@@ -13,26 +13,33 @@ and open the template in the editor.
         <!-- Menu du haut-->
         <div th:include="fragments/header"></div>
         
-        <p th:if="${param.error}">
-            <script type="text/javascript">
-  alert('Error!');
-</script>
-        </p>
-        <br/> <br/>
-        <br/> <br/>
-        <br/> <br/>
-        
-        <div th:if="${param.error}">
-            <div class="alert alert-danger">
-                Invalid username and password.
+        <section>
+            <div th:if="${param.error}">
+                <script type="text/javascript">
+                  alert('Error!');
+                </script>
+                
+                <br />
+                <div class="alert alert-danger">
+                    Utilisateur/Mot de passe incorrect.
+                </div>
             </div>
-        </div>
-        <form th:action="@{/appLogin}" method="POST"> <br/> <br/>
-            User Name : <input type="text" name="app_username"/> <br/><br/>
-            Password: <input type="password" name="app_password"/> <br/><br/>
-            <input type="submit" value="Login"/>
-        </form>
-        <section></section>
+            
+            <div class="connectionBox">
+                <form th:action="@{/appLogin}" method="POST"> <br/> <br/>
+                    Utilisateur : <input type="text" class="form-control" name="app_username"/> <br/>
+                    Mot de passe: <input type="password" class="form-control"  name="app_password"/> <br/>
+                    <div class="form-group login-group-checkbox">
+                        <label><input type="checkbox" class="" id="a" name="a"/> Retenir le mot de passe</label>
+                    </div>
+                    <input type="submit" class="btn form-control btn-info" value="Login"/>
+                    
+                    <p>Vous n'avez pas de compte? <a href="signup">Inscrivez-vous</a></p>
+                </form>
+            </div>
+        </section>
         <footer></footer>
+        <!-- Carousel des top articles-->
+        <div th:include="fragments/endPageScripts"></div>
     </body>
 </html>
