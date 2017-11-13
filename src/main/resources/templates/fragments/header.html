@@ -19,12 +19,16 @@
                   </div>
                 </li>
             </ul>
-            <a href="/signup" class="btn btn-outline-info mr-2">Inscription</a>
             
+            
+            <!-- On n'est pas connecté -->
             <span sec:authorize="!isAuthenticated()">
+                <a href="/signup" class="btn btn-outline-info mr-2">Inscription</a>
                 <a href="/signin" class="btn btn-outline-info mr-2">Connexion</a>
             </span>
             
+            
+            <!-- On est connecté -->
             <span sec:authorize="isAuthenticated()">
                 <form th:action="@{/logout}" method="post">
                     <input class="btn btn-outline-info mr-2" value="Déconnexion" type="submit"/>
