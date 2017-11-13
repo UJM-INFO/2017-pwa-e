@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author chris
  */
 @Controller
-public class SignupController {
+public class SignupController
+{
     
     @RequestMapping("/signup")
-    public String page(Model model) {
-        model.addAttribute("attribute", "value");
+    public String page()
+    {
         return "signup";
     }
     

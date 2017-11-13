@@ -6,7 +6,6 @@
 package fr.rzteam.DirectESport.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -18,10 +17,14 @@ public class SigninController
 {
     
     @RequestMapping("/signin")
-    public String page(Model model)
+    public String page()
     {
-        model.addAttribute("attribute", "value");
         return "signin";
     }
     
+    @RequestMapping("appLogin")
+    public String setSession()
+    {
+	return "";
+    }
 }
