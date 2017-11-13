@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Direct eSport</title>
         <div th:include="fragments/head"></div>
@@ -13,7 +13,25 @@ and open the template in the editor.
         <!-- Menu du haut-->
         <div th:include="fragments/header"></div>
         
-        <section></section>
+        <section>
+            <div class="connectionBox">
+                <p class="alert alert-danger">L'inscription ne fonctionne pas</p>
+                <form th:action="@{/appLogin}" method="POST"> <br/> <br/>
+                    Utilisateur : <input type="text" class="form-control" name="app_username"/>
+                    Mot de passe: <input type="password" class="form-control"  name="app_password"/>
+                    Répétez le passe: <input type="password" class="form-control"  name="jesaispas"/>
+                    E-Mail: <input type="text" class="form-control"  name="jesaispas2"/>
+                    <div class="form-group login-group-checkbox">
+                        <input type="checkbox" class="" id="reg_agree" name="reg_agree"/>
+                        <label for="reg_agree">Je suis d'accord avec les <a href="#">conditions d'utilisations</a></label>
+                    </div>
+                    
+                <input type="submit" class="btn form-control btn-info" value="Login"/>
+                </form>
+            </div>
+        </section>
         <footer></footer>
+        <!-- Carousel des top articles-->
+        <div th:include="fragments/endPageScripts"></div>
     </body>
 </html>
