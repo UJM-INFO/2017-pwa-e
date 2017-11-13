@@ -18,7 +18,16 @@ and open the template in the editor.
   alert('Error!');
 </script>
         </p>
-        <form th:action="@{/appLogin}" method="POST">
+        <br/> <br/>
+        <br/> <br/>
+        <br/> <br/>
+        
+        <div th:if="${param.error}">
+            <div class="alert alert-danger">
+                Invalid username and password.
+            </div>
+        </div>
+        <form th:action="@{/appLogin}" method="POST"> <br/> <br/>
             User Name : <input type="text" name="app_username"/> <br/><br/>
             Password: <input type="password" name="app_password"/> <br/><br/>
             <input type="submit" value="Login"/>

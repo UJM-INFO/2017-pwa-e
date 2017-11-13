@@ -20,14 +20,16 @@
                 </li>
             </ul>
             <a href="/signup" class="btn btn-outline-info mr-2">Inscription</a>
-            <a href="/signin" class="btn btn-outline-info mr-2">Connexion</a>
-           
-<!--            th:if="${connected} == true"-->
             
-            <form th:action="@{/logout}" method="post">
-                <input class="btn btn-outline-info mr-2" value="Déconnexion" type="submit"/>
-            </form>
+            <span sec:authorize="!isAuthenticated()">
+                <a href="/signin" class="btn btn-outline-info mr-2">Connexion</a>
+            </span>
             
+            <span sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post">
+                    <input class="btn btn-outline-info mr-2" value="Déconnexion" type="submit"/>
+                </form>
+            </span>
         </div>
     </nav>
 </header>

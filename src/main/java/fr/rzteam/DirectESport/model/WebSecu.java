@@ -25,7 +25,7 @@ public class WebSecu extends WebSecurityConfigurerAdapter {
      http.authorizeRequests()
             .anyRequest().permitAll() //.hasAnyRole("ADMIN")
      .and().formLogin().
-            loginPage("/signin").
+	    loginPage("/signin").
             loginProcessingUrl("/appLogin").
             usernameParameter("app_username").
             passwordParameter("app_password").

@@ -5,6 +5,7 @@
  */
 package fr.rzteam.DirectESport.controllers;
 
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,9 +29,16 @@ public class HomeController
         return login ? "homeSignedIn" : "intro";
     }
     
+    @RequestMapping("appLogin")
+    public String SetSession()
+    {
+	return "";
+    }
+    
     @RequestMapping("/home")
     public String home(Model model)
     {
+	
         Boolean login = isConnected(model);
         return login ? "homeSignedIn" : "homeNotSignedIn";
     }
