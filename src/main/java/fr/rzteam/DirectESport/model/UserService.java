@@ -27,7 +27,7 @@ public class UserService implements UserDetailsService {
         if (u == null) {
             throw new UsernameNotFoundException(username);
         }
-        return new org.springframework.security.core.userdetails.User(u.pseudo, u.password, u.getRoles());
+        return new org.springframework.security.core.userdetails.User(u.userName, u.password, u.getRoles());
     }
 
     public void saveUserComputingDerivedPassword(User u, String rawPassword) {
@@ -47,7 +47,7 @@ public class UserService implements UserDetailsService {
     }
 
     public List<User> listAllUsers() {
-        return repo.findAllByOrderByPseudo();
+        return repo.findAllByOrderByUserName();
     }
     
     public void changeUserPassword(final User user, final String password) 

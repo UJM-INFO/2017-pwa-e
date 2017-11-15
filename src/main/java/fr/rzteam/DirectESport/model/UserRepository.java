@@ -14,6 +14,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface UserRepository extends CrudRepository<User, String> 
 {
 
-    public List<User> findAllByOrderByPseudo();
+    public List<User> findAllByOrderByUserName();
     
 }
