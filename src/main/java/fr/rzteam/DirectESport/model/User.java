@@ -25,9 +25,9 @@ import lombok.Data;
 @Data
 public class User {
     @Id
-    String userName;
+    String pseudo;
     
-    String realName;
+    String name;
     
     String password;
     
@@ -42,10 +42,10 @@ public class User {
     public User() 
     {}
     
-    public User(String pseudo, String name, List<String> roles, String derivedPassword, String mail, int age) 
+    public User(String userName, String displayName, List<String> roles, String derivedPassword, String mail, int age) 
     {
-        this.userName = pseudo;
-        this.realName = name;
+        this.pseudo = userName;
+        this.name = displayName;
         this.roles.addAll(roles.stream().map(UserRole::valueOf).collect(Collectors.toList()));
         this.password = derivedPassword;
 	this.mail = mail;
