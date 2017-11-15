@@ -28,9 +28,9 @@ public class HomeController
     }
     
     @RequestMapping("/")
-    public String basic()
+    public String intro()
     {
-        System.out.println("SESSION "+SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        //System.out.println("SESSION "+SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         
         return "intro";
     }
