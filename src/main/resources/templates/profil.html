@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Direct eSport</title>
+        <div th:include="fragments/head"></div>
+    </head>
+    <body>
+        <!-- Menu du haut-->
+        <div th:include="fragments/header"></div>
+        
+        <section>
+            <span sec:authorize="isAuthenticated()" class="navbar-nav">
+                <h1>Profil de <span sec:authentication="name"></span></h1>
+                <ul>
+                    <li><h3>Pseudo: </h3> <span sec:authentication="name"></span></li>
+                    <li><h3>Nom: </h3></li>
+                    <li><h3>Mail: </h3></li>
+                    <li><h3>Changer le mot de passe: </h3></li>
+                    <form href="/passwordChanging" method="post">
+                        Ancien mot de passe: <input type="password" id="oldPassword" name="oldPassword"/><br/>
+                        Nouveau mot de passe: <input type="password" id="newPassword" name="oldPassword"/><br/>
+                        Répétez le mot de passe: <input type="password" id="repeatNewPassword" name="repeatNewPassword"/><br/>
+                        <input type="submit" class="btn form-control btn-info" value="Changer de mot de passe"/>
+                    </form>
+                    <li><h3></h3></li>
+                </ul>
+            </span>
+        </section>
+        <footer></footer>
+        
+        <!-- Carousel des top articles-->
+        <div th:include="fragments/endPageScripts"></div>
+    </body>
+</html>
