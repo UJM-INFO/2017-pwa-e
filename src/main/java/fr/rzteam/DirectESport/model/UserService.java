@@ -68,4 +68,11 @@ public class UserService implements UserDetailsService {
         u.setPassword(encoder.encode(newPassword));
         repo.save(u);
     }
+    
+    public void changeRealName(String userName, String newName) 
+    {
+	User u = repo.findByUserName(userName);
+        u.setRealName(newName);
+        repo.save(u);
+    }
 }
