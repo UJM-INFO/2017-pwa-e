@@ -41,10 +41,10 @@ public class HomeController
         return isConnected() ? "homeSignedIn" : "homeNotSignedIn";
     }
     
-    @RequestMapping("/test")
-    public String test()
+    @RequestMapping("/comment")
+    public String comment()
     {
-        return "test";
+        return "comment";
     }
 
 }
