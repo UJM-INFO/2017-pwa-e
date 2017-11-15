@@ -25,11 +25,15 @@ import lombok.Data;
 @Data
 public class User {
     @Id
-    String pseudo;
+    String userName;
     
-    String name;
+    String realName;
     
     String password;
+    
+    String mail;
+    
+    int age;
     
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
@@ -38,12 +42,14 @@ public class User {
     public User() 
     {}
     
-    public User(String userName, String displayName, List<String> roles, String derivedPassword) 
+    public User(String pseudo, String name, List<String> roles, String derivedPassword, String mail, int age) 
     {
-        this.pseudo = userName;
-        this.name = displayName;
+        this.userName = pseudo;
+        this.realName = name;
         this.roles.addAll(roles.stream().map(UserRole::valueOf).collect(Collectors.toList()));
         this.password = derivedPassword;
+	this.mail = mail;
+	this.age = age;
     }
     
 }
