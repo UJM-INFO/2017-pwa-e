@@ -22,37 +22,57 @@ public class UserService implements UserDetailsService {
     public final PasswordEncoder encoder = new BCryptPasswordEncoder();
     
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException 
+    {
         User u = repo.findOne(username);
         if (u == null) {
             throw new UsernameNotFoundException(username);
         }
         return new org.springframework.security.core.userdetails.User(u.userName, u.password, u.getRoles());
     }
-
-    public void saveUserComputingDerivedPassword(User u, String rawPassword) {
-        setComputingDerivedPassword(u, rawPassword);
-        repo.save(u);
+    
+    public void addUser(User u)
+    {
+	if (repo.findByUserName(u.userName) != null)
+	{
+	    System.out.println("This userName is already used.");
+	}
+	else if (repo.findByMail(u.mail) != null)
+	{
+	    System.out.println("There is already an account with this email");
+	}
+	else 
+	{
+	    u.setPassword(encoder.encode(u.password));
+	    repo.save(u);
+	}
     }
-
-    public void setComputingDerivedPassword(User u, String rawPassword) {
-        String codedPassword = encoder.encode(rawPassword);
-        u.setPassword(codedPassword);
-    }
-
-    public void makeUserAdmin(String username) {
-        User u = repo.findOne(username);
+    
+    public void makeUserAdmin(String username) 
+    {
+        User u = repo.findByUserName(username);
         u.getRoles().add(UserRole.ADMIN);
         repo.save(u);
     }
+    
+    public void makeUserEditor(String username) 
+    {
+        User u = repo.findByUserName(username);
+        u.getRoles().add(UserRole.EDITOR);
+        repo.save(u);
+    }
 
-    public List<User> listAllUsers() {
-        return repo.findAllByOrderByUserName();
+    public void changeUserPassword(String userName, String newPassword) 
+    {
+	User u = repo.findByUserName(userName);
+        u.setPassword(encoder.encode(newPassword));
+        repo.save(u);
     }
     
-    public void changeUserPassword(final User user, final String password) 
+    public void changeRealName(String userName, String newName) 
     {
-        user.setPassword(encoder.encode(password));
-        repo.save(user);
+	User u = repo.findByUserName(userName);
+        u.setRealName(newName);
+        repo.save(u);
     }
 }
