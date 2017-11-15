@@ -31,7 +31,7 @@ public class UserService implements UserDetailsService
         }
         return new org.springframework.security.core.userdetails.User(u.userName, u.password, u.getRoles());
     }
-
+    
     public void saveUserComputingDerivedPassword(User u, String rawPassword) 
     {
         setComputingDerivedPassword(u, rawPassword);
@@ -54,6 +54,12 @@ public class UserService implements UserDetailsService
     public List<User> listAllUsers() 
     {
         return repo.findAllByOrderByPseudo();
+    }
+    
+    public void changeUserPassword(final User user, final String password) 
+    {
+        user.setPassword(encoder.encode(password));
+        repo.save(user);
     }
     
     
