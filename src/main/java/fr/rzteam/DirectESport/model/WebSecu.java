@@ -39,12 +39,12 @@ public class WebSecu extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
       
-      auth.inMemoryAuthentication()
+      /*auth.inMemoryAuthentication()
         .withUser("robert").password("toto").roles("USER", "ADMIN")
-        .and().withUser("bob").password("toto").roles("USER");
+        .and().withUser("bob").password("toto").roles("USER");*/
 
-      /*auth
+      auth
               .userDetailsService(userDetailsService)
-              .passwordEncoder(userDetailsService.encoder);*/
+              .passwordEncoder(userDetailsService.encoder);
   }
 }
