@@ -25,7 +25,8 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException 
     {
         User u = repo.findOne(username);
-        if (u == null) {
+        if (u == null) 
+		{
             throw new UsernameNotFoundException(username);
         }
         return new org.springframework.security.core.userdetails.User(u.userName, u.password, u.getRoles());
@@ -33,19 +34,19 @@ public class UserService implements UserDetailsService {
     
     public void addUser(User u)
     {
-	if (repo.findByUserName(u.userName) != null)
-	{
-	    System.out.println("This userName is already used.");
-	}
-	else if (repo.findByMail(u.mail) != null)
-	{
-	    System.out.println("There is already an account with this email");
-	}
-	else 
-	{
-	    u.setPassword(encoder.encode(u.password));
-	    repo.save(u);
-	}
+		if (repo.findByUserName(u.userName) != null)
+		{
+			System.out.println("This userName is already used.");
+		}
+		else if (repo.findByMail(u.mail) != null)
+		{
+			System.out.println("There is already an account with this email");
+		}
+		else 
+		{
+			u.setPassword(encoder.encode(u.password));
+			repo.save(u);
+		}
     }
     
     public void makeUserAdmin(String username) 

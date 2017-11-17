@@ -32,7 +32,7 @@ public class User {
     String password;
     
     String mail;
-        
+    
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<UserRole> roles = new HashSet<>();
