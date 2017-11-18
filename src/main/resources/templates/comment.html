@@ -8,6 +8,10 @@ and open the template in the editor.
     <head>
         <title>Direct eSport</title>
         <div th:include="fragments/head"></div>
+        
+        <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+        <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+        <script src="/app.js"></script>
     </head>
     <body>
         <div id="app">
