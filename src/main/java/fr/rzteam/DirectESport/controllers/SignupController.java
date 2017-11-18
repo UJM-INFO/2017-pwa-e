@@ -41,15 +41,33 @@ public class SignupController
     public String inscription(
 	    @RequestParam("username") String username,
 	    @RequestParam("realname") String realname,
+	    @RequestParam("mail") String mail,
 	    @RequestParam("password") String password,
-	    @RequestParam("mail") String mail
-    )
+	    @RequestParam("password2") String password2,
+		Model m
+	)
     {
-	System.out.println("LA = " + username + " " + realname + " "+ mail + " " + password);
-	
-	userService.addUser(new User(username,realname,password,mail));
-	
-	return "redirect:/home";
+		//System.out.println("LA = " + username + " " + realname + " "+ mail + " " + password);
+		if (password.compareTo(password2)!=0) //The 2 passwords are different
+		{
+			m.addAttribute("error","Les mots de passes sont différents");
+			return "forward:/signup";
+		}
+		
+		int add = userService.addUser(new User(username,realname,password,mail)); //Try to add the user
+		
+		if (add == 1)	//The pseudo is already used
+		{
+			m.addAttribute("error","Ce pseudo est déjà utilisé");
+			return "forward:/signup";
+		}
+		if (add == 2)	//The mail is already used
+		{
+			m.addAttribute("mailExists","Il y a déjà un compte avec cet email");
+			return "forward:/signup";
+		}
+		
+		return "redirect:/home"; //The user has been correctly added in the database
     }
     
     
