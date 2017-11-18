@@ -33,8 +33,7 @@ public class User {
     
     String mail;
     
-    int age;
-    
+
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<UserRole> roles = new HashSet<>();
@@ -42,14 +41,23 @@ public class User {
     public User() 
     {}
     
-    public User(String userName, String displayName, List<String> roles, String derivedPassword, String mail, int age) 
+    
+    public User(String userName,String realName, String password,String mail) 
+	{
+        this.userName = userName;
+        this.realName = realName;
+        this.roles.add(UserRole.USER); // be a user by default
+        this.password = password;
+		this.mail = mail;
+    }
+    
+    public User(String userName, String displayName, List<String> roles, String derivedPassword, String mail) 
     {
         this.userName = userName;
         this.realName = displayName;
         this.roles.addAll(roles.stream().map(UserRole::valueOf).collect(Collectors.toList()));
         this.password = derivedPassword;
-	this.mail = mail;
-	this.age = age;
+		this.mail = mail;
     }
     
 }
