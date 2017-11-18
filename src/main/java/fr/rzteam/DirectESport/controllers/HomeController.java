@@ -46,5 +46,14 @@ public class HomeController
     {
         return "comment";
     }
+    
+    /**
+     * Test websocket
+     */
+    @RequestMapping("/ws")
+    public String ws()
+    {
+        return "index";
+    }
 
 }
