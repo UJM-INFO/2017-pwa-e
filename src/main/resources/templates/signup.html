@@ -15,14 +15,14 @@ and open the template in the editor.
         
         <section>
             <div class="connectionBox">
-                <p class="alert alert-danger">L'inscription ne fonctionne pas</p>
+                <p th:if="${error}!=null" th:text="${error}" class="alert alert-danger"></p>
 
-                <form th:action="@{/register}" method="POST"> <br/> <br/>
-                    Utilisateur : <input type="text" class="form-control" name="username"/>
-                    Votre petit nom, doux utilisateur : <input type="text" class="form-control" name="realname"/>
-                    Mot de passe: <input type="password" class="form-control"  name="password"/>
-                    Répétez le passe: <input type="password" class="form-control"  name="jesaispas"/>
+                <form th:action="@{/register}" method="POST">
+                    Un pseudo (qui sera visible par les autres utilisateurs): <input type="text" class="form-control" name="username"/>
+                    Votre nom (ça reste entre nous): <input type="text" class="form-control" name="realname"/>
                     E-Mail: <input type="text" class="form-control"  name="mail"/>
+                    Mot de passe: <input type="password" class="form-control"  name="password"/>
+                    Répétez le passe: <input type="password" class="form-control"  name="password2"/>
 
                     <div class="form-group login-group-checkbox">
                         <input type="checkbox" class="" id="reg_agree" name="reg_agree"/>
