@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hello WebSocket</title>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="/websocket.js"></script>
+    <div th:include="fragments/head"></div>
+</head>
+<body>
+    
+<noscript>
+    <h2 style="color: #ff0000">
+        Seems your browser doesn't support Javascript! Websocket relies on Javascript being
+        enabled. Please enable
+        Javascript and reload this page!
+    </h2>
+</noscript>
+
+<div id="main-content" class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="connect">Connexion à la WebSocket</label><br/>
+                    <button id="connect" class="btn btn-default" type="submit">Connexion</button> 
+                    <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Déconnexion</button><br/>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="name">Commentaire demandé</label><br/>
+                    <input type="text" id="id-comment" class="form-control" placeholder="L'id du commentaire ici .."/>
+                </div>
+                <button id="send" class="btn btn-default" type="submit">Demande</button><br/>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-mx-auto">
+            <table id="comments-table" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Commentaires</th> 
+                </tr>
+                </thead>
+                <tbody id="comments">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
