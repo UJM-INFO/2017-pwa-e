@@ -18,8 +18,8 @@ and open the template in the editor.
             <div th:include="fragments/header"></div>
 
             <section>
-                <div class="btn-info px-5"></div>
-                <p>{{ message }}</p>
+                <p id="comments">Vide</p>
+                <button class="btn btn-info" v-on:click="sendId">Actualiser manuellement</button>
             </section>
             <footer></footer>
 
@@ -28,5 +28,6 @@ and open the template in the editor.
         <!-- Carousel des top articles-->
         <div th:include="fragments/endPageScripts"></div>
         <script src="/js/vue-websocket.js"></script>
+        <script src="/js/comment.js"></script>
     </body>
 </html>
