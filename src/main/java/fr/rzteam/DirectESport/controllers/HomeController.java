@@ -51,12 +51,6 @@ public class HomeController
         return isConnected() ? "homeSignedIn" : "homeNotSignedIn";
     }
     
-    @RequestMapping("/comment")
-    public String comment()
-    {
-        return "comment";
-    }
-    
     /**
      * Test websocket
      */
