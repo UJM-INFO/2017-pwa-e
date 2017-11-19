@@ -9,9 +9,8 @@ and open the template in the editor.
         <title>Direct eSport</title>
         <div th:include="fragments/head"></div>
         
-        <script src="/webjars/sockjs-client/sockjs.min.js"></script>
-        <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-        <script src="/app.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     </head>
     <body>
         <div id="app">
@@ -19,21 +18,15 @@ and open the template in the editor.
             <div th:include="fragments/header"></div>
 
             <section>
+                <div class="btn-info px-5"></div>
                 <p>{{ message }}</p>
             </section>
             <footer></footer>
 
-            <!-- Carousel des top articles-->
-            <div th:include="fragments/endPageScripts"></div>
         </div>
-        <script>
-        var app = new Vue({
-            el: '#app',
-            data:
-            {
-                message: 'Premier test concluant'
-            }
-        })
-        </script>
+        
+        <!-- Carousel des top articles-->
+        <div th:include="fragments/endPageScripts"></div>
+        <script src="/js/vue-websocket.js"></script>
     </body>
 </html>
