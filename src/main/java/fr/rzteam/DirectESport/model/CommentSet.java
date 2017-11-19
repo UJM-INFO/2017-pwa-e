@@ -7,10 +7,16 @@ package fr.rzteam.DirectESport.model;
 
 import java.util.ArrayList;
 
+
+
+
 /**
  *
  * @author chris
  */
+
+
+
 public class CommentSet
 {
     public String eventName;
@@ -18,13 +24,19 @@ public class CommentSet
     
     public CommentSet()
     {
-        set = new ArrayList<>();
+	set = new ArrayList<>();
     }
     
     public CommentSet(String event)
     {
         this();
         eventName = event;
+    }
+    
+    public CommentSet(String event,ArrayList<Comment> set)
+    {
+        this.set = set;
+        this.eventName = event;
     }
 
     public String getEventName()

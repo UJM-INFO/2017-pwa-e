@@ -5,27 +5,45 @@
  */
 package fr.rzteam.DirectESport.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author chris
  */
+@Entity
 public class Comment
 {
+    @Id
     String text;
     String author;
-    String date;
+    String dates;
+    int idEvent;
+
+    public Comment() {
+    }
     
     public Comment(String comment, String author)
     {
         this.text = comment;
         this.author = author;
+	this.idEvent = 1;
     }
     
+    public Comment(String comment, String author,int idEvent)
+    {
+        this.text = comment;
+        this.author = author;
+	this.idEvent = idEvent;
+    }
+     
     public Comment(String comment, String author, String date)
     {
         this.text = comment;
         this.author = author;
-        this.date = date;
+        this.dates = date;
+	this.idEvent = 1;
     }
 
     public String getText()
@@ -50,12 +68,12 @@ public class Comment
 
     public String getDate()
     {
-        return date;
+        return dates;
     }
 
     public void setDate(String date)
     {
-        this.date = date;
+        this.dates = date;
     }
     
     
