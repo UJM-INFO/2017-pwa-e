@@ -15,6 +15,17 @@ public class CommentSet
 {
     public String eventName;
     public ArrayList<Comment> set;
+    
+    public CommentSet()
+    {
+        set = new ArrayList<>();
+    }
+    
+    public CommentSet(String event)
+    {
+        this();
+        eventName = event;
+    }
 
     public String getEventName()
     {
@@ -24,6 +35,16 @@ public class CommentSet
     public void setEventName(String eventName)
     {
         this.eventName = eventName;
+    }
+    
+    public Comment get(int id)
+    {
+        return set.get(id);
+    }
+    
+    public void add(Comment comment)
+    {
+        set.add(comment);
     }
 
     public ArrayList<Comment> getSet()

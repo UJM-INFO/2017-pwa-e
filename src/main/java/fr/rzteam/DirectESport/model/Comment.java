@@ -11,16 +11,51 @@ package fr.rzteam.DirectESport.model;
  */
 public class Comment
 {
-    String comment;
-
-    public String getComment()
+    String text;
+    String author;
+    String date;
+    
+    public Comment(String comment, String author)
     {
-        return comment;
+        this.text = comment;
+        this.author = author;
+    }
+    
+    public Comment(String comment, String author, String date)
+    {
+        this.text = comment;
+        this.author = author;
+        this.date = date;
     }
 
-    public void setComment(String comment)
+    public String getText()
     {
-        this.comment = comment;
+        return text;
+    }
+
+    public void setText(String comment)
+    {
+        this.text = comment;
+    }
+
+    public String getAuthor()
+    {
+        return author;
+    }
+
+    public void setAuthor(String author)
+    {
+        this.author = author;
+    }
+
+    public String getDate()
+    {
+        return date;
+    }
+
+    public void setDate(String date)
+    {
+        this.date = date;
     }
     
     
