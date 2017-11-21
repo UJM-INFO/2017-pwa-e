@@ -4,8 +4,10 @@ var app = new Vue({
     el: '#app',
     data:
     {
+        
         message: 'Premier test concluant',
-        stompClient: null
+        stompClient: null,
+        comment: {text:'blablabla',author:'Echyx'}
     },
     created: function()
     {
@@ -70,7 +72,15 @@ var app = new Vue({
             });
             $("#comments").html("");
             $("#comments").append(affichage);
+        },
+        saveComments: function()
+        {
+            var r = this.$resource('http://localhost:8080/api/comments/{/id}');
+            r.save(this.comment).then(
+                resp => {console.log('youpi');}, //OK
+                resp => {
+                    console.log("la");} //ERROR
+                );
         }
-        
     }
 });

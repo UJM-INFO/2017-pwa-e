@@ -22,7 +22,10 @@ public class CommentsController
     public CommentSet sendComment(RequestComment request) throws Exception
     {
             /* on demande au model avec request.getId()*/
-	repo.save(new Comment("Ces commentaires sont ajoutés directement du serveur dans la classe CommentsController","Chris","19/11/2017 06:49"));
+//	repo.save(new Comment("La boule magique !","MisterMV","19/11/2017 06:38"));
+//	repo.save(new Comment("Sa mère la chauve moldave en string latérale, ce gars est trop fort !","Chris","19/11/2017 06:37"));
+//        
+//	repo.save(new Comment("Ces commentaires sont ajoutés directement du serveur dans la classe CommentsController","Chris","19/11/2017 06:49"));
         CommentSet commentSet= new CommentSet("Evenement "+request.getId(),repo.findAll());
 //        commentSet.add(new Comment("Ces commentaires sont ajoutés directement du serveur dans la classe CommentsController","Chris","19/11/2017 06:49"));
 //        commentSet.add(new Comment("La boule magique !","MisterMV","19/11/2017 06:38"));

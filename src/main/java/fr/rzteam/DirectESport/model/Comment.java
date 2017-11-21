@@ -6,6 +6,8 @@
 package fr.rzteam.DirectESport.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -16,6 +18,9 @@ import javax.persistence.Id;
 public class Comment
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
+    
     String text;
     String author;
     String dates;
