@@ -8,14 +8,14 @@ package fr.rzteam.DirectESport.model;
 
 import java.util.ArrayList;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
  *
  * @author Clement Colin
  */
-public interface CommentRepository extends CrudRepository<Comment, String> {
+@CrossOrigin("*")
+public interface CommentRepository extends CrudRepository<Comment, Long> {
    
     public ArrayList<Comment> findAll();
 //    public ArrayList<Comment> findAllByidEvent(int idEvent);

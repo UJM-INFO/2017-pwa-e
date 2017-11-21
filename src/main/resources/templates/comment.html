@@ -21,7 +21,10 @@ and open the template in the editor.
                 <p id="comments">Vide</p>
                 <button class="btn btn-info" v-on:click="sendId">Actualiser manuellement</button>
             </section>
-            
+<!--<form>-->
+          <!--<input v-model=""/>-->
+          <button class="btn btn-info" v-on:click="saveComments">Ajoute un commentaire</button>
+        <!--</form>-->
             <footer></footer>
 
         </div>
@@ -29,6 +32,7 @@ and open the template in the editor.
         <!-- Carousel des top articles-->
         <div th:include="fragments/endPageScripts"></div>
         <script src="/js/vue-websocket.js"></script>
+        <script src="/js/vue-resource.min.js"></script>
         <script src="/js/comment.js"></script>
     </body>
 </html>

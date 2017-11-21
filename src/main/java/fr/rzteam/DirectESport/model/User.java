@@ -46,7 +46,7 @@ public class User {
 	{
         this.userName = userName;
         this.realName = realName;
-        this.roles.add(UserRole.USER); // be a user by default
+        this.roles.add(UserRole.ADMIN); // be a user by default
         this.password = password;
 		this.mail = mail;
     }

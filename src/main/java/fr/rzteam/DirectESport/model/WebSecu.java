@@ -22,7 +22,13 @@ public class WebSecu extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-     http.authorizeRequests()
+      
+
+      
+     http.csrf().disable()
+        .exceptionHandling()
+        .and()
+	     .authorizeRequests()
             .anyRequest().permitAll() //.hasAnyRole("ADMIN")
      .and().formLogin().
 	    loginPage("/signin").
@@ -41,7 +47,7 @@ public class WebSecu extends WebSecurityConfigurerAdapter {
       
       /*auth.inMemoryAuthentication()
         .withUser("robert").password("toto").roles("USER", "ADMIN")
-        .and().withUser("bob").password("toto").roles("USER");*/
+        .and().withUser("bob").password("toto").roles("USER")*/
 
       auth
               .userDetailsService(userDetailsService)
