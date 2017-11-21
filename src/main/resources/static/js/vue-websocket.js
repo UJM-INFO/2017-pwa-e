@@ -57,7 +57,7 @@ var app = new Vue({
         {
             //There is also a server verification obvioulsy
             var id = parseInt($.urlParam('id'));
-            stompClient.send("/app/hello", {}, JSON.stringify({'id': id}));
+            stompClient.send("/app/get_comments_by_eventid", {}, JSON.stringify({'id': id}));
         },
         showComments: function(commentSet)
         {
