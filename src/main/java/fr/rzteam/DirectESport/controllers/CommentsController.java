@@ -2,12 +2,12 @@ package fr.rzteam.DirectESport.controllers;
 
 import fr.rzteam.DirectESport.model.Comment;
 import fr.rzteam.DirectESport.model.CommentRepository;
-import fr.rzteam.DirectESport.model.CommentSet;
 import fr.rzteam.DirectESport.model.Event;
 import fr.rzteam.DirectESport.model.EventRepository;
 import fr.rzteam.DirectESport.model.RequestComment;
 import fr.rzteam.DirectESport.model.Team;
 import fr.rzteam.DirectESport.model.TeamRepository;
+import fr.rzteam.DirectESport.model.User;
 import java.util.Date;
 import java.util.HashMap;
 import javax.inject.Inject;
@@ -24,8 +24,12 @@ public class CommentsController
 {
     @Inject
     EventRepository eventRepo;
+    
+    @Inject
     TeamRepository teamRepo;
     //WEBSOCKET
+    @Inject
+    EventRepository eventrepo;
     
     /**
      *  When we receive a adding signal of a comment, we request to all websocket to update
@@ -47,7 +51,21 @@ public class CommentsController
     }
     
     //HTTP
-    
+    @RequestMapping(value ="/add_comment", method = RequestMethod.POST )
+    public String save(
+    @RequestParam("rid") long id,
+    @RequestParam("text") String text,
+    @RequestParam("author") String author)
+    {
+
+	for (Event e : eventrepo.findAll()){
+	    if (e.getId() == id){
+		e.getComments().add(new Comment(text,new User()));
+		eventrepo.save(e);
+	    }
+	}
+	return "redirect:/comment";
+    }
     @RequestMapping("/comment")
     public String comment(@RequestParam(value="id", required=false) String id)
     {
@@ -82,7 +100,8 @@ public class CommentsController
         //ERREUR A REGLER : LES TEAMS SONT NULLES (LES OBJETS)
         
         //TEAM DE TEST
-        teamRepo.save(new Team("a", new Date(), "history", new HashMap<String,Integer>()));
+        teamRepo.save(new Team("a", new Date(), "history", new HashMap<>()));
+	teamRepo.save(new Team("b", new Date(), "history", new HashMap<>()));
         
         
         //Saving the event
