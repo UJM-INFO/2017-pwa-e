@@ -15,18 +15,13 @@ and open the template in the editor.
         
         <section>
             <div th:if="${param.error}">
-                <script type="text/javascript">
-                  alert('Error!');
-                </script>
-                
-                <br />
                 <div class="alert alert-danger">
-                    Utilisateur/Mot de passe incorrect.
+                    Utilisateur inconnu / Mot de passe incorrect.
                 </div>
             </div>
             
             <div class="connectionBox">
-                <form th:action="@{/appLogin}" method="POST"> <br/> <br/>
+                <form th:action="@{/appLogin}" method="POST">
                     Utilisateur : <input type="text" class="form-control" name="app_username"/> <br/>
                     Mot de passe: <input type="password" class="form-control"  name="app_password"/> <br/>
                     <div class="form-group login-group-checkbox">
