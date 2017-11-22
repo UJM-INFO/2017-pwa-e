@@ -33,6 +33,9 @@
             
             <!-- On est connecté -->
             <span sec:authorize="isAuthenticated()">
+                <form th:action="@{/profil}" method="post">
+                    <input class="btn btn-outline-info mr-2" value="Mon Profil" type="submit"/>
+                </form>
                 <form th:action="@{/logout}" method="post">
                     <input class="btn btn-outline-info mr-2" value="Déconnexion" type="submit"/>
                 </form>
