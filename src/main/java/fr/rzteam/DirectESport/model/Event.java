@@ -28,6 +28,9 @@ public class Event
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
+        
+        String eventName;
+        String description;
 	
 	@Temporal(javax.persistence.TemporalType.DATE)
 	Date dateEvent; 
@@ -47,7 +50,7 @@ public class Event
 	{
 	}
 	
-	public Event(Date date, Team team1, Team team2, int status)
+	public Event(String eventName, String description, Date date, Team team1, Team team2, int status)
 	{
 		this.dateEvent = date;
 		this.team1 = team1;
