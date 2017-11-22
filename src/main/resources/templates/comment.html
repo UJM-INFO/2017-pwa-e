@@ -18,13 +18,14 @@ and open the template in the editor.
             <div th:include="fragments/header"></div>
 
             <section>
-                <p id="comments">Vide</p>
-                <button class="btn btn-info" v-on:click="sendId">Actualiser manuellement</button>
+                <p id="comments">Les commentaires vont normalement bientôt s'afficher ...</p>
+                
+                <!--<form>-->
+                    <!--<input v-model=""/>-->
+                    <button class="btn btn-info" v-on:click="saveComments">Ajoute un commentaire</button>
+                <!--</form>-->
             </section>
-<!--<form>-->
-          <!--<input v-model=""/>-->
-          <button class="btn btn-info" v-on:click="saveComments">Ajoute un commentaire</button>
-        <!--</form>-->
+
             <footer></footer>
 
         </div>
