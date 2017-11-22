@@ -8,6 +8,7 @@ import fr.rzteam.DirectESport.model.RequestComment;
 import fr.rzteam.DirectESport.model.Team;
 import fr.rzteam.DirectESport.model.TeamRepository;
 import fr.rzteam.DirectESport.model.User;
+import org.springframework.ui.Model;
 import java.util.Date;
 import java.util.HashMap;
 import javax.inject.Inject;
@@ -27,9 +28,8 @@ public class CommentsController
     
     @Inject
     TeamRepository teamRepo;
+    
     //WEBSOCKET
-    @Inject
-    EventRepository eventrepo;
     
     /**
      *  When we receive a adding signal of a comment, we request to all websocket to update
@@ -58,22 +58,27 @@ public class CommentsController
     @RequestParam("author") String author)
     {
 
-	for (Event e : eventrepo.findAll()){
+	for (Event e : eventRepo.findAll()){
 	    if (e.getId() == id){
 		e.getComments().add(new Comment(text,new User()));
-		eventrepo.save(e);
+		eventRepo.save(e);
 	    }
 	}
 	return "redirect:/comment";
     }
+    
     @RequestMapping("/comment")
-    public String comment(@RequestParam(value="id", required=false) String id)
+    public String comment(@RequestParam(value="id", required=false) String id, Model m)
     {
         //If the id is set and valid we display this event, otherwise we display the event menu
         try
         {
             if("undefined".equals(id) || eventRepo.findOneById(Long.parseLong(id))==null)
-                return "eventMenu";
+            {
+                List<Event> list = eventRepo.findAll();
+                m.addAttribute("events",list);
+                return "redirect:/eventMenu";
+            }
         }
         catch(NumberFormatException | NullPointerException e)
         { 
