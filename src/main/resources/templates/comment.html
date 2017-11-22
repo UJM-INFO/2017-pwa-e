@@ -19,10 +19,9 @@ and open the template in the editor.
             
             <section>
                 <p id="comments">Les commentaires vont normalement bientôt s'afficher ...</p>
-                <form href="/add_comment" method="post">
-                    IdEvent : <input type="number" id="rid"/>
-                    Text :  <input type="text" id="text"/>
-                    Author : <input type="text" id="author"/>
+                <form th:action="@{/add_comment}" method="post">
+                    Text :  <input type="text" name="text"/>
+                    Author : <input type="text" name="author"/>
                     <input type="submit" value="ajouter Controller"/>
                 </form>
                 <!--<form>-->

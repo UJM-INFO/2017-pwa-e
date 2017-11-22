@@ -8,10 +8,12 @@ import fr.rzteam.DirectESport.model.RequestComment;
 import fr.rzteam.DirectESport.model.Team;
 import fr.rzteam.DirectESport.model.TeamRepository;
 import fr.rzteam.DirectESport.model.User;
+import fr.rzteam.DirectESport.model.UserRepository;
 
 import org.springframework.ui.Model;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import javax.inject.Inject;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -60,10 +62,11 @@ public class CommentsController
     @RequestParam("text") String text,
     @RequestParam("author") String author)
     {
-
+	User user = userRepo.findByUserName(author);
+	
 	for (Event e : eventRepo.findAll()){
-	    if (e.getId() == id){
-		e.getComments().add(new Comment(text,new User()));
+	    if (e.getId() == 1){
+		e.getComments().add(new Comment(text,user));
 		eventRepo.save(e);
 	    }
 	}
@@ -105,27 +108,27 @@ public class CommentsController
             System.out.println("OK");
         }*/
         
-        //ERREUR A REGLER : LES TEAMS SONT NULLES (LES OBJETS)
+        List<Team> team1 = teamRepo.findManyByTeamName(team1name);
+        List<Team> team2 = teamRepo.findManyByTeamName(team2name);
         
-        //TEAM DE TEST
-        teamRepo.save(new Team("a", new Date(), "history", new HashMap<>()));
-	teamRepo.save(new Team("b", new Date(), "history", new HashMap<>()));
-        
-        
-        //Saving the event
-        
-        Team team1 = teamRepo.findOneByTeamName(team1name);
-        Team team2 = teamRepo.findOneByTeamName(team2name);
-        
-        if(team1 != null && team2 != null)
+        if(team1.isEmpty())
         {
-            eventRepo.save(new Event(eventName, description, new Date(), team1, team2, 0));
+            teamRepo.save(new Team(team1name, new Date(), "history", new HashMap<>()));
+            team1 = teamRepo.findManyByTeamName(team1name);
         }
-        else
+            
+        if(team2.isEmpty())
         {
-            System.err.println("Error : Team(s) not found");
+            teamRepo.save(new Team(team2name, new Date(), "history", new HashMap<>()));
+            team2 = teamRepo.findManyByTeamName(team2name);
         }
+            
         
-        return "comment";
+        System.out.println("2eme TEAM1= " + team1 +" empty? "+team1.isEmpty());
+        System.out.println("2eme TEAM2= " + team2 +" empty? "+team1.isEmpty());
+        
+        eventRepo.save(new Event(eventName, description, new Date(), team1.get(0), team2.get(0), 0));
+        
+        return "redirect:/comment";
     }
 }
