@@ -5,16 +5,20 @@
  */
 package fr.rzteam.DirectESport.model;
 
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import lombok.Data;
 
 /**
  *
  * @author chris
  */
 @Entity
+@Data
 public class Comment
 {
     @Id
@@ -23,7 +27,10 @@ public class Comment
     
     String text;
     String author;
-    String dates;
+	
+	@Temporal(javax.persistence.TemporalType.DATE)
+	Date dateComment;
+	
     int idEvent;
 
     public Comment() {
@@ -33,7 +40,6 @@ public class Comment
     {
         this.text = comment;
         this.author = author;
-	this.idEvent = 1;
     }
     
     public Comment(String comment, String author,int idEvent)
@@ -43,42 +49,12 @@ public class Comment
 	this.idEvent = idEvent;
     }
      
-    public Comment(String comment, String author, String date)
+    public Comment(String comment, String author, Date date)
     {
         this.text = comment;
         this.author = author;
-        this.dates = date;
+        this.dateComment = date;
 	this.idEvent = 1;
-    }
-
-    public String getText()
-    {
-        return text;
-    }
-
-    public void setText(String comment)
-    {
-        this.text = comment;
-    }
-
-    public String getAuthor()
-    {
-        return author;
-    }
-
-    public void setAuthor(String author)
-    {
-        this.author = author;
-    }
-
-    public String getDate()
-    {
-        return dates;
-    }
-
-    public void setDate(String date)
-    {
-        this.dates = date;
     }
     
     

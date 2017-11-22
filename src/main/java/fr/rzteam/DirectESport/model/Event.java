@@ -30,7 +30,7 @@ public class Event
     Long id;
 	
 	@Temporal(javax.persistence.TemporalType.DATE)
-	Date date; 
+	Date dateEvent; 
 	
 	@ManyToOne
 	Team team1;
@@ -49,7 +49,7 @@ public class Event
 	
 	public Event(Date date, Team team1, Team team2, int status)
 	{
-		this.date = date;
+		this.dateEvent = date;
 		this.team1 = team1;
 		this.team2 = team2;
 		this.status = status;

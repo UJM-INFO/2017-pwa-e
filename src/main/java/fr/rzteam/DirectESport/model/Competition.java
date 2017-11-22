@@ -30,7 +30,7 @@ public class Competition
     Long id;
 	
 	@Temporal(javax.persistence.TemporalType.DATE)
-	Date date;
+	Date dateCompetition;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	List<Event> events = new ArrayList<>();
@@ -45,7 +45,7 @@ public class Competition
 	public Competition(Long id, Date date, Team winner)
 	{
 		this.id = id;
-		this.date = date;
+		this.dateCompetition = date;
 		this.winner = winner;
 	}
 	
