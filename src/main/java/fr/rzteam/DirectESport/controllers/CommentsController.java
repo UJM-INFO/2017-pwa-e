@@ -2,7 +2,6 @@ package fr.rzteam.DirectESport.controllers;
 
 import fr.rzteam.DirectESport.model.Comment;
 import fr.rzteam.DirectESport.model.CommentRepository;
-import fr.rzteam.DirectESport.model.CommentSet;
 import fr.rzteam.DirectESport.model.RequestComment;
 import javax.inject.Inject;
 import org.springframework.messaging.handler.annotation.MessageMapping;
