@@ -8,6 +8,7 @@ import fr.rzteam.DirectESport.model.RequestComment;
 import fr.rzteam.DirectESport.model.Team;
 import fr.rzteam.DirectESport.model.TeamRepository;
 import fr.rzteam.DirectESport.model.User;
+
 import org.springframework.ui.Model;
 import java.util.Date;
 import java.util.HashMap;
@@ -25,6 +26,9 @@ public class CommentsController
 {
     @Inject
     EventRepository eventRepo;
+    
+    @Inject
+    UserRepository userRepo;
     
     @Inject
     TeamRepository teamRepo;
@@ -53,7 +57,6 @@ public class CommentsController
     //HTTP
     @RequestMapping(value ="/add_comment", method = RequestMethod.POST )
     public String save(
-    @RequestParam("rid") long id,
     @RequestParam("text") String text,
     @RequestParam("author") String author)
     {
