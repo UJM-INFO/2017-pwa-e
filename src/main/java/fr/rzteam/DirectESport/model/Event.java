@@ -52,10 +52,12 @@ public class Event
 	
 	public Event(String eventName, String description, Date date, Team team1, Team team2, int status)
 	{
-		this.dateEvent = date;
-		this.team1 = team1;
-		this.team2 = team2;
-		this.status = status;
+            this.eventName = eventName;
+            this.description = description;
+            this.dateEvent = date;
+            this.team1 = team1;
+            this.team2 = team2;
+            this.status = status;
 	}
 
 	
