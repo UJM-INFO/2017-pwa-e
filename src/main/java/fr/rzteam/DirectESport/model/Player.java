@@ -33,7 +33,7 @@ public class Player
 	
 	String history;		//Litle description of the player's life
 	
-	HashMap<String, Integer> prizeList; //Contains the name of the competition and the number of victories for the competition
+	HashMap<String, Integer> prizeList; //Contains the name of the competition and the number of player's victories for the competition
 
 	public Player()
 	{
@@ -41,7 +41,6 @@ public class Player
 	
 	public Player(String playerName, PlayerRole roles, int age, String favoriteChampion, String history, HashMap<String, Integer> prizeList)
 	{
-		this.id = id;
 		this.playerName = playerName;
 		this.roles = roles;
 		this.age = age;
