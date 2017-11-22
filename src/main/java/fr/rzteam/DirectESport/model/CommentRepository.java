@@ -7,6 +7,7 @@ package fr.rzteam.DirectESport.model;
 
 
 import java.util.ArrayList;
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
  * @author Clement Colin
  */
 @CrossOrigin("*")
-public interface CommentRepository extends CrudRepository<Comment, Long> {
-   
-    public ArrayList<Comment> findAllByidEvent(int idEvent);
+public interface CommentRepository extends CrudRepository<Comment, Long> 
+{
+    public List<Comment> findAll();
 }

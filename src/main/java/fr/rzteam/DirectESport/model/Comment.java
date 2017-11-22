@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import lombok.Data;
 
@@ -26,35 +27,29 @@ public class Comment
     Long id;
     
     String text;
-    String author;
+	
+	@ManyToOne
+    User author;
 	
 	@Temporal(javax.persistence.TemporalType.DATE)
 	Date dateComment;
-	
-    int idEvent;
 
-    public Comment() {
+    public Comment() 
+	{
     }
     
-    public Comment(String comment, String author)
-    {
-        this.text = comment;
-        this.author = author;
-    }
-    
-    public Comment(String comment, String author,int idEvent)
-    {
-        this.text = comment;
-        this.author = author;
-	this.idEvent = idEvent;
-    }
-     
-    public Comment(String comment, String author, Date date)
+	public Comment(String text, User author)
+	{
+		this.text = text;
+		this.author = author;
+		this.dateComment = new Date();
+	}
+	
+    public Comment(String comment, User author, Date date)
     {
         this.text = comment;
         this.author = author;
         this.dateComment = date;
-	this.idEvent = 1;
     }
     
     
