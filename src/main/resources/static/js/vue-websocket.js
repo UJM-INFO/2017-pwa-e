@@ -5,7 +5,7 @@ var app = new Vue({
     data:
     {
         stompClient: null,
-        comment: {text:'caca',author:'Chris'}
+        comment: {text:'caca',author:'Chris',date:' ',idEvent: 2}
     },
     created: function()
     {
@@ -27,7 +27,7 @@ var app = new Vue({
             
                 stompClient.subscribe('/topic/comments', function(comments)
                 {
-                    console.log("ALLLLLLLLERTE A LUPDATE")
+                    console.log("ALLLLLLLLERTE A LUPDATE");
                     app.updateComments();
                     //this.app.showComments(JSON.parse(comments.body));
                 });
@@ -97,7 +97,7 @@ var app = new Vue({
         updateComments: function()
         {
             var r = this.$resource('http://localhost:8080/api/comments/') //POUR RAJOUTER L'ID IL FAUDRA REQUETER SUR DES EVENT
-            r.get({id: 1}).then(
+            r.get({id: 2}).then(
             response =>
             {
                 this.showComments(response);

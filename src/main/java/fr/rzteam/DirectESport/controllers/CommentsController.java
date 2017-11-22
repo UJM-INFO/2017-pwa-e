@@ -3,6 +3,8 @@ package fr.rzteam.DirectESport.controllers;
 import fr.rzteam.DirectESport.model.Comment;
 import fr.rzteam.DirectESport.model.CommentRepository;
 import fr.rzteam.DirectESport.model.CommentSet;
+import fr.rzteam.DirectESport.model.Event;
+import fr.rzteam.DirectESport.model.EventRepository;
 import fr.rzteam.DirectESport.model.RequestComment;
 import javax.inject.Inject;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -10,6 +12,8 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CommentsController
@@ -17,6 +21,8 @@ public class CommentsController
     @Inject
     CommentRepository repo;
     //WEBSOCKET
+    @Inject
+    EventRepository eventrepo;
     
     /**
      *  When we receive a adding signal of a comment, we request to all websocket to update
@@ -38,7 +44,23 @@ public class CommentsController
     }
     
     //HTTP
-    
+    @RequestMapping(value = "/add_comment", method = RequestMethod.POST )
+    public String save(
+    @RequestParam("rid") long id,
+    @RequestParam("text") String text,
+    @RequestParam("author") String author)
+    {
+	eventrepo.save(new Event());
+	eventrepo.save(new Event());
+	eventrepo.save(new Event());
+	for (Event e : eventrepo.findAll()){
+	    if (e.getId() == id){
+		e.getComments().add(new Comment(text,author));
+		eventrepo.save(e);
+	    }
+	}
+	return "redirect:/comment";
+    }
     @RequestMapping("/comment")
     public String comment()
     {
