@@ -17,17 +17,17 @@ and open the template in the editor.
             <span sec:authorize="isAuthenticated()" class="navbar-nav">
                 <h1>Profil de <span sec:authentication="name"></span></h1>
                 <ul>
-                    <li><h3>Pseudo: </h3> <span sec:authentication="name"></span></li>
-                    <li><h3>Nom: </h3></li>
-                    <li><h3>Mail: </h3></li>
+                    <li><h3>Pseudo: <span sec:authentication="name"></span></h3> </li>
+                    <li><h3>Nom: <span th:text="${u.realName}"></span></h3></li>
+                    <li><h3>Mail: <span th:text="${u.mail}"></span></h3></li>
                     <li><h3>Changer le mot de passe: </h3></li>
-                    <form href="/passwordChanging" method="post">
-                        Ancien mot de passe: <input type="password" id="oldPassword" name="oldPassword"/><br/>
-                        Nouveau mot de passe: <input type="password" id="newPassword" name="oldPassword"/><br/>
+                    <p th:if="${error}!=null" th:text="${error}" class="alert alert-danger"></p>
+                    <p th:if="${success}!=null" th:text="${success}" class="alert alert-success"></p>
+                    <form th:action="@{/passwordChanging}" method="post">
+                        Nouveau mot de passe: <input type="password" id="newPassword" name="newPassword"/><br/>
                         Répétez le mot de passe: <input type="password" id="repeatNewPassword" name="repeatNewPassword"/><br/>
                         <input type="submit" class="btn form-control btn-info" value="Changer de mot de passe"/>
                     </form>
-                    <li><h3></h3></li>
                 </ul>
             </span>
         </section>
