@@ -41,7 +41,6 @@ public class User {
     public User() 
     {}
     
-    
     public User(String userName,String realName, String password,String mail) 
 	{
         this.userName = userName;

@@ -8,6 +8,7 @@ import fr.rzteam.DirectESport.model.RequestComment;
 import fr.rzteam.DirectESport.model.Team;
 import fr.rzteam.DirectESport.model.TeamRepository;
 import fr.rzteam.DirectESport.model.User;
+import fr.rzteam.DirectESport.model.UserRepository;
 import java.util.Date;
 import java.util.HashMap;
 import javax.inject.Inject;
@@ -26,10 +27,11 @@ public class CommentsController
     EventRepository eventRepo;
     
     @Inject
+    UserRepository userRepo;
+    
+    @Inject
     TeamRepository teamRepo;
     //WEBSOCKET
-    @Inject
-    EventRepository eventrepo;
     
     /**
      *  When we receive a adding signal of a comment, we request to all websocket to update
@@ -53,15 +55,15 @@ public class CommentsController
     //HTTP
     @RequestMapping(value ="/add_comment", method = RequestMethod.POST )
     public String save(
-    @RequestParam("rid") long id,
     @RequestParam("text") String text,
     @RequestParam("author") String author)
     {
-
-	for (Event e : eventrepo.findAll()){
-	    if (e.getId() == id){
-		e.getComments().add(new Comment(text,new User()));
-		eventrepo.save(e);
+	User user = userRepo.findByUserName(author);
+	
+	for (Event e : eventRepo.findAll()){
+	    if (e.getId() == 1){
+		e.getComments().add(new Comment(text,user));
+		eventRepo.save(e);
 	    }
 	}
 	return "redirect:/comment";
