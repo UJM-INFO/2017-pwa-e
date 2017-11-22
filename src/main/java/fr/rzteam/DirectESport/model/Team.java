@@ -33,7 +33,7 @@ public class Team
 	@OneToMany
 	List<Player> players = new ArrayList<>(); //The list of players of the team
 	
-	String hystory; //A description of the team
+	String history; //A description of the team
 	
 	HashMap<String, Integer> prizeList; //Contains the name of the competition and the number of team's victories for the competition
 
@@ -41,11 +41,11 @@ public class Team
 	{
 	}
 	
-	public Team(String teamName, int dateCreation, String hystory, HashMap<String, Integer> prizeList)
+	public Team(String teamName, int dateCreation, String history, HashMap<String, Integer> prizeList)
 	{
 		this.teamName = teamName;
 		this.dateCreation = dateCreation;
-		this.hystory = hystory;
+		this.history = history;
 		this.prizeList = prizeList;
 	}
 
