@@ -23,11 +23,11 @@ var app = new Vue({
             {
                 //Sucess
                 app.showContent();
-                
-            
+
+
                 stompClient.subscribe('/topic/comments', function(comments)
                 {
-                    console.log("ALLLLLLLLERTE A LUPDATE")
+                    console.log("UPDATE");
                     app.updateComments();
                     //this.app.showComments(JSON.parse(comments.body));
                 });
