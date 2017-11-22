@@ -35,4 +35,19 @@ public class Event
 	Team team2;
 	
 	int status; //0 the game has not started yet / 1 the team1 won / 2 the team2 won / 3 the game is in progress
+
+	public Event()
+	{
+	}
+	
+	public Event(Date date, Team team1, Team team2, int status)
+	{
+		this.date = date;
+		this.team1 = team1;
+		this.team2 = team2;
+		this.status = status;
+	}
+
+	
+
 }

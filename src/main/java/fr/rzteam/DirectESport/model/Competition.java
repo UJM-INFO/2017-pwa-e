@@ -37,4 +37,17 @@ public class Competition
 	
 	@ManyToOne
 	Team winner;
+
+	public Competition()
+	{
+	}
+
+	public Competition(Long id, Date date, Team winner)
+	{
+		this.id = id;
+		this.date = date;
+		this.winner = winner;
+	}
+	
+	
 }
