@@ -28,10 +28,10 @@ public class Article
 	
 	String title;
 	
-	String content;
+	String text;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	List<Comment> comments = new ArrayList<>();
+	List<ArticleComment> comments = new ArrayList<>();
 
 	public Article()
 	{
@@ -40,7 +40,7 @@ public class Article
 	public Article(String title, String content)
 	{
 		this.title = title;
-		this.content = content;
+		this.text = content;
 	}
 	
 	
