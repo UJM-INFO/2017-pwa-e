@@ -17,6 +17,5 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin("*")
 public interface CommentRepository extends CrudRepository<Comment, Long> {
    
-    public ArrayList<Comment> findAll();
-//    public ArrayList<Comment> findAllByidEvent(int idEvent);
+    public ArrayList<Comment> findAllByidEvent(int idEvent);
 }
