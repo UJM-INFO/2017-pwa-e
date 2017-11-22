@@ -16,13 +16,17 @@ and open the template in the editor.
         <div id="app">
             <!-- Menu du haut-->
             <div th:include="fragments/header"></div>
-
+            
             <section>
                 <p id="comments">Les commentaires vont normalement bientôt s'afficher ...</p>
-                
+                <form th:action="@{/add_comment}" method="post">
+                    Text :  <input type="text" name="text"/>
+                    Author : <input type="text" name="author"/>
+                    <input type="submit" value="ajouter Controller"/>
+                </form>
                 <!--<form>-->
                     <!--<input v-model=""/>-->
-                    <button class="btn btn-info" v-on:click="saveComments">Ajoute un commentaire</button>
+                    <button class="btn btn-info" v-on:click="saveComments">Ajoute un commentaire Vue.js</button>
                 <!--</form>-->
             </section>
 

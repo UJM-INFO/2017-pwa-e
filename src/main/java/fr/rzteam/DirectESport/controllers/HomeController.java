@@ -36,7 +36,7 @@ public class HomeController
      */
     public boolean isConnected()
     {
-        return (SecurityContextHolder.getContext().getAuthentication().getPrincipal() == "anonymousUser");
+        return (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser");
     }
     
     @RequestMapping("/")
