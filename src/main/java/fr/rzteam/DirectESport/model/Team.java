@@ -6,6 +6,7 @@
 package fr.rzteam.DirectESport.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import javax.persistence.Entity;
@@ -28,7 +29,7 @@ public class Team
 	
 	String teamName;
 	
-	int dateCreation;
+	Date dateCreation;
 	
 	@OneToMany
 	List<Player> players = new ArrayList<>(); //The list of players of the team
@@ -41,7 +42,7 @@ public class Team
 	{
 	}
 	
-	public Team(String teamName, int dateCreation, String history, HashMap<String, Integer> prizeList)
+	public Team(String teamName, Date dateCreation, String history, HashMap<String, Integer> prizeList)
 	{
 		this.teamName = teamName;
 		this.dateCreation = dateCreation;
