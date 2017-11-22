@@ -18,21 +18,22 @@ public class CommentsController
     CommentRepository repo;
     //WEBSOCKET
     
+    /**
+     *  When we receive a adding signal of a comment, we request to all websocket to update
+     * @param request adding signal from client who add a comment
+     * @return a signal to all active websocket
+     */
     @MessageMapping("/update")
     @SendTo("/topic/comments")
-    public String sendComment(RequestComment request) throws Exception
+    public String updateAllWebsocketClient(RequestComment request)
     {
-        
-            /* on demande au model avec request.getId()*/
-//	repo.save(new Comment("La boule magique !","MisterMV","19/11/2017 06:38"));
-//	repo.save(new Comment("Sa mère la chauve moldave en string latérale, ce gars est trop fort !","Chris","19/11/2017 06:37"));
-//        
-//	repo.save(new Comment("Ces commentaires sont ajoutés directement du serveur dans la classe CommentsController","Chris","19/11/2017 06:49"));
+        //FAUDRA METTRE UN SPECIAL POUR LE SIGNAL DE L'UPDATE POUR EVITER LES HACK
+               
+        /* on demande au model avec request.getId()*/
+        //repo.save(new Comment("La boule magique !","MisterMV","19/11/2017 06:38"));
         //CommentSet commentSet= new CommentSet("Evenement "+request.getId(),repo.findAll());
-//        commentSet.add(new Comment("Ces commentaires sont ajoutés directement du serveur dans la classe CommentsController","Chris","19/11/2017 06:49"));
-//        commentSet.add(new Comment("La boule magique !","MisterMV","19/11/2017 06:38"));
-//        commentSet.add(new Comment("Sa mère la chauve moldave en string latérale, ce gars est trop fort !","Chris","19/11/2017 06:37"));
-        
+        //commentSet.add(new Comment("Ces commentaires sont ajoutés directement du serveur dans la classe CommentsController","Chris","19/11/2017 06:49"));
+
         return "";
     }
     
