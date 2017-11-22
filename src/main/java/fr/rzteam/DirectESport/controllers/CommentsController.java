@@ -2,10 +2,10 @@ package fr.rzteam.DirectESport.controllers;
 
 import fr.rzteam.DirectESport.model.Comment;
 import fr.rzteam.DirectESport.model.CommentRepository;
-import fr.rzteam.DirectESport.model.CommentSet;
 import fr.rzteam.DirectESport.model.Event;
 import fr.rzteam.DirectESport.model.EventRepository;
 import fr.rzteam.DirectESport.model.RequestComment;
+import fr.rzteam.DirectESport.model.User;
 import javax.inject.Inject;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -50,12 +50,10 @@ public class CommentsController
     @RequestParam("text") String text,
     @RequestParam("author") String author)
     {
-	eventrepo.save(new Event());
-	eventrepo.save(new Event());
-	eventrepo.save(new Event());
+
 	for (Event e : eventrepo.findAll()){
 	    if (e.getId() == id){
-		e.getComments().add(new Comment(text,author));
+		e.getComments().add(new Comment(text,new User()));
 		eventrepo.save(e);
 	    }
 	}
