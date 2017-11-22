@@ -16,13 +16,12 @@ import lombok.Data;
 
 /**
  *
- * @author chris
  */
 @Entity
 @Data
-public class Comment
+public class ArticleComment
 {
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     
@@ -32,25 +31,24 @@ public class Comment
     User author;
 	
 	@Temporal(javax.persistence.TemporalType.DATE)
-	Date dateComment;
+	Date dateArticleComment;
 
-    public Comment() 
+	public ArticleComment()
 	{
-    }
-    
-	public Comment(String text, User author)
+	}
+
+	public ArticleComment(String text, User author)
 	{
 		this.text = text;
 		this.author = author;
-		this.dateComment = new Date();
+		this.dateArticleComment = new Date();
 	}
-	
-    public Comment(String comment, User author, Date date)
-    {
-        this.text = comment;
-        this.author = author;
-        this.dateComment = date;
-    }
-    
-    
+
+	public ArticleComment(String text, User author, Date dateArticleComment)
+	{
+		this.text = text;
+		this.author = author;
+		this.dateArticleComment = dateArticleComment;
+	}
+
 }
