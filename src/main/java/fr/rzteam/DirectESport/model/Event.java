@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 import lombok.Data;
 
 /**
@@ -24,6 +25,7 @@ public class Event
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 	
+	@Temporal(javax.persistence.TemporalType.DATE)
 	Date date; 
 	
 	@ManyToOne
