@@ -8,7 +8,6 @@ package fr.rzteam.DirectESport.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,7 +30,7 @@ public class Team
 	
 	int dateCreation;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany
 	List<Player> players = new ArrayList<>(); //The list of players of the team
 	
 	String hystory; //A description of the team
