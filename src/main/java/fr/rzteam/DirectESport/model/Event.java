@@ -5,12 +5,16 @@
  */
 package fr.rzteam.DirectESport.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import lombok.Data;
 
@@ -36,6 +40,9 @@ public class Event
 	
 	int status; //0 the game has not started yet / 1 the team1 won / 2 the team2 won / 3 the game is in progress
 
+	@OneToMany(cascade = CascadeType.ALL)
+	List<Comment> comments = new ArrayList<>();
+	
 	public Event()
 	{
 	}
