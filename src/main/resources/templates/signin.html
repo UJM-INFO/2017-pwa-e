@@ -15,13 +15,8 @@ and open the template in the editor.
         
         <section>
             <div th:if="${param.error}">
-                <script type="text/javascript">
-                  alert('Error!');
-                </script>
-                
-                <br />
                 <div class="alert alert-danger">
-                    Utilisateur/Mot de passe incorrect.
+                    Utilisateur inconnu / Mot de passe incorrect.
                 </div>
             </div>
             

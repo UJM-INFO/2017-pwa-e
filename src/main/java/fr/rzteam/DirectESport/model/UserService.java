@@ -64,11 +64,16 @@ public class UserService implements UserDetailsService {
         repo.save(u);
     }
 
-    public void changeUserPassword(String userName, String newPassword) 
+    public int changeUserPassword(String userName, String newPassword) 
     {
-	User u = repo.findByUserName(userName);
-        u.setPassword(encoder.encode(newPassword));
-        repo.save(u);
+		User u = repo.findByUserName(userName);
+		if (u != null)
+		{
+			u.setPassword(encoder.encode(newPassword));
+			repo.save(u);
+			return 1; //Success
+		}
+		return -1; //Never
     }
     
     public void changeRealName(String userName, String newName) 
