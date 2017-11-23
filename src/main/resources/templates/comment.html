@@ -18,6 +18,10 @@ and open the template in the editor.
             <div th:include="fragments/header"></div>
             
             <section>
+                
+                <a class="btn btn-info btn-lg btn-block" href="/comment">Retour aux évenements</a>
+                <br />
+                
                 <p id="comments">Les commentaires vont normalement bientôt s'afficher ...</p>
                 <form th:action="@{/add_comment}" method="post">
                     Text :  <input type="text" name="text"/>
