@@ -6,3 +6,8 @@ J'imagine que ça sera genre "lancer tomcat avec le fichier directesport.war dan
 
 (Architecture du projet (machin en lien avec machin))
 
+(Code externe utilisé)
+
+- Bootstrap
+- jQuery
+- 
