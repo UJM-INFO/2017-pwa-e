@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -45,6 +46,17 @@ public class ArticleController
         }
 	m.addAttribute("id",id);
         return "article";
+    }
+    
+    @RequestMapping(value = "/add_article", method = RequestMethod.POST)
+    public String addArticle(
+            @RequestParam("article_title") String title,
+            @RequestParam("article_text") String text)       
+    {
+        Article article = new Article(title, text);
+        articleRepo.save(article);
+        
+        return "redirect:/article";
     }
     
 }
