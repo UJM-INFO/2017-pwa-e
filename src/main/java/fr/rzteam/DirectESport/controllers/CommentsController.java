@@ -18,6 +18,7 @@ import javax.inject.Inject;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -53,17 +54,16 @@ public class CommentsController
     @RequestMapping(value ="/add_comment", method = RequestMethod.POST )
     public String save(
     @RequestParam("text") String text,
-    @RequestParam("author") String author)
+    @RequestParam("id") String id)
     {
-	User user = userRepo.findByUserName(author);
-	
-	for (Event e : eventRepo.findAll()){
-	    if (e.getId() == 1){
-		e.getComments().add(new Comment(text,user));
-		eventRepo.save(e);
-	    }
-	}
-	return "/comment";
+	System.out.println("--------------"+id);
+	Long idlong = Long.parseLong(id);
+	String name = SecurityContextHolder.getContext().getAuthentication().getName();
+	User user = userRepo.findByUserName(name);
+	Event e = eventRepo.findOneById(idlong);
+	    e.getComments().add(new Comment(text,user));
+	    eventRepo.save(e);
+	return "redirect:/comment";
     }
     
     @RequestMapping("/comment")
@@ -85,7 +85,7 @@ public class CommentsController
             m.addAttribute("events",list);
             return "eventMenu";
         }
-
+	m.addAttribute("id",id);
         return "comment";
     }  
     

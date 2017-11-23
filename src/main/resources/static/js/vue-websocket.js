@@ -66,12 +66,15 @@ var app = new Vue({
 //        },
         showComments: function(commentSet)
         {     
-            var parsedCommentSet = JSON.parse(commentSet.bodyText);
-            
-            var display = "<h2><strong>Evenement:</strong> "+/*commentSet.eventName*/" erreur (Objet Event pas encore fait alors marche po)"/**/+"</h2>";
-            parsedCommentSet._embedded.comments.forEach((comment)=>
+            var parsedComment = JSON.parse(commentSet.bodyText);
+            console.log(parsedComment);
+            //var display = "<h2><strong>Evenement:</strong> "+parsedEvent._embedded.events[0].eventName+"</h2>";
+            var display ="";
+            parsedComment._embedded.comments.forEach((comment)=>
             {
-                display+=("<p><strong>Commentaire de "+comment.author+"</strong> ("+comment.date+")<br /> "+comment.text+"</p><br/><br/>");
+                console.log(comment);
+                //display+=("<p><strong>Commentaire de "+comment.author+"</strong> ("+comment.date+")<br /> "+comment.text+"</p><br/><br/>");
+                display+=("<p>"+comment.text+"</p><br/>");
             });
             $("#comments").html("");
             $("#comments").append(display);
@@ -96,12 +99,13 @@ var app = new Vue({
         },
         updateComments: function()
         {
-            var r = this.$resource('http://localhost:8080/api/comments/') //POUR RAJOUTER L'ID IL FAUDRA REQUETER SUR DES EVENT
-            r.get({id: 2}).then(
+            var r = this.$resource('http://localhost:8080/api/events{/id}/comments') //POUR RAJOUTER L'ID IL FAUDRA REQUETER SUR DES EVENT
+            r.get({id: parseInt($.urlParam('id'))}).then(
             response =>
             {
+                
                 this.showComments(response);
-                console.log("get ok");
+                
             },
             response =>
             {

@@ -25,13 +25,9 @@ and open the template in the editor.
                 <p id="comments">Les commentaires vont normalement bientôt s'afficher ...</p>
                 <form th:action="@{/add_comment}" method="post">
                     <label> Contenu :  <input type="text" name="text"/></label><br /><br />
-                    <input type='hidden' name='author' th:value="chris"/>
+                    <input type="hidden" name="id" th:value="${id}"/>
                     <input class="btn btn-info" type="submit" value="Ajouter un commentaire Controller"/><br /><br />
                 </form>
-                <!--<form>-->
-                    <!--<input v-model=""/>-->
-                    <button class="btn btn-info" v-on:click="saveComments">Ajouter un commentaire Vue.js</button>
-                <!--</form>-->
             </section>
 
             <footer></footer>
