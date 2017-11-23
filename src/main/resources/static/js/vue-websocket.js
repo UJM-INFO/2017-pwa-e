@@ -64,12 +64,13 @@ var app = new Vue({
 //            var id = parseInt($.urlParam('id'));
 //            stompClient.send("/app/get_comments_by_eventid", {}, JSON.stringify({'id': id}));
 //        },
-        showComments: function(commentSet)
+        showComments: function(commentSet,event)
         {     
             var parsedComment = JSON.parse(commentSet.bodyText);
-            console.log(parsedComment);
-            //var display = "<h2><strong>Evenement:</strong> "+parsedEvent._embedded.events[0].eventName+"</h2>";
-            var display ="";
+            var parsedEvent = JSON.parse(event.bodyText);
+            
+            var display = "<h2><strong>Evenement:</strong> "+parsedEvent.eventName+"</h2>";
+            //var display ="";
             parsedComment._embedded.comments.forEach((comment)=>
             {
                 console.log(comment);
@@ -101,15 +102,25 @@ var app = new Vue({
         {
             var r = this.$resource('http://localhost:8080/api/events{/id}/comments') //POUR RAJOUTER L'ID IL FAUDRA REQUETER SUR DES EVENT
             r.get({id: parseInt($.urlParam('id'))}).then(
-            response =>
+            response1 =>
             {
-                
-                this.showComments(response);
-                
+                console.log("get comments ok");
+                var r2 = this.$resource('http://localhost:8080/api/events{/id}') //POUR RAJOUTER L'ID IL FAUDRA REQUETER SUR DES EVENT
+                r2.get({id: parseInt($.urlParam('id'))}).then(
+                response2 =>
+                {
+                    console.log("get event ok");
+                    this.showComments(response1,response2);
+
+                },
+                response2 =>
+                {
+                    console.log("get event error");
+                });
             },
-            response =>
+            response1 =>
             {
-                console.log("get error");
+                console.log("get comments error");
             });
         }
     }
