@@ -66,8 +66,9 @@ public class SignupController
 			m.addAttribute("mailExists","Il y a déjà un compte avec cet email");
 			return "forward:/signup";
 		}
-		
-		return "redirect:/home"; //The user has been correctly added in the database
+		m.addAttribute("user",username);
+		m.addAttribute("mdp",password);
+		return "/signin"; //The user has been correctly added in the database
     }
     
     
