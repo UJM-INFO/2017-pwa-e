@@ -15,14 +15,26 @@ and open the template in the editor.
             <div th:include="fragments/header"></div>
 
             <section>
-               
-                <h2>Evenements actuels</h2>
+                             
+                <h1>Evenements actuels</h1>
+                <br />
                 <div th:each="event : ${events}">
-                    <p th:value="${event}">...</p>
+                    <div class="card">
+                        <h4 class="card-header" th:text="${event.eventName}"></h4>
+                        <div class="card-body">
+                            <h4 class="card-title">Team <span th:text="${event.team1.teamName}"></span></h4>
+                            <p class="card-text" th:text="${event.team1}"></p>
+                            
+                            <h4 class="card-title">Team <span th:text="${event.team2.teamName}"></span></h4>
+                            <p class="card-text" th:text="${event.team2}"></p>
+                            <a class="btn btn-info" th:href="'/comment?id='+${event.id}">Accès à l'evenement</a>
+                        </div>
+                    </div>
+                    <hr />
                 </div>
                 
                 <hr />
-                <h2>Création d'évenement</h2>
+                <h2 id="eventCreation">Création d'évenement</h2>
                 <form th:action="@{/add_event}" method="POST">
                     <label> Nom de l'évenement : <input type="text" class="form-control" name="event_name"/></label><br/>
                     <label> Description : <input type="text" class="form-control" name="description"/></label><br/>
