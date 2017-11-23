@@ -63,7 +63,7 @@ public class CommentsController
 		eventRepo.save(e);
 	    }
 	}
-	return "redirect:/comment";
+	return "/comment";
     }
     
     @RequestMapping("/comment")
