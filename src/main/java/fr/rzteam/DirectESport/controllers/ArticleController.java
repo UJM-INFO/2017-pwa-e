@@ -33,14 +33,14 @@ public class ArticleController
             if("undefined".equals(id) || articleRepo.findOneById(Long.parseLong(id))==null)
             {
                 List<Article> list = articleRepo.findAll();
-                m.addAttribute("events",list);
+                m.addAttribute("articles",list);
                 return "articleMenu";
             }
         }
         catch(NumberFormatException | NullPointerException e)
         { 
             List<Article> list = articleRepo.findAll();
-            m.addAttribute("events",list);
+            m.addAttribute("articles",list);
             return "articleMenu";
         }
 	m.addAttribute("id",id);
