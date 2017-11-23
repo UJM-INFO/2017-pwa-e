@@ -46,13 +46,6 @@ public class CommentsController
     @SendTo("/topic/comments")
     public String updateAllWebsocketClient(RequestComment request)
     {
-        //FAUDRA METTRE UN SPECIAL POUR LE SIGNAL DE L'UPDATE POUR EVITER LES HACK
-               
-        /* on demande au model avec request.getId()*/
-        //repo.save(new Comment("La boule magique !","MisterMV","19/11/2017 06:38"));
-        //CommentSet commentSet= new CommentSet("Evenement "+request.getId(),repo.findAll());
-        //commentSet.add(new Comment("Ces commentaires sont ajoutés directement du serveur dans la classe CommentsController","Chris","19/11/2017 06:49"));
-
         return "";
     }
     
@@ -83,12 +76,14 @@ public class CommentsController
             {
                 List<Event> list = eventRepo.findAll();
                 m.addAttribute("events",list);
-                return "redirect:/eventMenu";
+                return "eventMenu";
             }
         }
         catch(NumberFormatException | NullPointerException e)
         { 
-            return "eventMenu"; 
+            List<Event> list = eventRepo.findAll();
+            m.addAttribute("events",list);
+            return "eventMenu";
         }
 
         return "comment";
@@ -122,10 +117,6 @@ public class CommentsController
             teamRepo.save(new Team(team2name, new Date(), "history", new HashMap<>()));
             team2 = teamRepo.findManyByTeamName(team2name);
         }
-            
-        
-        System.out.println("2eme TEAM1= " + team1 +" empty? "+team1.isEmpty());
-        System.out.println("2eme TEAM2= " + team2 +" empty? "+team1.isEmpty());
         
         eventRepo.save(new Event(eventName, description, new Date(), team1.get(0), team2.get(0), 0));
         
