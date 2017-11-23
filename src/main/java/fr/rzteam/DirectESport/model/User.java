@@ -27,6 +27,8 @@ public class User {
     @Id
     String userName;
     
+    String pseudo;
+    
     String realName;
     
     String password;
@@ -47,7 +49,8 @@ public class User {
         this.realName = realName;
         this.roles.add(UserRole.ADMIN); // be a user by default
         this.password = password;
-		this.mail = mail;
+	this.mail = mail;
+	this.pseudo = userName;
     }
     
     public User(String userName, String displayName, List<String> roles, String derivedPassword, String mail) 
@@ -56,7 +59,8 @@ public class User {
         this.realName = displayName;
         this.roles.addAll(roles.stream().map(UserRole::valueOf).collect(Collectors.toList()));
         this.password = derivedPassword;
-		this.mail = mail;
+	this.mail = mail;
+	this.pseudo = userName;
     }
     
 }
