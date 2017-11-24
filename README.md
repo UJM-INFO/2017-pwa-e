@@ -8,6 +8,17 @@ J'imagine que ça sera genre "lancer tomcat avec le fichier directesport.war dan
 
 (Code externe utilisé)
 
+# External Code
+
 - Bootstrap
+    * HTML/CSS/JS Framework
+    * https://github.com/twbs/bootstrap
+    * License MIT
 - jQuery
-- 
+    * JS Library
+    * https://github.com/jquery/jquery
+    * License MIT
+- Flexmark-java
+    * Markdown parser
+    * https://github.com/vsch/flexmark-java
+    * License BSD-2-Clause
