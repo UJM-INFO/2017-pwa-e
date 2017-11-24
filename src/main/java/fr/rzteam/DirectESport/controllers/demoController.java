@@ -5,6 +5,7 @@
  */
 package fr.rzteam.DirectESport.controllers;
 
+import fr.rzteam.DirectESport.mdparser.Markdown;
 import fr.rzteam.DirectESport.model.CommentRepository;
 import fr.rzteam.DirectESport.model.EventRepository;
 import fr.rzteam.DirectESport.model.UserRepository;
@@ -13,6 +14,7 @@ import fr.rzteam.DirectESport.model.*;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import fr.rzteam.DirectESport.mdparser.Markdown;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,12 +40,12 @@ public class demoController
      */
     @RequestMapping("/demo")
     public String demo()
-    {
-//        User user1 = new User("admin", "Administrateur", "pass", "admin@rzteam.fr");
-//        userRepo.save(user1);
+    {        
+        User user1 = new User("admin", "Administrateur", "$2a$10$cGONBnlF98pG2tLYV5GcfODgvLEbeMlRm1z/4yjpG.pRQ4SoP8nd6"/*=pass*/, "admin@rzteam.fr");
+        userRepo.save(user1);
 //        Team team1 = new Team("Fnatic", new Date(), "history", new HashMap<String,Integer>());
-//        Team team2 = new Team("SKT", new Date(), "history", new HashMap<String,Integer>());
-//        eventRepo.save(new Event("Dreamhack LoL Final", "Description de ouf", new Date(), team1, team2, 0));
+//       Team team2 = new Team("SKT", new Date(), "history", new HashMap<String,Integer>());
+//      eventRepo.save(new Event("Dreamhack LoL Final", "Description de ouf", new Date(), team1, team2, 0));
 //        teamRepo.save(team1);
 //        teamRepo.save(team2);
 //        
