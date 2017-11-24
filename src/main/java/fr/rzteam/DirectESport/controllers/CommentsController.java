@@ -56,7 +56,6 @@ public class CommentsController
     @RequestParam("text") String text,
     @RequestParam("id") String id)
     {
-	System.out.println("--------------"+id);
 	Long idlong = Long.parseLong(id);
 	String name = SecurityContextHolder.getContext().getAuthentication().getName();
 	User user = userRepo.findByUserName(name);
