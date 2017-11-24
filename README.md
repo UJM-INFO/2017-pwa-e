@@ -1,14 +1,13 @@
 # DirectESport
 DirectESport est un site de commentaire en direct d'évenements eSport.
 
-(Instruction (lancement, compilation,..))
-J'imagine que ça sera genre "lancer tomcat avec le fichier directesport.war dans les webapps/"
+## Instructions de lancement/compilation
 
-(Architecture du projet (machin en lien avec machin))
+## Architecture du projet
 
-(Code externe utilisé)
+(Liens entre les éléments etc.)
 
-# External Code
+## Code externe
 
 - Bootstrap
     * HTML/CSS/JS Framework
