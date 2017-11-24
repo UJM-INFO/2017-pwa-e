@@ -11,19 +11,12 @@ import java.util.Arrays;
 
 public class Markdown
 {
-    MutableDataSet options = null;
-    Parser parser = null;
-    HtmlRenderer renderer = null;        
-            
-    public Markdown()
+
+    public static String parse(String markdown)
     {
-        options = new MutableDataSet();
-        parser = Parser.builder(options).build();
-        renderer = HtmlRenderer.builder(options).build();
-    }
-    
-    public String parse(String markdown)
-    {
+        MutableDataSet options = new MutableDataSet();
+        Parser parser = Parser.builder(options).build();
+        HtmlRenderer renderer = HtmlRenderer.builder(options).build();
         Node document = parser.parse(markdown);
         String html = renderer.render(document);
         System.out.println(html);
