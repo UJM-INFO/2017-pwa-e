@@ -21,8 +21,7 @@ and open the template in the editor.
                 <div th:each="article : ${articles}">
                     <div class="card">
                         <h4 class="card-header" th:text="${article.title}"></h4>
-                        <div class="card-body">
-                            <p class="card-text" th:text="${article.text}"></p>
+                        <div class="card-body" th:text="${article.text}">
                         </div>
                     </div>
                     <hr />
