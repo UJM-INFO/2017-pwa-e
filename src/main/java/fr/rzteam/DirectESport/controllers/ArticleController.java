@@ -5,6 +5,7 @@
  */
 package fr.rzteam.DirectESport.controllers;
 
+import fr.rzteam.DirectESport.mdparser.Markdown;
 import fr.rzteam.DirectESport.model.Article;
 import fr.rzteam.DirectESport.model.ArticleRepository;
 import java.util.List;
@@ -53,7 +54,8 @@ public class ArticleController
             @RequestParam("article_title") String title,
             @RequestParam("article_text") String text)       
     {
-        Article article = new Article(title, text);
+        String parsedText = Markdown.parse(text);
+        Article article = new Article(title, parsedText);
         articleRepo.save(article);
         
         return "redirect:/article";
