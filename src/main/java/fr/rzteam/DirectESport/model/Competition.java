@@ -37,16 +37,19 @@ public class Competition
 	
 	@ManyToOne
 	Team winner;
+	
+	String name;
 
 	public Competition()
 	{
 	}
 
-	public Competition(Long id, Date date, Team winner)
+	public Competition(Long id, Date date, Team winner,String name)
 	{
 		this.id = id;
 		this.dateCompetition = date;
 		this.winner = winner;
+		this.name = name;
 	}
 	
 	

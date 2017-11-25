@@ -27,7 +27,7 @@ var app = new Vue({
                 stompClient.subscribe('/topic/comments', function(comments)
                 {
                     console.log("UPDATE");
-                    app.updateComments();
+                    setTimeout(app.updateComments,100);
                     //this.app.showComments(JSON.parse(comments.body));
                 });
                 
@@ -75,21 +75,8 @@ var app = new Vue({
         },
         saveComments: function()
         {
-            var r = this.$resource('http://localhost:8080/api/comments/{/id}');
-            r.save(this.comment).then(
-            resp =>
-            {
                 console.log('save ok');
-                
-                //We send a websocket signal to the server too
-                stompClient.send("/app/update", {}, JSON.stringify({'id': parseInt($.urlParam('id'))}));
-                
-            }, //OK
-            resp =>
-            {
-                console.log("save error");
-            } //ERROR
-            );
+                stompClient.send("/app/update", {}, JSON.stringify({'id': parseInt($.urlParam('id') )}));
         },
         updateComments: function()
         {

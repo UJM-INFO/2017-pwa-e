@@ -50,8 +50,9 @@ public class CommentsController
         return "";
     }
     
+    
     //HTTP
-    @RequestMapping(value ="/add_comment", method = RequestMethod.POST )
+    @RequestMapping(value ="/add_comment", method = RequestMethod.POST)
     public String save(
     @RequestParam("text") String text,
     @RequestParam("id") String id)
@@ -62,7 +63,7 @@ public class CommentsController
 	Event e = eventRepo.findOneById(idlong);
 	    e.getComments().add(new Comment(text,user));
 	    eventRepo.save(e);
-	return "redirect:/comment";
+	return "redirect:/comment?id="+id;
     }
     
     @RequestMapping("/comment")
@@ -90,17 +91,10 @@ public class CommentsController
     
     @RequestMapping(value = "/add_event", method = RequestMethod.POST)
     public String addEvent(
-            @RequestParam("event_name") String eventName,
             @RequestParam("description") String description,
             @RequestParam("team1") String team1name,
             @RequestParam("team2") String team2name)            
     {
-    /*    System.out.println("PASS = "+oldPassword+" "+newPassword+" "+repeatNewPassword);
-        
-        if( !"undefined".equals(oldPassword))
-        {
-            System.out.println("OK");
-        }*/
         
         List<Team> team1 = teamRepo.findManyByTeamName(team1name);
         List<Team> team2 = teamRepo.findManyByTeamName(team2name);
@@ -117,7 +111,7 @@ public class CommentsController
             team2 = teamRepo.findManyByTeamName(team2name);
         }
         
-        eventRepo.save(new Event(eventName, description, new Date(), team1.get(0), team2.get(0), 0));
+        eventRepo.save(new Event(description, new Date(), team1.get(0), team2.get(0), 0));
         
         return "redirect:/comment";
     }

@@ -20,7 +20,6 @@ and open the template in the editor.
                 <br />
                 <div th:each="event : ${events}">
                     <div class="card">
-                        <h4 class="card-header" th:text="${event.eventName}"></h4>
                         <div class="card-body">
                             <h4 class="card-title">Team <span th:text="${event.team1.teamName}"></span></h4>
                             <p class="card-text" th:text="${event.team1}"></p>
@@ -36,7 +35,6 @@ and open the template in the editor.
                 <hr />
                 <h2 id="eventCreation">Création d'évenement</h2>
                 <form th:action="@{/add_event}" method="POST">
-                    <label> Nom de l'évenement : <input type="text" class="form-control" name="event_name"/></label><br/>
                     <label> Description : <input type="text" class="form-control" name="description"/></label><br/>
                     <label> Equipe 1 : <input type="text" class="form-control" name="team1"/></label><br/>
                     <label> Equipe 2 : <input type="text" class="form-control" name="team2"/></label><br/>
