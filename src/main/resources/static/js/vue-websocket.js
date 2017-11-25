@@ -4,8 +4,7 @@ var app = new Vue({
     el: '#app',
     data:
     {
-        stompClient: null,
-        comment: {text:'caca',author:'Chris',date:' ',idEvent: 2}
+        stompClient: null
     },
     created: function()
     {
@@ -58,18 +57,12 @@ var app = new Vue({
             $("#comments-table").hide();
             $("#comments").html("");
         },
-//        sendId: function()
-//        {
-//            //There is also a server verification obvioulsy
-//            var id = parseInt($.urlParam('id'));
-//            stompClient.send("/app/get_comments_by_eventid", {}, JSON.stringify({'id': id}));
-//        },
         showComments: function(commentSet,event)
         {     
             var parsedComment = JSON.parse(commentSet.bodyText);
             var parsedEvent = JSON.parse(event.bodyText);
             
-            var display = "<h2><strong>Evenement:</strong> "+parsedEvent.eventName+"</h2>";
+            var display = "";
             //var display ="";
             parsedComment._embedded.comments.forEach((comment)=>
             {
