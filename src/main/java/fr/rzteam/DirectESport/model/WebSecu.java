@@ -25,10 +25,7 @@ public class WebSecu extends WebSecurityConfigurerAdapter {
       
 
       
-     http.csrf().disable()
-        .exceptionHandling()
-        .and()
-	     .authorizeRequests()
+     http.authorizeRequests()
             .anyRequest().permitAll() //.hasAnyRole("ADMIN")
      .and().formLogin().
 	    loginPage("/signin").
