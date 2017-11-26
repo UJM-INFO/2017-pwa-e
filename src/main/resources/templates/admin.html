@@ -9,7 +9,7 @@ and open the template in the editor.
         <title>Direct eSport</title>
         <div th:include="fragments/head"></div>
         
-        <link rel="stylesheet" href="css/admin.css" type="text/css"/>
+        <link rel="stylesheet" href="css/vue-pages.css" type="text/css"/>
     </head>
     <body>
         <div id="app">
@@ -20,9 +20,9 @@ and open the template in the editor.
                      
             <span sec:authorize="hasAuthority('ADMIN')">
             
-                <h1>Administration</h1>
+                <h1> <i class="fa fa-lock" aria-hidden="true"></i> Administration</h1>
                 <br />
-                <h2>Utilisateurs</h2>
+                <h2> <i class="fa fa-user" aria-hidden="true"></i> Utilisateurs</h2>
                 
                 <br />
                 
