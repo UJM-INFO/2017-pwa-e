@@ -22,19 +22,17 @@
             
             <!-- We are not connected -->
             <span sec:authorize="!isAuthenticated()">
-                <a href="/signup" class="btn btn-outline-info mr-2">Inscription</a>
-                <a href="/signin" class="btn btn-outline-info mr-2">Connexion</a>
+                <a href="/signup" class="btn btn-outline-info mr-2"> <i class="fa fa-user-plus" aria-hidden="true"></i> Inscription</a>
+                <a href="/signin" class="btn btn-outline-info mr-2"> <i class="fa fa-sign-in" aria-hidden="true"></i> Connexion</a>
             </span>
             
             
             <!-- We are connected -->
             <span sec:authorize="isAuthenticated()">
-                <form th:action="@{/profil}" method="post">
-                    <input class="btn btn-outline-info mr-2" value="Mon Profil" type="submit"/>
-                </form>
-                <form th:action="@{/logout}" method="post">
-                    <input class="btn btn-outline-info mr-2" value="Déconnexion" type="submit"/>
-                </form>
+                
+                <a href="/profil" class="btn btn-outline-info mr-2"> <i class="fa fa-id-card" aria-hidden="true"></i> Profil</a>
+                <a href="/logout" class="btn btn-outline-info mr-2"> <i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a>
+
             </span>
         </div>
     </nav>
