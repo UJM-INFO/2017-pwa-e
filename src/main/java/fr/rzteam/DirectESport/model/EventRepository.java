@@ -6,6 +6,7 @@
 package fr.rzteam.DirectESport.model;
 
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -16,4 +17,6 @@ public interface EventRepository extends CrudRepository<Event, Long>
 	@Override
 	public List<Event> findAll();
 	public Event findOneById(Long id);
+	@Transactional
+	void deleteOneById(Long id);
 }
