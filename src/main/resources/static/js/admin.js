@@ -10,7 +10,7 @@ var app = new Vue({
             var id = event.currentTarget.id;
             var pseudo = id.split('_')[1];
             
-            userAdminUI = 
+            var userAdminUI = 
                     '<div class="btn-group">'+
                     '    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
                     '        Changement de role <span class="caret"></span>'+
