@@ -18,14 +18,14 @@ and open the template in the editor.
 
             <section>
                              
-                <h1>Evenements actuels</h1>
+                <h1> <i class="fa fa-trophy" aria-hidden="true"></i> Evenements actuels</h1>
                 <br />
                 <div th:each="event : ${events}">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Team <span th:text="${event.team1.teamName}"></span></h4>
+                            <h4 class="card-title"> <i class="fa fa-users" aria-hidden="true"></i> Team <span th:text="${event.team1.teamName}"></span></h4>
                             
-                            <h4 class="card-title">Team <span th:text="${event.team2.teamName}"></span></h4>
+                            <h4 class="card-title"> <i class="fa fa-users" aria-hidden="true"></i> Team <span th:text="${event.team2.teamName}"></span></h4>
                             <a class="btn btn-info" th:href="'/comment?id='+${event.id}">Accès à l'evenement</a>
                             <span sec:authorize="hasAuthority('ADMIN')">
                                 <form th:action="@{/remove_event}" method="post">
@@ -42,7 +42,7 @@ and open the template in the editor.
                 
                 <!-- Event creation part -->
                 
-                <button class="btn btn-info btn-lg btn-block display" id="creationDisplayButton" v-on:click="displayCreation">Créer un évenement</button>
+                <button class="btn btn-info btn-lg btn-block display" id="creationDisplayButton" v-on:click="displayCreation"> <i class="fa fa-plus" aria-hidden="true"></i> Créer un évenement</button>
                 <span id="eventCreation" class="undisplay">
                     <h2>Création d\'évenement</h2>
                     <form th:action="@{/add_event}" method="POST">
