@@ -89,30 +89,5 @@ public class CommentsController
         return "comment";
     }  
     
-    @RequestMapping(value = "/add_event", method = RequestMethod.POST)
-    public String addEvent(
-            @RequestParam("description") String description,
-            @RequestParam("team1") String team1name,
-            @RequestParam("team2") String team2name)            
-    {
-        
-        List<Team> team1 = teamRepo.findManyByTeamName(team1name);
-        List<Team> team2 = teamRepo.findManyByTeamName(team2name);
-        
-        if(team1.isEmpty())
-        {
-            teamRepo.save(new Team(team1name, new Date(), "history", new HashMap<>()));
-            team1 = teamRepo.findManyByTeamName(team1name);
-        }
-            
-        if(team2.isEmpty())
-        {
-            teamRepo.save(new Team(team2name, new Date(), "history", new HashMap<>()));
-            team2 = teamRepo.findManyByTeamName(team2name);
-        }
-        
-        eventRepo.save(new Event(description, new Date(), team1.get(0), team2.get(0), 0));
-        
-        return "redirect:/comment";
-    }
+
 }
