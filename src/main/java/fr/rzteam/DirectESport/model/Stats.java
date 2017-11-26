@@ -19,12 +19,24 @@ import lombok.Data;
 @Data
 public class Stats {
     
-    	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-	
- 
-    int kill;
+
+    int win; //number of games win
+    int tower; //number of tower destroyed
+    int drake; //number of drake killed
+    int kill; //number of ennemy killed
+    int nashorbuff; //0: nothing 1: the team has the nashorbuff
+    int drakebuff; //0: nothing 1; the team has the ancestral drake buff
+    
     public Stats()
-    {}
+    {
+	this.win = 0;
+	this.tower = 0;
+	this.drake = 0;
+	this.kill = 0;
+	this.nashorbuff = 0;
+	this.drakebuff = 0;
+    }
 }

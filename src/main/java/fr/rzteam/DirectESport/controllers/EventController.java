@@ -7,6 +7,8 @@ package fr.rzteam.DirectESport.controllers;
 
 import fr.rzteam.DirectESport.model.Event;
 import fr.rzteam.DirectESport.model.EventRepository;
+import fr.rzteam.DirectESport.model.Stats;
+import fr.rzteam.DirectESport.model.StatsRepository;
 import fr.rzteam.DirectESport.model.Team;
 import fr.rzteam.DirectESport.model.TeamRepository;
 import fr.rzteam.DirectESport.model.UserRepository;
@@ -35,6 +37,9 @@ public class EventController
     
     @Inject
     TeamRepository teamRepo;
+    
+    @Inject
+    StatsRepository statsRepo;
 	
 	
     @RequestMapping(value = "/add_event", method = RequestMethod.POST)
@@ -59,8 +64,12 @@ public class EventController
             teamRepo.save(new Team(team2name, new Date(), "history", new HashMap<>()));
             team2 = teamRepo.findManyByTeamName(team2name);
         }
-        
-        eventRepo.save(new Event(description, new Date(), team1.get(0), team2.get(0), 0,typel));
+        Stats stats1 = new Stats();
+	Stats stats2 = new Stats();
+	statsRepo.save(stats1);
+	statsRepo.save(stats2);
+	
+        eventRepo.save(new Event(description, new Date(), team1.get(0), team2.get(0), 0,typel,stats1,stats2));
         
         return "redirect:/comment";
     }
