@@ -41,7 +41,7 @@ public class Event
 	Team team2;
 	
 	int status; //0 the game has not started yet / 1 the team1 won / 2 the team2 won / 3 the game is in progress
-
+	int type; //1:BO1,3:BO3,5:BO5
 	@OneToMany(cascade = CascadeType.ALL)
 	List<Comment> comments = new ArrayList<>();
 	
@@ -49,13 +49,14 @@ public class Event
 	{
 	}
 	
-	public Event(String description, Date date, Team team1, Team team2, int status)
+	public Event(String description, Date date, Team team1, Team team2, int status,int type)
 	{
             this.description = description;
             this.dateEvent = date;
             this.team1 = team1;
             this.team2 = team2;
             this.status = status;
+	    this.type = type;
 	}
 
 	

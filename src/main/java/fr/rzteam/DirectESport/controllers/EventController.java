@@ -41,9 +41,10 @@ public class EventController
     public String addEvent(
             @RequestParam("description") String description,
             @RequestParam("team1") String team1name,
-            @RequestParam("team2") String team2name)            
+            @RequestParam("team2") String team2name,
+	    @RequestParam("type") String type)            
     {
-        
+        int typel = Integer.parseInt(type);
         List<Team> team1 = teamRepo.findManyByTeamName(team1name);
         List<Team> team2 = teamRepo.findManyByTeamName(team2name);
         
@@ -59,7 +60,7 @@ public class EventController
             team2 = teamRepo.findManyByTeamName(team2name);
         }
         
-        eventRepo.save(new Event(description, new Date(), team1.get(0), team2.get(0), 0));
+        eventRepo.save(new Event(description, new Date(), team1.get(0), team2.get(0), 0,typel));
         
         return "redirect:/comment";
     }
