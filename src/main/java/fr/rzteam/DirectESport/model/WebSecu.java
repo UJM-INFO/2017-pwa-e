@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  *
@@ -27,13 +28,19 @@ public class WebSecu extends WebSecurityConfigurerAdapter {
       
      http.authorizeRequests()
             .anyRequest().permitAll() //.hasAnyRole("ADMIN")
-     .and().formLogin().
-	    loginPage("/signin").
-            loginProcessingUrl("/appLogin").
-            usernameParameter("app_username").
-            passwordParameter("app_password").
-            defaultSuccessUrl("/home").
-            permitAll().and().logout().logoutSuccessUrl("/home").permitAll();
+			.and()
+				.formLogin()
+				.loginPage("/signin")
+				.loginProcessingUrl("/appLogin")
+				.usernameParameter("app_username")
+				.passwordParameter("app_password")
+				.defaultSuccessUrl("/home")
+				.permitAll()
+			.and()
+				.logout()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.logoutSuccessUrl("/home")
+				.permitAll();
   }
   
   @Inject
