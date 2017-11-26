@@ -34,20 +34,20 @@ public class UserService implements UserDetailsService {
     
     public int addUser(User u)
     {
-		if (repo.findByUserName(u.userName) != null)
-		{
-			return 1;	//A user with this userName already exists
-		}
-		else if (repo.findByMail(u.mail) != null)
-		{
-			return 2;	//A user with this mail already exists
-		}
-		else 
-		{
-			u.setPassword(encoder.encode(u.password));
-			repo.save(u);
-			return 0;	//The user is added in the database
-		}
+        if (repo.findByUserName(u.userName) != null)
+        {
+            return 1;	//A user with this userName already exists
+        }
+        else if (repo.findByMail(u.mail) != null)
+        {
+            return 2;	//A user with this mail already exists
+        }
+        else 
+        {
+            u.setPassword(encoder.encode(u.password));
+            repo.save(u);
+            return 0;	//The user is added in the database
+        }
     }
     
     public void makeUserAdmin(String username) 
@@ -66,14 +66,14 @@ public class UserService implements UserDetailsService {
 
     public int changeUserPassword(String userName, String newPassword) 
     {
-		User u = repo.findByUserName(userName);
-		if (u != null)
-		{
-			u.setPassword(encoder.encode(newPassword));
-			repo.save(u);
-			return 1; //Success
-		}
-		return -1; //Never
+        User u = repo.findByUserName(userName);
+        if (u != null)
+        {
+            u.setPassword(encoder.encode(newPassword));
+            repo.save(u);
+            return 1; //Success
+        }
+        return -1; //Never
     }
     
     public void changeRealName(String userName, String newName) 
