@@ -8,6 +8,7 @@ and open the template in the editor.
     <head>
         <title>Direct eSport</title>
         <div th:include="fragments/head"></div>
+        <link rel="stylesheet" href="css/vue-pages.css" type="text/css"/>
     </head>
     <body>
         <div id="app">
@@ -41,8 +42,17 @@ and open the template in the editor.
                 
                 <!-- Event creation part -->
                 
-                <button class="btn btn-info btn-lg btn-block" id="creationDisplayButton" v-on:click="displayCreation">Créer un évenement</button>
-                <span id="eventCreation"></span>
+                <button class="btn btn-info btn-lg btn-block display" id="creationDisplayButton" v-on:click="displayCreation">Créer un évenement</button>
+                <span id="eventCreation" class="undisplay">
+                    <h2>Création d\'évenement</h2>
+                    <form th:action="@{/add_event}" method="POST">
+                        <label> Description : <input type="text" class="form-control" name="description"/></label><br/>
+                        <label> Equipe 1 : <input type="text" class="form-control" name="team1"/></label><br/>
+                        <label> Equipe 2 : <input type="text" class="form-control" name="team2"/></label><br/>
+                    <input type="submit" class="btn btn-info btn-lg btn-block" value="Valider"/>
+                    </form>  
+                </span>
+                
                 
                 <!-- END Event creation part -->
                 
