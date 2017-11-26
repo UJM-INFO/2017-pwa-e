@@ -13,6 +13,7 @@ and open the template in the editor.
         <div id="app">
             <!-- Menu du haut-->
             <div th:include="fragments/header"></div>
+            <!-- END Menu du haut-->
 
             <section>
                              
@@ -37,14 +38,13 @@ and open the template in the editor.
                 </div>
                 
                 <hr />
-                <h2 id="eventCreation">Création d'évenement</h2>
-                <form th:action="@{/add_event}" method="POST">
-                    <label> Description : <input type="text" class="form-control" name="description"/></label><br/>
-                    <label> Equipe 1 : <input type="text" class="form-control" name="team1"/></label><br/>
-                    <label> Equipe 2 : <input type="text" class="form-control" name="team2"/></label><br/>
-                    
-                <input type="submit" class="btn btn-info btn-lg btn-block" value="Créez un évenement"/>
-                </form>
+                
+                <!-- Event creation part -->
+                
+                <button class="btn btn-info btn-lg btn-block" id="creationDisplayButton" v-on:click="displayCreation">Créer un évenement</button>
+                <span id="eventCreation"></span>
+                
+                <!-- END Event creation part -->
                 
             </section>
             <aside></aside>
@@ -55,5 +55,6 @@ and open the template in the editor.
         
         <!-- Carousel des top articles-->
         <div th:include="fragments/endPageScripts"></div>
+        <script src="/js/eventMenu.js"></script>
     </body>
 </html>
