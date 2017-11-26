@@ -22,11 +22,15 @@ and open the template in the editor.
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Team <span th:text="${event.team1.teamName}"></span></h4>
-                            <p class="card-text" th:text="${event.team1}"></p>
                             
                             <h4 class="card-title">Team <span th:text="${event.team2.teamName}"></span></h4>
-                            <p class="card-text" th:text="${event.team2}"></p>
                             <a class="btn btn-info" th:href="'/comment?id='+${event.id}">Accès à l'evenement</a>
+                            <span sec:authorize="hasAuthority('ADMIN')">
+                                <form th:action="@{/remove_event}" method="post">
+                                    <input type="hidden" name="id" th:value="${event.id}"/>
+                                    <input class="btn btn-danger" type="submit" value="Supprimer l'événement"/>
+                                </form>
+                            </span>
                         </div>
                     </div>
                     <hr />
