@@ -13,25 +13,21 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/article">Articles</a>
                 </li>
-                <!--<li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Directs</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">Direct 1</a>
-                        <a class="dropdown-item" href="#">Direct 2</a>
-                        <a class="dropdown-item" href="#">Direct 3</a>
-                  </div>
-                </li> -->
+                <span sec:authorize="hasAuthority('ADMIN')">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin">Administration</a>
+                    </li>
+                </span>
             </ul>
             
-            
-            <!-- On n'est pas connecté -->
+            <!-- We are not connected -->
             <span sec:authorize="!isAuthenticated()">
                 <a href="/signup" class="btn btn-outline-info mr-2">Inscription</a>
                 <a href="/signin" class="btn btn-outline-info mr-2">Connexion</a>
             </span>
             
             
-            <!-- On est connecté -->
+            <!-- We are connected -->
             <span sec:authorize="isAuthenticated()">
                 <form th:action="@{/profil}" method="post">
                     <input class="btn btn-outline-info mr-2" value="Mon Profil" type="submit"/>
