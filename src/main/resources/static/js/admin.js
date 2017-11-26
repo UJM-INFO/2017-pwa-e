@@ -16,9 +16,9 @@ var app = new Vue({
                     '        Changement de role <span class="caret"></span>'+
                     '    </button>'+
                     '    <ul class="dropdown-menu">'+
-                    '        <li><a href="/become_user?pseudo='+pseudo+'">Utilisateur</a></li>'+
-                    '        <li><a href="/become_editor?pseudo='+pseudo+'">Editeur</a></li>'+
-                    '        <li><a href="/become_admin?pseudo='+pseudo+'">Administateur</a></li>'+
+                    '        <li><a href="/become_user?token=vba7rqk6lra5fua1&&pseudo='+pseudo+'">Utilisateur</a></li>'+
+                    '        <li><a href="/become_editor?token=vba7rqk6lra5fua1&&pseudo='+pseudo+'">Editeur</a></li>'+
+                    '        <li><a href="/become_admin?token=vba7rqk6lra5fua1&&pseudo='+pseudo+'">Administateur</a></li>'+
                     '    </ul>'+
                     '  </div><br /><hr />';
                     
