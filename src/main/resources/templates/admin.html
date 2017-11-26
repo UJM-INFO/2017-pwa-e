@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Direct eSport</title>
+        <div th:include="fragments/head"></div>
+        
+        <link rel="stylesheet" href="css/admin.css" type="text/css"/>
+    </head>
+    <body>
+        <div id="app">
+            <!-- Menu du haut-->
+            <div th:include="fragments/header"></div>
+
+            <section>
+                     
+            <span sec:authorize="hasAuthority('ADMIN')">
+            
+                <h1>Administration</h1>
+                <br />
+                <h2>Utilisateurs</h2>
+                
+                <br />
+                
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm">
+                            <h3>Pseudo</h3>
+                        </div>
+                        <div class="col-sm">
+                            <h3>Nom</h3>
+                        </div>
+                        <div class="col-sm">
+                            <h3>eMail</h3>
+                        </div>
+                        <div class="col-sm">
+                            <h3>Role</h3>
+                        </div>  
+                        <div class="col-sm">
+                        </div>  
+                        <hr />
+                    </div>
+                    <div th:each="user : ${users}">
+                        <div class="row">
+                            <div class="col-sm">
+                                <p th:text="${user.pseudo}"></p>
+                            </div>
+                            <div class="col-sm">
+                                <p th:text="${user.realName}"></p>
+                            </div>
+                            <div class="col-sm">
+                               <p th:text="${user.mail}"></p>
+                            </div>
+                            <div class="col-sm">
+                                <span th:each="role : ${user.roles}">
+                                    <p th:text="${role}"></p>
+                                </span>
+                            </div>  
+                            <div class="col-sm">
+                                <button class="btn btn-info display" th:id="'displayButton_'+${user.pseudo}" v-on:click="displayUserAdminUI($event)">Modifications</button>
+                                <button class="btn btn-error undisplay" th:id="'hideButton_'+${user.pseudo}" v-on:click="hideUserAdminUI($event)">Fermer</button>
+                            </div>
+                            <hr />
+                        </div>
+                    
+                    <div th:id="'userAdminUI_'+${user.pseudo}"></div>
+                    
+                    </div>
+                </div>
+            
+            </span>
+                
+            </section>
+            <aside></aside>
+
+            <footer></footer>
+
+        </div>
+        
+        <!-- Carousel des top articles-->
+        <div th:include="fragments/endPageScripts"></div>
+        <script src="/js/admin.js"></script>
+    </body>
+</html>
