@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -26,14 +27,17 @@ import lombok.Data;
 public class Competition
 {
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        Long id;
 	
 	@Temporal(javax.persistence.TemporalType.DATE)
 	Date dateCompetition;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	List<Event> events = new ArrayList<>();
+        
+	@ManyToMany(cascade = CascadeType.ALL)
+	List<Team> teams = new ArrayList<>();
 	
 	@ManyToOne
 	Team winner;
@@ -44,12 +48,10 @@ public class Competition
 	{
 	}
 
-	public Competition(Long id, Date date, Team winner,String name)
+	public Competition(Date date, String name, List<Team> teams)
 	{
-		this.id = id;
-		this.dateCompetition = date;
-		this.winner = winner;
-		this.name = name;
+            this.dateCompetition = date;
+            this.name = name;
 	}
 	
 	

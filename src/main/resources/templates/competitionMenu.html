@@ -18,19 +18,19 @@ and open the template in the editor.
 
             <section>
                              
-                <h1> <i class="fa fa-trophy" aria-hidden="true"></i> Evenements actuels</h1>
+                <h1> <i class="fa fa-trophy" aria-hidden="true"></i> Compétitions</h1>
                 <br />
-                <div th:each="event : ${events}">
+                <div th:each="competition : ${competitions}">
                     <div class="card">
+                        <h4 class="card-header"> Compétition : <span th:text="${competition.name}"></span></h4>
                         <div class="card-body">
-                            <h4 class="card-title"> <i class="fa fa-users" aria-hidden="true"></i> Team <span th:text="${event.team1.teamName}"></span></h4>
-                            
-                            <h4 class="card-title"> <i class="fa fa-users" aria-hidden="true"></i> Team <span th:text="${event.team2.teamName}"></span></h4>
-                            <a class="btn btn-info" th:href="'/comment?id='+${event.id}">Accès à l'evenement</a>
+                            <h4 class="card-title"> Gagnant : <span th:text="${competition.winner}"></span></h4>
+                            <p class="card-text">A partir du <span th:text="${competition.dateCompetition}"></span></p>
+                            <a class="btn btn-info" th:href="'/competition?id='+${competition.id}">Accès à la compétition</a>
                             <span sec:authorize="hasAuthority('ADMIN')">
-                                <form th:action="@{/remove_event}" method="post">
-                                    <input type="hidden" name="id" th:value="${event.id}"/>
-                                    <input class="btn btn-danger" type="submit" value="Supprimer l'événement"/>
+                                <form th:action="@{/remove_competition}" method="post">
+                                    <input type="hidden" name="id" th:value="${competition.id}"/>
+                                    <input class="btn btn-danger" type="submit" value="Supprimer la compétition"/>
                                 </form>
                             </span>
                         </div>
@@ -42,19 +42,13 @@ and open the template in the editor.
                 
                 <!-- Event creation part -->
                 
-                <button class="btn btn-info btn-lg btn-block display" id="creationDisplayButton" v-on:click="displayCreation"> <i class="fa fa-plus" aria-hidden="true"></i> Créer un évenement</button>
+                <button class="btn btn-info btn-lg btn-block display" id="creationDisplayButton" v-on:click="displayCreation"> <i class="fa fa-plus" aria-hidden="true"></i> Créer une compétition</button>
                 <span id="eventCreation" class="undisplay">
-                    <h2>Création d'évenement</h2>
-                    <form th:action="@{/add_event}" method="POST">
+                    <h2>Création de compétition</h2>
+                    <form th:action="@{/add_competition}" method="POST">
                         <label> Description : <input type="text" class="form-control" name="description"/></label><br/>
                         <label> Equipe 1 : <input type="text" class="form-control" name="team1"/></label><br/>
                         <label> Equipe 2 : <input type="text" class="form-control" name="team2"/></label><br/>
-                        <label> Type match : <select class="form-control" name="type">
-                            <option value="1">BO1</option>
-                            <option value="3">BO3</option>
-                            <option value="5">BO5</option>
-                        </select>
-                        </label><br/>
                     <input type="submit" class="btn btn-info btn-lg btn-block" value="Valider"/>
                     </form>  
                 </span>

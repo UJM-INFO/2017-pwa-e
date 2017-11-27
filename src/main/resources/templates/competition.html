@@ -14,11 +14,13 @@ and open the template in the editor.
         <div id="app">
             <!-- Menu du haut-->
             <div th:include="fragments/header"></div>
-            <!-- END Menu du haut-->
-
+            
             <section>
-                             
-                <h1> <i class="fa fa-trophy" aria-hidden="true"></i> Evenements actuels</h1>
+                
+                <a class="btn btn-info btn-lg btn-block" href="/competition">Retour aux compétitions</a>
+                <br />
+                
+                <h1> <i class="fa fa-trophy" aria-hidden="true"></i> Matchs de la compétition</h1>
                 <br />
                 <div th:each="event : ${events}">
                     <div class="card">
@@ -38,8 +40,6 @@ and open the template in the editor.
                     <hr />
                 </div>
                 
-                <hr />
-                
                 <!-- Event creation part -->
                 
                 <button class="btn btn-info btn-lg btn-block display" id="creationDisplayButton" v-on:click="displayCreation"> <i class="fa fa-plus" aria-hidden="true"></i> Créer un évenement</button>
@@ -49,12 +49,7 @@ and open the template in the editor.
                         <label> Description : <input type="text" class="form-control" name="description"/></label><br/>
                         <label> Equipe 1 : <input type="text" class="form-control" name="team1"/></label><br/>
                         <label> Equipe 2 : <input type="text" class="form-control" name="team2"/></label><br/>
-                        <label> Type match : <select class="form-control" name="type">
-                            <option value="1">BO1</option>
-                            <option value="3">BO3</option>
-                            <option value="5">BO5</option>
-                        </select>
-                        </label><br/>
+                        <!--<input type="hidden" name="idCompetition" th:value="{competition.id}"/></label><br/>-->
                     <input type="submit" class="btn btn-info btn-lg btn-block" value="Valider"/>
                     </form>  
                 </span>
@@ -63,7 +58,6 @@ and open the template in the editor.
                 <!-- END Event creation part -->
                 
             </section>
-            <aside></aside>
 
             <footer></footer>
 
