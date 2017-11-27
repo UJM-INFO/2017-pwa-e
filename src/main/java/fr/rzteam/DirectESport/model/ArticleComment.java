@@ -21,34 +21,35 @@ import lombok.Data;
 @Data
 public class ArticleComment
 {
-	@Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-    
+
     String text;
-	
-	@ManyToOne
+
+    @ManyToOne
     User author;
-	
-	@Temporal(javax.persistence.TemporalType.DATE)
-	Date dateArticleComment;
 
-	public ArticleComment()
-	{
-	}
+    @Temporal(javax.persistence.TemporalType.DATE)
+    Date dateArticleComment;
 
-	public ArticleComment(String text, User author)
-	{
-		this.text = text;
-		this.author = author;
-		this.dateArticleComment = new Date();
-	}
+    public ArticleComment()
+    {
+    }
 
-	public ArticleComment(String text, User author, Date dateArticleComment)
-	{
-		this.text = text;
-		this.author = author;
-		this.dateArticleComment = dateArticleComment;
-	}
+    public ArticleComment(String text, User author)
+    {
+        this.text = text;
+        this.author = author;
+        this.dateArticleComment = new Date();
+    }
+
+    public ArticleComment(String text, User author, Date dateArticleComment)
+    {
+        this.text = text;
+        this.author = author;
+        this.dateArticleComment = dateArticleComment;
+    }
 
 }
