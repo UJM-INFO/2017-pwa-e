@@ -48,10 +48,17 @@ public class Competition
 	{
 	}
 
+        public Competition(Date date, String name)
+	{
+            this.dateCompetition = date;
+            this.name = name;
+	}
+        
 	public Competition(Date date, String name, List<Team> teams)
 	{
             this.dateCompetition = date;
             this.name = name;
+            this.teams = teams;
 	}
 	
 	

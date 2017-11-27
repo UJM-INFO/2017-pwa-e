@@ -6,6 +6,7 @@
 package fr.rzteam.DirectESport.model;
 
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -19,4 +20,7 @@ public interface CompetitionRepository extends CrudRepository<Competition, Long>
 	@Override
 	public List<Competition> findAll();
 	public Competition findOneById(Long id);
+        
+	@Transactional
+	public void deleteOneById(Long id);
 }
