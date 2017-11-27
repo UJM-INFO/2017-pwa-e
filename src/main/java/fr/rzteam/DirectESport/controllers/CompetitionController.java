@@ -66,6 +66,7 @@ public class CompetitionController
          
 	m.addAttribute("id",id);
         m.addAttribute("events",eventRepo.findAllByCompetitionID(Long.parseLong(id+"")));
+        m.addAttribute("competition",competitionRepo.findOneById(Long.parseLong(id+"")));
         return "competition";
     }
 	
