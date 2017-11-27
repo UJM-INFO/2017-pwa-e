@@ -30,7 +30,7 @@ public class Event
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
         
-        String description;
+    String description;
 	
 	@Temporal(javax.persistence.TemporalType.DATE)
 	Date dateEvent; 
@@ -52,20 +52,23 @@ public class Event
 	@OneToMany(cascade = CascadeType.ALL)
 	List<Comment> comments = new ArrayList<>();
 	
+	Long competitionID;
+	
 	public Event()
 	{
 	}
 	
-	public Event(String description, Date date, Team team1, Team team2, int status,int type,Stats stats_team1,Stats stats_team2)
+	public Event(String description, Date date, Team team1, Team team2, int status,int type,Stats stats_team1,Stats stats_team2, Long competitionID)
 	{
-            this.description = description;
-            this.dateEvent = date;
-            this.team1 = team1;
-            this.team2 = team2;
-            this.status = status;
-	    this.type = type;
-	    this.stats_team1 = stats_team1;
-	    this.stats_team2 = stats_team2;
+		this.description = description;
+		this.dateEvent = date;
+		this.team1 = team1;
+		this.team2 = team2;
+		this.status = status;
+		this.type = type;
+		this.stats_team1 = stats_team1;
+		this.stats_team2 = stats_team2;
+		this.competitionID = competitionID;
 	}
 
 	
