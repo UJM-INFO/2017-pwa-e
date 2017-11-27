@@ -47,7 +47,8 @@ public class EventController
             @RequestParam("description") String description,
             @RequestParam("team1") String team1name,
             @RequestParam("team2") String team2name,
-	    @RequestParam("type") String type)            
+            @RequestParam("type") String type,
+            @RequestParam("idCompetition") String idCompetition)
     {
         int typel = Integer.parseInt(type);
         List<Team> team1 = teamRepo.findManyByTeamName(team1name);
@@ -65,11 +66,12 @@ public class EventController
             team2 = teamRepo.findManyByTeamName(team2name);
         }
         Stats stats1 = new Stats();
-	Stats stats2 = new Stats();
-	statsRepo.save(stats1);
-	statsRepo.save(stats2);
+        Stats stats2 = new Stats();
+        statsRepo.save(stats1);
+        statsRepo.save(stats2);
 	
-        eventRepo.save(new Event(description, new Date(), team1.get(0), team2.get(0), 0,typel,stats1,stats2));
+        Long idCompetLong = Long.parseLong(idCompetition);
+        eventRepo.save(new Event(description, new Date(), team1.get(0), team2.get(0), 0,typel,stats1,stats2,idCompetLong));
         
         return "redirect:/comment";
     }
@@ -77,8 +79,8 @@ public class EventController
 	@RequestMapping(value = "/remove_event", method = RequestMethod.POST)
 	public String removeEvent(@RequestParam("id") String id)
 	{
-		Long idLong = Long.parseLong(id);
-		eventRepo.deleteOneById(idLong);
-		return "eventMenu";
+            Long idLong = Long.parseLong(id);
+            eventRepo.deleteOneById(idLong);
+            return "eventMenu";
 	}
 }
