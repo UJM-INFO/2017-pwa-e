@@ -42,8 +42,9 @@ and open the template in the editor.
             </div>
 
             <div th:each="comment : ${comments}">
-                <span th:text="${comment.value.userName}"></span>
+                <strong><div th:text="${comment.value.userName}"></div></strong>
                 <span th:text="${comment.key.text}"></span>
+                <hr/>
             </div>
         </section>
 
