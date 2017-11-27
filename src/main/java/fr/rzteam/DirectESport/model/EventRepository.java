@@ -17,6 +17,7 @@ public interface EventRepository extends CrudRepository<Event, Long>
 	@Override
 	public List<Event> findAll();
 	public Event findOneById(Long id);
+        public List<Event> findAllByCompetitionID(Long competitionID);
 	@Transactional
 	void deleteOneById(Long id);
 }
