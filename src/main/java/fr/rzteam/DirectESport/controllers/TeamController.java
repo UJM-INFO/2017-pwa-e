@@ -5,6 +5,7 @@
  */
 package fr.rzteam.DirectESport.controllers;
 
+import fr.rzteam.DirectESport.model.Player;
 import fr.rzteam.DirectESport.model.PlayerRepository;
 import fr.rzteam.DirectESport.model.Team;
 import fr.rzteam.DirectESport.model.TeamRepository;
@@ -37,7 +38,9 @@ public class TeamController {
             if("undefined".equals(id) || teamRepo.findOneById(Long.parseLong(id))==null)
             {
                 List<Team> list = teamRepo.findAll();
+		List<Player> listplayer = playerRepo.findAll();
                 m.addAttribute("teams",list);
+		m.addAttribute("players",listplayer);
                 return "teamMenu";
             }
         }
