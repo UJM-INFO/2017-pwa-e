@@ -76,6 +76,7 @@ public class CompetitionController
             @RequestParam("team1") String team1name,
             @RequestParam("team2") String team2name)            
     {
+        
 //        
 //        List<Team> team1 = teamRepo.findManyByTeamName(team1name);
 //        List<Team> team2 = teamRepo.findManyByTeamName(team2name);
@@ -100,8 +101,8 @@ public class CompetitionController
 	@RequestMapping(value = "/remove_competition", method = RequestMethod.POST)
 	public String removeCompetition(@RequestParam("id") String id)
 	{
-//            Long idLong = Long.parseLong(id);
-//            eventRepo.deleteOneById(idLong);
+            Long idLong = Long.parseLong(id);
+            competitionRepo.deleteOneById(idLong);
             return "redirect:/competition";
 	}
 }
