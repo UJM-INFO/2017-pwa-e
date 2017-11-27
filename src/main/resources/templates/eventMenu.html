@@ -40,27 +40,6 @@ and open the template in the editor.
                 
                 <hr />
                 
-                <!-- Event creation part -->
-                
-                <button class="btn btn-info btn-lg btn-block display" id="creationDisplayButton" v-on:click="displayCreation"> <i class="fa fa-plus" aria-hidden="true"></i> Créer un évenement</button>
-                <span id="eventCreation" class="undisplay">
-                    <h2>Création d'évenement</h2>
-                    <form th:action="@{/add_event}" method="POST">
-                        <label> Description : <input type="text" class="form-control" name="description"/></label><br/>
-                        <label> Equipe 1 : <input type="text" class="form-control" name="team1"/></label><br/>
-                        <label> Equipe 2 : <input type="text" class="form-control" name="team2"/></label><br/>
-                        <label> Type match : <select class="form-control" name="type">
-                            <option value="1">BO1</option>
-                            <option value="3">BO3</option>
-                            <option value="5">BO5</option>
-                        </select>
-                        </label><br/>
-                    <input type="submit" class="btn btn-info btn-lg btn-block" value="Valider"/>
-                    </form>  
-                </span>
-                
-                
-                <!-- END Event creation part -->
                 
             </section>
             <aside></aside>
