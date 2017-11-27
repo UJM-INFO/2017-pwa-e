@@ -16,14 +16,11 @@ package fr.rzteam.DirectESport.controllers;
 
 import fr.rzteam.DirectESport.model.Competition;
 import fr.rzteam.DirectESport.model.CompetitionRepository;
-import fr.rzteam.DirectESport.model.Event;
 import fr.rzteam.DirectESport.model.EventRepository;
 import fr.rzteam.DirectESport.model.Team;
 import fr.rzteam.DirectESport.model.TeamRepository;
 import fr.rzteam.DirectESport.model.UserRepository;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
