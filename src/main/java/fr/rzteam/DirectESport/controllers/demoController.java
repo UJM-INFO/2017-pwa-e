@@ -36,6 +36,8 @@ public class demoController
     TeamRepository teamRepo;
     @Inject
     ArticleRepository articleRepo;
+    @Inject
+    PlayerRepository playerRepo;
     
     /**
      * Demo data
@@ -61,7 +63,15 @@ public class demoController
         articleRepo.save(a1);
         articleRepo.save(a2);
         articleRepo.save(a3);
-        articleRepo.save(a4);;
+        articleRepo.save(a4);
+        
+        Player p1 = new Player("Clément", PlayerRole.Jungle, 20, "Zelda", "Surnomé petite pute dès son plus jeune age, bla bla bla");
+        Player p2 = new Player("Chris", PlayerRole.Top, 21, "La truelle", "Rageux parmi les rageux, il n'hésite pas à quitter une partie lorsqu'elle tourne en sa défaveur.");
+        Player p3 = new Player("Dimitri", PlayerRole.Coach, 21, "Zizou", "Le meilleur joueur de tous les temps");
+        playerRepo.save(p1);
+        playerRepo.save(p2);
+        playerRepo.save(p3);
+        
         
         return "redirect:/home";
     }

@@ -45,7 +45,8 @@ public class ArticleController
             m.addAttribute("articles",list);
             return "articleMenu";
         }
-	m.addAttribute("id",id);
+        Article articleToDisplay = articleRepo.findOneById(Long.parseLong(id));
+	m.addAttribute("article",articleToDisplay);
         return "article";
     }
     

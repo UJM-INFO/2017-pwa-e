@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Direct eSport</title>
+        <div th:include="fragments/head"></div>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- Menu du haut-->
+            <div th:include="fragments/header"></div>
+            
+            <section>
+                
+                <a class="btn btn-info btn-lg btn-block" href="/article">Retour aux articles</a>
+                <br />
+                
+                <h1 th:text="${article.title}"/>
+                <div th:text="${article.text}"></div>
+                
+            </section>
+
+            <footer></footer>
+
+        </div>
+        
+        <!-- Carousel des top articles-->
+        <div th:include="fragments/endPageScripts"></div>
+        <script src="/js/vue-websocket.js"></script>
+        <script src="/js/vue-resource.min.js"></script>
+        <script src="/js/comment.js"></script>
+    </body>
+</html>

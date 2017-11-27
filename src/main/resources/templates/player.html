@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Direct eSport</title>
+        <div th:include="fragments/head"></div>
+    </head>
+    <body>
+        <!-- Menu du haut-->
+        <div th:include="fragments/header"></div>
+        
+        <section>
+            <span class="navbar-nav">
+                <h1 th:text="${player.playerName}"></h1>
+                
+                <div class="row">
+                    <h5 class="col-sm-2">Role</h5>
+                    <span class="col-sm-0" th:text="${player.roles}"></span>
+                </div>
+                <div class="row">
+                    <h5 class="col-sm-2">Age</h5>
+                    <span class="col-sm-10" th:text="${player.age}"></span>
+                </div>
+                <div class="row">
+                    <h5 class="col-sm-2">Champion favori</h5>
+                    <span class="col-sm-10" th:text="${player.favoriteChampion}"></span>
+                </div>
+                <div class="row">
+                    <h5 class="col-sm-2">Biographie</h5>
+                    <span class="col-sm-10" th:text="${player.history}"></span>
+                </div>
+
+                
+            </span>
+        </section>
+        <footer></footer>
+        
+        <!-- Carousel des top articles-->
+        <div th:include="fragments/endPageScripts"></div>
+    </body>
+</html>
