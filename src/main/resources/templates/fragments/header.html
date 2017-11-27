@@ -34,7 +34,7 @@
             <span sec:authorize="isAuthenticated()">
                 
                 <a href="/profil" class="btn btn-outline-info mr-2"> <i class="fa fa-id-card" aria-hidden="true"></i> Profil</a>
-                <a href="/logout" class="btn btn-outline-info mr-2"> <i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a>
+                <a th:href="@{/logout}" class="btn btn-outline-info mr-2"> <i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a>
 
             </span>
         </div>
