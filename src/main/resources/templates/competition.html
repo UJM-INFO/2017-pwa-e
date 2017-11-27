@@ -66,7 +66,13 @@ and open the template in the editor.
                 <span id="eventCreation" class="undisplay">
                     <h2>Création d'évenement</h2>
                     <form th:action="@{/add_event}" method="POST">
-                        <label> Description : <input type="text" class="form-control" name="description"/></label><br/>
+                        <label> Description : <select class="form-control" name="description">
+                            <option value="Match de poule">Match de poule</option>
+                            <option value="Quart de finale">Quart de finale</option>
+                            <option value="Demi-finale">Demi finale</option>
+                            <option value="Petite finale">Petite finale</option>
+                            <option value="Finale">Finale</option>
+                        </select></label>
                         <label> Equipe 1 : <input type="text" class="form-control" name="team1"/></label><br/>
                         <label> Equipe 2 : <input type="text" class="form-control" name="team2"/></label><br/>
                         <input type="hidden" class="form-control" name="idCompetition" th:value="${id}"/>
