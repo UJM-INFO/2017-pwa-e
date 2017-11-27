@@ -16,4 +16,5 @@ public interface ArticleRepository extends CrudRepository<Article, Long>
 	@Override
 	public List<Article> findAll();
 	public Article findOneById(Long id);
+        public List<Article> findTop3ByOrderByDateDesc();
 }
