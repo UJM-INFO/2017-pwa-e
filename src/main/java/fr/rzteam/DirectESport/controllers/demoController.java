@@ -34,6 +34,8 @@ public class demoController
     CommentRepository commentRepo;
     @Inject
     TeamRepository teamRepo;
+    @Inject
+    ArticleRepository articleRepo;
     
     /**
      * Demo data
@@ -52,6 +54,14 @@ public class demoController
 //        List<Event> listEvent = eventRepo.findAll();
 //        listEvent.get(0).getComments().add(new Comment("Commentaire de ouf", user1, new Date()));
 //        eventRepo.save(listEvent);
+        Article a1 = new Article("Titre de l'article","Pas d'idée ...");
+        Article a2 = new Article("Qui va gagner le trophée des pineur ?", "La compétition est enfin lancée ! Qui de Pineur Alpha, pinoir, puneur, pineur escalier ou encore Malaise Man va remporter le titre ?");
+        Article a3 = new Article("Clément, petite pute ?", "La question que tout le monde se pose. Clément Colin, appelé familièrement Petite Pute, aurait démenti toute forme de prostitution. Affaire à suivre...");
+        Article a4 = new Article("Christopher remporte le prix du meilleur maçon !", "Sa famille était réunie. José, Manuel, Rui, tout trois chemise ouverte sur leur torse poilu, la larme à l'oeil quand leur petit frère souleva le parpaings en or, synonyme de meilleur maçon de la région. Quel beau moment d'émotion...");
+        articleRepo.save(a1);
+        articleRepo.save(a2);
+        articleRepo.save(a3);
+        articleRepo.save(a4);;
         
         return "redirect:/home";
     }
