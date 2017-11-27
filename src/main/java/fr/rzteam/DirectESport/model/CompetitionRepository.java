@@ -19,4 +19,5 @@ public interface CompetitionRepository extends CrudRepository<Competition, Long>
 	@Override
 	public List<Competition> findAll();
 	public Competition findOneById(Long id);
+        public void deleteOneById(Long id);
 }
