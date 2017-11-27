@@ -40,7 +40,7 @@ and open the template in the editor.
                 <div>Vous devez être connectés pour poster un commentaire. <a th:href="signin">Connectez vous</a></div>
 
             </div>
-            
+
             <h5>Commentaires</h5>            
             <div th:each="comment : ${comments}">
                 <div class="media">
@@ -50,6 +50,17 @@ and open the template in the editor.
                         <span class="ml-3" th:text="${comment.key.text}"></span>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <footer></footer>
+
+    </div>
+
+    <!-- Carousel des top articles-->
+    <div th:include="fragments/endPageScripts"></div>
+    <script src="/js/vue-websocket.js"></script>
+    <script src="/js/vue-resource.min.js"></script>
     <script src="/js/comment.js"></script>
 </body>
 </html>
