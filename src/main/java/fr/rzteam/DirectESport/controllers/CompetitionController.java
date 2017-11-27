@@ -47,7 +47,6 @@ public class CompetitionController
     {
         List<Team> t = teamRepo.findAll();
         
-        competitionRepo.save(new Competition(new Date(), "DreamHack", t));
         //If the id is set and valid we display this event, otherwise we display the event menu
         try
         {
@@ -66,34 +65,16 @@ public class CompetitionController
         }
          
 	m.addAttribute("id",id);
-        m.addAttribute("events",eventRepo.findAll());//A CHANGER POUR findAllByCompetition()
+        m.addAttribute("events",eventRepo.findAllByCompetitionID(Long.parseLong(id+"")));
         return "competition";
     }
 	
     @RequestMapping(value = "/add_competition", method = RequestMethod.POST)
-    public String addCompetition(
-            @RequestParam("description") String description,
-            @RequestParam("team1") String team1name,
-            @RequestParam("team2") String team2name)            
+    public String addCompetition(@RequestParam("name") String name)            
     {
+        Competition competition = new Competition(new Date(), name);
         
-//        
-//        List<Team> team1 = teamRepo.findManyByTeamName(team1name);
-//        List<Team> team2 = teamRepo.findManyByTeamName(team2name);
-//        
-//        if(team1.isEmpty())
-//        {
-//            teamRepo.save(new Team(team1name, new Date(), "history", new HashMap<>()));
-//            team1 = teamRepo.findManyByTeamName(team1name);
-//        }
-//            
-//        if(team2.isEmpty())
-//        {
-//            teamRepo.save(new Team(team2name, new Date(), "history", new HashMap<>()));
-//            team2 = teamRepo.findManyByTeamName(team2name);
-//        }
-//        
-//        eventRepo.save(new Event(description, new Date(), team1.get(0), team2.get(0), 0));
+        competitionRepo.save(competition);
         
         return "redirect:/competition";
     }
