@@ -30,9 +30,10 @@ and open the template in the editor.
                 <br />
                 <span id="teamAdd">
                     <h3>Ajout</h3>
-                    <form th:action="@{/add_event}" method="POST">
+                    <form th:action="@{/add_team_in_competition}" method="POST">
                         <label> Nom de l'équipe : <input type="text" class="form-control" name="teamName"/></label><br/>
-                    <input type="submit" class="btn btn-info" value="Ajout de l'équipe"/>
+                        <input type="hidden" th:value="${id}"></input>
+                        <input type="submit" class="btn btn-info" value="Ajout de l'équipe"/>
                     </form>  
                 </span>
                 
