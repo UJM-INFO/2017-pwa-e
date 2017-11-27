@@ -27,7 +27,7 @@ and open the template in the editor.
 
         </section>
         <section>
-            <h3>Commentaires</h3>
+            <h5>Ajouter un commentaire</h5>
             <div sec:authorize="isAuthenticated()">
                 <form th:action="@{/add_articleComment}" method="POST">
                     <label> Commentaire :  <input type="text" name="text"/></label><br /><br />
@@ -40,22 +40,16 @@ and open the template in the editor.
                 <div>Vous devez être connectés pour poster un commentaire. <a th:href="signin">Connectez vous</a></div>
 
             </div>
-
+            
+            <h5>Commentaires</h5>            
             <div th:each="comment : ${comments}">
-                <strong><div th:text="${comment.value.userName}"></div></strong>
-                <span th:text="${comment.key.text}"></span>
-                <hr/>
-            </div>
-        </section>
-
-        <footer></footer>
-
-    </div>
-
-    <!-- Carousel des top articles-->
-    <div th:include="fragments/endPageScripts"></div>
-    <script src="/js/vue-websocket.js"></script>
-    <script src="/js/vue-resource.min.js"></script>
+                <div class="media">
+                    <i class="px-3 fa fa-user-o"></i>
+                    <div class="media-body">
+                        <h5 class="mt-0"><span th:text="${comment.value.userName}"></span></h5>
+                        <span class="ml-3" th:text="${comment.key.text}"></span>
+                    </div>
+                </div>
     <script src="/js/comment.js"></script>
 </body>
 </html>
