@@ -57,6 +57,13 @@ public class Event
 	public Event()
 	{
 	}
+        
+        public Event(String description, Long competitionID)
+	{
+		this.description = description;
+		this.dateEvent = new Date();
+		this.competitionID = competitionID;
+	}
 	
 	public Event(String description, Date date, Team team1, Team team2, int status,int type,Stats stats_team1,Stats stats_team2, Long competitionID)
 	{
