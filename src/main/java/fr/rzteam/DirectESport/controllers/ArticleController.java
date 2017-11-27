@@ -86,7 +86,6 @@ public class ArticleController
         @RequestParam("text") String text,
         @RequestParam("id") String id)
     {
-        System.out.println(text + "" + id + "        !!!!!!!!!!!!!!!!!!!!!!!!!");
         Long idlong = Long.parseLong(id);
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepo.findByUserName(name);
