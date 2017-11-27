@@ -49,6 +49,14 @@ public class Team
 		this.history = history;
 		this.prizeList = prizeList;
 	}
+	
+	public Team(String teamName,String history)
+	{
+		this.teamName = teamName;
+		this.dateCreation = new Date();
+		this.history = history;
+		this.prizeList = new HashMap<>();
+	}
 
 	
 }
