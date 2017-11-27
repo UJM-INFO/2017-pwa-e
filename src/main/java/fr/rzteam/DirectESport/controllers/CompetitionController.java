@@ -80,11 +80,40 @@ public class CompetitionController
         return "redirect:/competition";
     }
 	
-	@RequestMapping(value = "/remove_competition", method = RequestMethod.POST)
-	public String removeCompetition(@RequestParam("id") String id)
-	{
-            Long idLong = Long.parseLong(id);
-            competitionRepo.deleteOneById(idLong);
-            return "redirect:/competition";
-	}
+    @RequestMapping(value = "/remove_competition", method = RequestMethod.POST)
+    public String removeCompetition(@RequestParam("id") String id)
+    {
+        Long idLong = Long.parseLong(id);
+        competitionRepo.deleteOneById(idLong);
+        return "redirect:/competition";
+    }
+    
+    @RequestMapping(value = "/add_team_in_competition", method = RequestMethod.POST)
+    public String addCompetition(
+            @RequestParam("name") String name,
+            @RequestParam("id") String idCompetition)            
+    {
+        /*
+        //We get the competition
+        Competition competition = competitionRepo.findOneById(Long.parseLong(idCompetition));
+        //We create the team or we get the team from teamRepo
+        Team toAddTeam;
+        
+
+        if(teamRepo.findManyByTeamName(name).isEmpty())
+        {
+            //We create the team
+        }
+        else
+        {
+            //We get the team                               A REVOIR QUAND IL Y AURA LA GESTION DES TEAMS OK
+        }
+            
+        
+        //We save
+        competition.addTeam(toAddTeam);
+        competitionRepo.save(competition);
+        */
+        return "redirect:/competition";
+    }
 }
