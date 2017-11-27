@@ -28,6 +28,7 @@ var app = new Vue({
                 {
                     console.log("UPDATE");
                     setTimeout(app.updateComments,100);
+                    //this.app.showComments(JSON.parse(comments.body));
                 });
                 
                 app.updateComments();
