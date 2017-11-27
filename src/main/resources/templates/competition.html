@@ -19,10 +19,12 @@ and open the template in the editor.
                 
                 <a class="btn btn-info btn-lg btn-block" href="/competition">Retour aux compétitions</a>
                 <br />
+                <h1> Détails de la compétition <span th:value="${competition.name}"></span></h1>
+                <br />
                 
-                <h2>Equipes</h2>
+                <h2> <i class="fa fa-users" aria-hidden="true"></i> Equipes</h2>
                 <h3>Actuelles</h3>
-                <div th:each="team : ${teams}">
+                <div th:each="team : ${competition.teams}">
                     <p th:value="${team.teamName}"></p>
                 </div>
                 <br />
