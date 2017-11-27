@@ -50,12 +50,13 @@ public class Team
 		this.prizeList = prizeList;
 	}
 	
-	public Team(String teamName,String history)
+	public Team(String teamName,String history,List<Player> players)
 	{
 		this.teamName = teamName;
 		this.dateCreation = new Date();
 		this.history = history;
 		this.prizeList = new HashMap<>();
+		this.players = players;
 	}
 
 	

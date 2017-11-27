@@ -68,9 +68,18 @@ public class demoController
         Player p1 = new Player("Clément", PlayerRole.Jungle, 20, "Zelda", "Surnomé petite pute dès son plus jeune age, bla bla bla");
         Player p2 = new Player("Chris", PlayerRole.Top, 21, "La truelle", "Rageux parmi les rageux, il n'hésite pas à quitter une partie lorsqu'elle tourne en sa défaveur.");
         Player p3 = new Player("Dimitri", PlayerRole.Coach, 21, "Zizou", "Le meilleur joueur de tous les temps");
-        playerRepo.save(p1);
+	Player p4 = new Player("Paul", PlayerRole.Support, 20, "vim", "Emacs était trop évolué");
+	Player p5 = new Player("Guillaume", PlayerRole.ADC, 21, "Jus de fruit de la passion", "La plus grosse trompe de Bamoko");
+	Player p6 = new Player("Lucas", PlayerRole.Mid, 21, "Lose", "L'homme le plus chiant du monde");
+	Player p7 = new Player("Hugo", PlayerRole.Support, 24, "La classe", "L'homme le plus stylè");
+	
+	playerRepo.save(p1);
         playerRepo.save(p2);
         playerRepo.save(p3);
+	playerRepo.save(p4);
+	playerRepo.save(p5);
+	playerRepo.save(p6);
+	playerRepo.save(p7);
         
         
         return "redirect:/home";

@@ -18,4 +18,5 @@ public interface PlayerRepository extends CrudRepository<Player, Long>
 	@Override
 	public List<Player> findAll();
 	public Player findOneById(Long id);
+	public List<Player> findManyByRoles(PlayerRole role);
 }

@@ -51,10 +51,30 @@ and open the template in the editor.
                         <label> Nom : <input type="text" class="form-control" name="teamname"/></label><br/>
                         <label> History : <input type="text" class="form-control" name="history"/></label><br/>
                         
-                        <label> Joueur 1 : <select class="form-control" name="j1">
-                            <option th:each="player: ${players}" value="${player.id}" th:text="&{player.playerName}"></option>
+                        <label> Top : <select class="form-control" name="top">
+                            <option th:each="player: ${playersTop}" th:value="${player.id}" th:text="${player.playerName}">a</option>
                         </select>
                         </label>
+                        <label> Jungle : <select class="form-control" name="jungle">
+                            <option th:each="player: ${playersJungle}" th:value="${player.id}" th:text="${player.playerName}">a</option>
+                        </select>
+                        </label>
+                        <label> Mid : <select class="form-control" name="mid">
+                            <option th:each="player: ${playersMid}" th:value="${player.id}" th:text="${player.playerName}">a</option>
+                        </select>
+                        </label>
+                        <label> ADC : <select class="form-control" name="adc">
+                            <option th:each="player: ${playersAdc}" th:value="${player.id}" th:text="${player.playerName}">a</option>
+                        </select>
+                        </label>
+                        <label> Support : <select class="form-control" name="support">
+                            <option th:each="player: ${playersSupport}" th:value="${player.id}" th:text="${player.playerName}">a</option>
+                        </select>
+                        </label>
+                        <label> Coach : <select class="form-control" name="coach">
+                            <option th:each="player: ${playersCoach}" th:value="${player.id}" th:text="${player.playerName}">a</option>
+                        </select>
+                        </label>                        
                     <input type="submit" class="btn btn-info btn-lg btn-block" value="Valider"/>
                     </form>  
                 </span>
