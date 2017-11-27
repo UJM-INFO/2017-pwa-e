@@ -9,11 +9,9 @@ import fr.rzteam.DirectESport.mdparser.Markdown;
 import fr.rzteam.DirectESport.model.Article;
 import fr.rzteam.DirectESport.model.ArticleComment;
 import fr.rzteam.DirectESport.model.ArticleRepository;
-import fr.rzteam.DirectESport.model.Comment;
-import fr.rzteam.DirectESport.model.Event;
 import fr.rzteam.DirectESport.model.User;
 import fr.rzteam.DirectESport.model.UserRepository;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import javax.inject.Inject;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -56,8 +54,8 @@ public class ArticleController
             return "articleMenu";
         }
         Article articleToDisplay = articleRepo.findOneById(Long.parseLong(id));
-        HashMap<ArticleComment, User> userComments = new HashMap<>();
-        for (int i=0; i<articleToDisplay.getComments().size(); i++)
+        LinkedHashMap<ArticleComment, User> userComments = new LinkedHashMap<>();
+        for (int i = 0; i < articleToDisplay.getComments().size(); i++)
         {
             ArticleComment a = articleToDisplay.getComments().get(i);
             User u = a.getAuthor();
