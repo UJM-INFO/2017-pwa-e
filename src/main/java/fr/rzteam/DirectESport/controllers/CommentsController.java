@@ -86,7 +86,7 @@ public class CommentsController
             return "eventMenu";
         }
 	m.addAttribute("id",id);
-        return "comment";
+        return "eventMenu";
     }  
     
 
