@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Direct eSport</title>
+        <div th:include="fragments/head"></div>
+        <link rel="stylesheet" href="css/vue-pages.css" type="text/css"/>
+    </head>
+    <body>
+        <div id="app">
+            <!-- Menu du haut-->
+            <div th:include="fragments/header"></div>
+            
+            <section>
+                
+                <a class="btn btn-info btn-lg btn-block" href="/competition">Retour aux compétitions</a>
+                <br />
+                
+                <h1> <i class="fa fa-trophy" aria-hidden="true"></i> Matchs de la compétition</h1>
+                <br />
+                <div th:each="event : ${events}">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title"> <i class="fa fa-users" aria-hidden="true"></i> Team <span th:text="${event.team1.teamName}"></span></h4>
+                            
+                            <h4 class="card-title"> <i class="fa fa-users" aria-hidden="true"></i> Team <span th:text="${event.team2.teamName}"></span></h4>
+                            <a class="btn btn-info" th:href="'/comment?id='+${event.id}">Accès à l'evenement</a>
+                            <span sec:authorize="hasAuthority('ADMIN')">
+                                <form th:action="@{/remove_event}" method="post">
+                                    <input type="hidden" name="id" th:value="${event.id}"/>
+                                    <input class="btn btn-danger" type="submit" value="Supprimer l'événement"/>
+                                </form>
+                            </span>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+                
+                <!-- Event creation part -->
+                
+                <button class="btn btn-info btn-lg btn-block display" id="creationDisplayButton" v-on:click="displayCreation"> <i class="fa fa-plus" aria-hidden="true"></i> Créer un évenement</button>
+                <span id="eventCreation" class="undisplay">
+                    <h2>Création d'évenement</h2>
+                    <form th:action="@{/add_event}" method="POST">
+                        <label> Description : <input type="text" class="form-control" name="description"/></label><br/>
+                        <label> Equipe 1 : <input type="text" class="form-control" name="team1"/></label><br/>
+                        <label> Equipe 2 : <input type="text" class="form-control" name="team2"/></label><br/>
+                        <!--<input type="hidden" name="idCompetition" th:value="{competition.id}"/></label><br/>-->
+                    <input type="submit" class="btn btn-info btn-lg btn-block" value="Valider"/>
+                    </form>  
+                </span>
+                
+                
+                <!-- END Event creation part -->
+                
+            </section>
+
+            <footer></footer>
+
+        </div>
+        
+        <!-- Carousel des top articles-->
+        <div th:include="fragments/endPageScripts"></div>
+        <script src="/js/eventMenu.js"></script>
+    </body>
+</html>
