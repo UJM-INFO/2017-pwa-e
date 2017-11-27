@@ -20,7 +20,24 @@ and open the template in the editor.
                 <a class="btn btn-info btn-lg btn-block" href="/competition">Retour aux compétitions</a>
                 <br />
                 
-                <h1> <i class="fa fa-trophy" aria-hidden="true"></i> Matchs de la compétition</h1>
+                <h2>Equipes</h2>
+                <h3>Actuelles</h3>
+                <div th:each="team : ${teams}">
+                    <p th:value="${team.teamName}"></p>
+                </div>
+                <br />
+                <span id="teamAdd">
+                    <h3>Ajout</h3>
+                    <form th:action="@{/add_event}" method="POST">
+                        <label> Nom de l'équipe : <input type="text" class="form-control" name="teamName"/></label><br/>
+                    <input type="submit" class="btn btn-info" value="Ajout de l'équipe"/>
+                    </form>  
+                </span>
+                
+                <br />
+                <hr />
+                
+                <h2> <i class="fa fa-trophy" aria-hidden="true"></i> Matchs de la compétition</h2>
                 <br />
                 <div th:each="event : ${events}">
                     <div class="card">
@@ -49,7 +66,13 @@ and open the template in the editor.
                         <label> Description : <input type="text" class="form-control" name="description"/></label><br/>
                         <label> Equipe 1 : <input type="text" class="form-control" name="team1"/></label><br/>
                         <label> Equipe 2 : <input type="text" class="form-control" name="team2"/></label><br/>
-                        <!--<input type="hidden" name="idCompetition" th:value="{competition.id}"/></label><br/>-->
+                        <input type="hidden" class="form-control" name="idCompetition" th:value="${id}"/>
+                        <label> Type match : <select class="form-control" name="type">
+                            <option value="1">BO1</option>
+                            <option value="3">BO3</option>
+                            <option value="5">BO5</option>
+                        </select>
+                        </label><br/>
                     <input type="submit" class="btn btn-info btn-lg btn-block" value="Valider"/>
                     </form>  
                 </span>
