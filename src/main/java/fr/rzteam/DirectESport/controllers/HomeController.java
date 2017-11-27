@@ -5,7 +5,9 @@
  */
 package fr.rzteam.DirectESport.controllers;
 
+import fr.rzteam.DirectESport.model.ArticleRepository;
 import fr.rzteam.DirectESport.model.User;
+import fr.rzteam.DirectESport.model.Article;
 import fr.rzteam.DirectESport.model.UserRepository;
 
 import fr.rzteam.DirectESport.model.UserService;
@@ -31,6 +33,8 @@ public class HomeController
     UserService userService;
     @Inject
     UserRepository userRepo;
+    @Inject
+    ArticleRepository articleRepo;
     /**
      * Fonction pour savoir si on est connecté
      * @return vrai si connecté, faux sinon
@@ -47,8 +51,16 @@ public class HomeController
     }
     
     @RequestMapping("/home")
-    public String home()
+    public String home(Model m)
     {
+        List<Article> articles = articleRepo.findTop3ByOrderByDateDesc();
+        for (int i=0; i<articles.size();i++)
+        {
+            if (articles.get(i).getText().length()>70)
+                articles.get(i).setText(articles.get(i).getText().substring(0, 70).concat("(...)")); //Only the begining of the text for the carousel
+        }
+        if (articles.size()>2)
+            m.addAttribute("articles", articles);
         return isConnected() ? "homeSignedIn" : "homeNotSignedIn";
     }
     
