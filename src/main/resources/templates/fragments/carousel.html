@@ -1,33 +1,35 @@
-
+<div th:if="${articles != null}">
 <div id="carouselExampleIndicators" class="carousel slide m-5" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
     </ol>
+    
     <div class="carousel-inner">
       <div class="carousel-item active">
             <img class="d-block w-100" src="slide1.jpg" alt="First slide"/>
                 <div class="carousel-caption d-none d-md-block">
-                <h3>Qui va gagner le trophée des pineurs?</h3>
-                <p>La compétition est à peine lancé que les pineurs pinent comme jamais (...)</p>
+                    <h3 th:text="${articles[0].title}"></h3>
+                    <p th:text="${articles[0].text}"></p>
                 </div>
       </div>
       <div class="carousel-item">
         <img class="d-block w-100" src="slide2.jpg" alt="Second slide"/>
                 <div class="carousel-caption d-none d-md-block">
-                <h3>Clément serait-il réellement une petite pute?</h3>
-                <p>C'est ce que nous révèle la nouvelle enquête (...)</p>
+                <h3 th:text="${articles[1].title}"></h3>
+                <p th:text="${articles[1].text}"></p>
                 </div>
       </div>
       <div class="carousel-item">
         <img class="d-block w-100" src="slide3.jpg" alt="Third slide"/>
                 <div class="carousel-caption d-none d-md-block">
-                <h3>Le trophée des pineurs</h3>
-                <p>Le trophée des pineurs vient d'être gagné par (...)</p>
+                <h3 th:text="${articles[2].title}"></h3>
+                <p th:text="${articles[2].text}"></p>
                 </div>
       </div>
-    </div>
+    </div>    
+
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Précédent</span>
@@ -37,3 +39,4 @@
       <span class="sr-only">Suivant</span>
     </a>
   </div>
+</div>
