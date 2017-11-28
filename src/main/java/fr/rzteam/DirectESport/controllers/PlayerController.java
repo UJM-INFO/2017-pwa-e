@@ -56,6 +56,7 @@ public class PlayerController
             Player p = playerRepo.findOneById(Long.parseLong(id));
             if (p == null)
                 return "redirect:/home";
+	    m.addAttribute("player",p);
             return "player";
         }
         catch (NumberFormatException | NullPointerException e)

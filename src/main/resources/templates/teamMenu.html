@@ -1,102 +1,110 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+ *      _____   _                   _            _____                      _   
+ *     |  __ \ (_) Website Project | |          / ____|                    | |  
+ *     | |  | | _  _ __  ___   ___ | |_    ___ | (___   _ __    ___   _ __ | |_ 
+ *     | |  | || || '__|/ _ \ / __|| __|  / _ \ \___ \ | '_ \  / _ \ | '__|| __|
+ *     | |__| || || |  |  __/| (__ | |_  |  __/ ____) || |_) || (_) || |   | |_ 
+ *     |_____/ |_||_|   \___| \___| \__|  \___||_____/ | .__/  \___/ |_|    \__|
+ *                                                     | |                                                                                              
+ *  ____Authors____                                    |_| 
+ * Dimitri BRUYERE
+ * Clément COLIN
+ * Christopher JEAMME
+ *  _______________
 -->
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Direct eSport</title>
-        <div th:include="fragments/head"></div>
-        <link rel="stylesheet" href="css/vue-pages.css" type="text/css"/>
-    </head>
-    <body>
-        <div id="app">
-            <!-- Menu du haut-->
-            <div th:include="fragments/header"></div>
-            <!-- END Menu du haut-->
-            
-              
-            <section>
-                            
-                <h1> <i class="fa fa-trophy" aria-hidden="true"></i> Team</h1>
-                <br />
-                <div th:each="team: ${teams}">
-                    <img th:src="@{'/images/logoteam'+${team.id}+'.png'}"/>
-                    <div class="card">
-                        <h4 class="card-header"> Team : <span th:text="${team.teamName}"></span></h4>
-                        <div class="card-body">
-                            <h4 class="card-title"> Histoire : <span th:text="${team.history}"></span></h4>
-                            <a class="btn btn-info" th:href="'/team?id='+${team.id}">Plus ...</a>
-                            
-                            
-                            
-                            <span sec:authorize="hasAuthority('ADMIN')">
-                                <form th:action="@{/remove_team}" method="post">
-                                    <input type="hidden" name="id" th:value="${competition.id}"/>
-                                    <input class="btn btn-danger" type="submit" value="Supprimer l'équipe"/>
-                                </form>
-                            </span>
-                        </div>
+    <div th:include="fragments/head"></div>
+    <link rel="stylesheet" href="css/vue-pages.css" type="text/css"/>
+</head>
+<body>
+    <div id="app">
+        <!-- Menu du haut-->
+        <div th:include="fragments/header"></div>
+        <!-- END Menu du haut-->
+
+        <section>
+
+            <h1> <i class="fa fa-trophy" aria-hidden="true"></i> Team</h1>
+            <br />
+            <div th:each="team: ${teams}">
+                <img th:src="@{'/images/logoteam'+${team.id}+'.png'}"/>
+                <div class="card">
+                    <h4 class="card-header"> Team : <span th:text="${team.teamName}"></span></h4>
+                    <div class="card-body">
+                        <h4 class="card-title"> Histoire : <span th:text="${team.history}"></span></h4>
+                        <a class="btn btn-info" th:href="'/team?id='+${team.id}">Plus ...</a>
+
+
+
+                        <span sec:authorize="hasAuthority('ADMIN')">
+                            <form th:action="@{/remove_team}" method="post">
+                                <input type="hidden" name="id" th:value="${competition.id}"/>
+                                <input class="btn btn-danger" type="submit" value="Supprimer l'équipe"/>
+                            </form>
+                        </span>
                     </div>
-                    <hr />
                 </div>
-                
                 <hr />
-                
-                <!-- Event creation part -->
-                
-                <button class="btn btn-info btn-lg btn-block display" id="creationDisplayButton" v-on:click="displayCreation"> <i class="fa fa-plus" aria-hidden="true"></i> Créer une équipe</button>
-                <span id="eventCreation" class="undisplay">
-                    <h2>Création d'équipe</h2>
-                    <form th:action="@{/add_team}" enctype="multipart/form-data" method="POST">
-                        <label> Nom : <input type="text" class="form-control" name="teamname"/></label><br/>
-                        <label> History : <input type="text" class="form-control" name="history"/></label><br/>
-                        
-                        <label> Top : <select class="form-control" name="top">
+            </div>
+
+            <hr />
+
+            <!-- Event creation part -->
+
+            <button class="btn btn-info btn-lg btn-block display" id="creationDisplayButton" v-on:click="displayCreation"> <i class="fa fa-plus" aria-hidden="true"></i> Créer une équipe</button>
+            <span id="eventCreation" class="undisplay">
+                <h2>Création d'équipe</h2>
+                <form th:action="@{/add_team}" enctype="multipart/form-data" method="POST">
+                    <label> Nom : <input type="text" class="form-control" name="teamname"/></label><br/>
+                    <label> History : <input type="text" class="form-control" name="history"/></label><br/>
+
+                    <label> Top : <select class="form-control" name="top">
                             <option th:each="player: ${playersTop}" th:value="${player.id}" th:text="${player.playerName}">a</option>
                         </select>
-                        </label>
-                        <label> Jungle : <select class="form-control" name="jungle">
+                    </label>
+                    <label> Jungle : <select class="form-control" name="jungle">
                             <option th:each="player: ${playersJungle}" th:value="${player.id}" th:text="${player.playerName}">a</option>
                         </select>
-                        </label>
-                        <label> Mid : <select class="form-control" name="mid">
+                    </label>
+                    <label> Mid : <select class="form-control" name="mid">
                             <option th:each="player: ${playersMid}" th:value="${player.id}" th:text="${player.playerName}">a</option>
                         </select>
-                        </label>
-                        <label> ADC : <select class="form-control" name="adc">
+                    </label>
+                    <label> ADC : <select class="form-control" name="adc">
                             <option th:each="player: ${playersAdc}" th:value="${player.id}" th:text="${player.playerName}">a</option>
                         </select>
-                        </label>
-                        <label> Support : <select class="form-control" name="support">
+                    </label>
+                    <label> Support : <select class="form-control" name="support">
                             <option th:each="player: ${playersSupport}" th:value="${player.id}" th:text="${player.playerName}">a</option>
                         </select>
-                        </label>
-<!--                        <label> Coach : <select class="form-control" name="coach">
-                            <option th:each="player: ${playersCoach}" th:value="${player.id}" th:text="${player.playerName}">a</option>
-                        </select>
-                        </label>                        -->
-                           
+                    </label>
+                    <!--                        <label> Coach : <select class="form-control" name="coach">
+                                                <option th:each="player: ${playersCoach}" th:value="${player.id}" th:text="${player.playerName}">a</option>
+                                            </select>
+                                            </label>                        -->
+
                     <br/><label>File to upload: <input type="file" name="file1" /></label>
                     <br/><label>Logo to upload: <input type="file" name="file2" /></label>
                     <br/><input type="submit" class="btn btn-info btn-lg btn-block" value="Valider"/>
-                    </form>  
-                </span>
-                
-                
-                <!-- END Event creation part -->
-                
-            </section>
-            <aside></aside>
+                </form>  
+            </span>
 
-            <footer></footer>
 
-        </div>
-        
-        <!-- Carousel des top articles-->
-        <div th:include="fragments/endPageScripts"></div>
-        <script src="/js/eventMenu.js"></script>
-    </body>
+            <!-- END Event creation part -->
+
+        </section>
+        <aside></aside>
+
+        <footer></footer>
+
+    </div>
+
+    <!-- Carousel des top articles-->
+    <div th:include="fragments/endPageScripts"></div>
+    <script src="js/automaticDisplay.js"></script>
+</body>
 </html>
 
