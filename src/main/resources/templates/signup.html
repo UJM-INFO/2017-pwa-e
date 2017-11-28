@@ -7,34 +7,39 @@ and open the template in the editor.
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Direct eSport</title>
-        <div th:include="fragments/head"></div>
-    </head>
-    <body>
-        <!-- Menu du haut-->
-        <div th:include="fragments/header"></div>
-        
-        <section>
-            <div class="connectionBox">
-                <p th:if="${error}!=null" th:text="${error}" class="alert alert-danger"></p>
+    <div th:include="fragments/head"></div>
+</head>
+<body>
+    <!-- Menu du haut-->
+    <div th:include="fragments/header"></div>
 
-                <form th:action="@{/register}" method="POST">
-                    Un pseudo (qui sera visible par les autres utilisateurs): <input type="text" class="form-control" name="username"/>
-                    Votre nom (ça reste entre nous): <input type="text" class="form-control" name="realname"/>
-                    E-Mail: <input type="text" class="form-control"  name="mail"/>
-                    Mot de passe: <input type="password" class="form-control"  name="password"/>
-                    Répétez le mot de passe: <input type="password" class="form-control"  name="password2"/>
+    <section>
 
-                    <div class="form-group login-group-checkbox">
+        <p th:if="${error}!=null" th:text="${error}" class="alert alert-danger"></p>
+        <div class="connectionBox">
+
+            <h2>Créez une compte</h2>
+
+            <form th:action="@{/register}" method="POST">
+                Un pseudo (visible par les autres utilisateurs): <input type="text" class="form-control" name="username"/>
+                Votre nom (ça reste entre nous): <input type="text" class="form-control" name="realname"/>
+                E-Mail: <input type="text" class="form-control"  name="mail"/>
+                Mot de passe: <input type="password" class="form-control"  name="password"/>
+                Répétez le mot de passe: <input type="password" class="form-control"  name="password2"/>
+
+                <div class="form-group login-group-checkbox">
+                    <label for="reg_agree">
                         <input type="checkbox" class="" id="reg_agree" name="reg_agree"/>
-                        <label for="reg_agree">Je suis d'accord avec les <a href="#">conditions d'utilisations</a></label>
-                    </div>
-                    
+                        Je suis d'accord avec les <a href="#">conditions d'utilisations</a>
+                    </label>
+                </div>
+
                 <input type="submit" class="btn form-control btn-info" value="Register"/>
-                </form>
-            </div>
-        </section>
-        <footer></footer>
-        <!-- Carousel des top articles-->
-        <div th:include="fragments/endPageScripts"></div>
-    </body>
+            </form>
+        </div>
+    </section>
+    <footer></footer>
+    <!-- Carousel des top articles-->
+    <div th:include="fragments/endPageScripts"></div>
+</body>
 </html>
