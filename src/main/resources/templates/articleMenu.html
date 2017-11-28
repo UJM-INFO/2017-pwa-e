@@ -7,43 +7,37 @@ and open the template in the editor.
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Direct eSport</title>
-        <div th:include="fragments/head"></div>
-    </head>
-    <body>
-        <div id="app">
-            <!-- Menu du haut-->
-            <div th:include="fragments/header"></div>
+    <div th:include="fragments/head"></div>
+</head>
+<body>
+    <div id="app">
+        <!-- Menu du haut-->
+        <div th:include="fragments/header"></div>
 
-            <section>
-                             
-                <h1>Articles</h1>
-                <br />
-                <div th:each="article : ${articles}">
-                    <div class="card">
-                        <h4 class="card-header" th:text="${article.title}"></h4>
-                        <div class="card-body" th:text="${article.text}"></div>
-                        <a class="btn btn-info" th:href="'/article?id='+${article.id}">Lire l'article</a>
-                        
-                    </div>
-                    <hr />
+        <section>
+            <div sec:authorize="hasAuthority('EDITOR')">
+                <a sec:authorize="hasAuthority('EDITOR')" href="/articleCreation" class="btn btn-info btn-lg btn-block">Créer un article</a>
+                <hr/>
+            </div>
+            <h1>Articles</h1>
+            <br />
+            <div th:each="article : ${articles}">
+                <div class="card">
+                    <h4 class="card-header" th:text="${article.title}"></h4>
+                    <div class="card-body" th:text="${article.text}"></div>
+                    <a class="btn btn-info" th:href="'/article?id='+${article.id}">Lire l'article</a>
+
                 </div>
                 <hr />
-                <h2 id="eventCreation">Création d'article</h2>
-                <form th:action="@{/add_article}" method="POST">
-                    <label> Titre de l'article: <input type="text" class="form-control" name="article_title"/></label><br/>
-                    <label> Texte Markdown : <input type="text" class="form-control" name="article_text"/></label><br/>
-                    
-                <input type="submit" class="btn btn-info btn-lg btn-block" value="Créez un article"/>
-                </form>
-                
-            </section>
-            <aside></aside>
+            </div>
+        </section>
 
-            <footer></footer>
 
-        </div>
-        
-        <!-- Carousel des top articles-->
-        <div th:include="fragments/endPageScripts"></div>
-    </body>
+        <footer></footer>
+
+    </div>
+
+    <!-- Carousel des top articles-->
+    <div th:include="fragments/endPageScripts"></div>
+</body>
 </html>

@@ -119,5 +119,12 @@ public class ArticleController
         articleRepo.save(a);
         return "redirect:/article?id=" + id;
     }
+    
+    @RequestMapping("/articleCreation")
+    public String creation()
+    {
+        return "articleCreation";
+    }
+    
 
 }
