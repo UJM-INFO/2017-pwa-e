@@ -25,11 +25,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  *
- * @author 
+ * @author
  */
 @Configuration
 @EnableWebSecurity
-public class WebSecu extends WebSecurityConfigurerAdapter {
+public class WebSecu extends WebSecurityConfigurerAdapter
+{
 
     /**
      *
@@ -37,29 +38,28 @@ public class WebSecu extends WebSecurityConfigurerAdapter {
      * @throws Exception
      */
     @Override
-  protected void configure(HttpSecurity http) throws Exception {
-      
+    protected void configure(HttpSecurity http) throws Exception
+    {
 
-      
-     http.authorizeRequests()
-            .anyRequest().permitAll() //.hasAnyRole("ADMIN")
-			.and()
-				.formLogin()
-				.loginPage("/signin")
-				.loginProcessingUrl("/appLogin")
-				.usernameParameter("app_username")
-				.passwordParameter("app_password")
-				.defaultSuccessUrl("/home")
-				.permitAll()
-			.and()
-				.logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessUrl("/home")
-				.permitAll();
-  }
-  
-  @Inject
-  UserService userDetailsService;
+        http.authorizeRequests()
+            .antMatchers("/admin").hasAnyAuthority("ADMIN")
+            .and()
+            .formLogin()
+            .loginPage("/signin")
+            .loginProcessingUrl("/appLogin")
+            .usernameParameter("app_username")
+            .passwordParameter("app_password")
+            .defaultSuccessUrl("/home")
+            .permitAll()
+            .and()
+            .logout()
+            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+            .logoutSuccessUrl("/home")
+            .permitAll();
+    }
+
+    @Inject
+    UserService userDetailsService;
 
     /**
      *
@@ -67,14 +67,14 @@ public class WebSecu extends WebSecurityConfigurerAdapter {
      * @throws Exception
      */
     @Override
-  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-      
-      /*auth.inMemoryAuthentication()
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception
+    {
+
+        /*auth.inMemoryAuthentication()
         .withUser("robert").password("toto").roles("USER", "ADMIN")
         .and().withUser("bob").password("toto").roles("USER")*/
-
-      auth
-              .userDetailsService(userDetailsService)
-              .passwordEncoder(userDetailsService.encoder);
-  }
+        auth
+            .userDetailsService(userDetailsService)
+            .passwordEncoder(userDetailsService.encoder);
+    }
 }
