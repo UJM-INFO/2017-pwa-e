@@ -33,7 +33,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Controller for Article operations / pages
- * @author chris
  */
 @Controller
 public class ArticleController
@@ -45,6 +44,12 @@ public class ArticleController
     @Inject
     ArticleRepository articleRepo;
 
+    /**
+     *  We redirect to the article page if the id is set, otherwise we redirect to the article menu
+     * @param id Id of the article we want
+     * @param m The model to exchange data with Thymeleaf
+     * @return The template articleMenu.html or article.html
+     */
     @RequestMapping("/article")
     public String article(@RequestParam(value = "id", required = false) String id, Model m)
     {
@@ -77,6 +82,12 @@ public class ArticleController
         return "article";
     }
 
+    /**
+     * Receiving the order to add an article
+     * @param title Title of the article
+     * @param text Text of the article
+     * @return A redirection to /article
+     */
     @RequestMapping(value = "/add_article", method = RequestMethod.POST)
     public String addArticle(
         @RequestParam("article_title") String title,
@@ -89,6 +100,12 @@ public class ArticleController
         return "redirect:/article";
     }
 
+    /**
+     * Receiving the order to add a comment to a article
+     * @param text Text of the comment
+     * @param id Id of the article to add a comment
+     * @return A redirection to the article page
+     */
     @RequestMapping(value = "/add_articleComment", method = RequestMethod.POST)
     public String save(
         @RequestParam("text") String text,

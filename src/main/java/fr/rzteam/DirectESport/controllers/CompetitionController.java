@@ -48,6 +48,12 @@ public class CompetitionController
     @Inject
     EventRepository eventRepo;
         
+    /**
+     * We redirect to the competition page if the id is set, otherwise we redirect to the competition menu
+     * @param id Id of the competition we want
+     * @param m The model to exchange data with Thymeleaf
+     * @return The template "competitionMenu" or "competition"
+     */
     @RequestMapping("/competition")
     public String competitionMenu(@RequestParam(value="id", required=false) String id, Model m)
     {
@@ -76,6 +82,11 @@ public class CompetitionController
         return "competition";
     }
 	
+    /**
+     * Receive the order to add a competition
+     * @param name Name of the competition
+     * @return A redirection to /competition
+     */
     @RequestMapping(value = "/add_competition", method = RequestMethod.POST)
     public String addCompetition(@RequestParam("name") String name)            
     {
@@ -86,6 +97,11 @@ public class CompetitionController
         return "redirect:/competition";
     }
 	
+    /**
+     * Receive the order to remove a competition
+     * @param id Id of the competition
+     * @return A redirection to /competition
+     */
     @RequestMapping(value = "/remove_competition", method = RequestMethod.POST)
     public String removeCompetition(@RequestParam("id") String id)
     {
@@ -94,6 +110,12 @@ public class CompetitionController
         return "redirect:/competition";
     }
     
+    /**
+     * Receive the order to add a team in a competition
+     * @param name Name of the team
+     * @param idCompetition Id of the competition
+     * @return Redirection to /competition
+     */
     @RequestMapping(value = "/add_team_in_competition", method = RequestMethod.POST)
     public String addCompetition(
             @RequestParam("name") String name,

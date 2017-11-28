@@ -37,7 +37,7 @@ public class AdminController
     /**
      * Display the admin page, the verification is not done here
      * @param m The model to exchange data with Thymeleaf
-     * @return The template ddmin.html
+     * @return The template admin.html
      */
     @RequestMapping("/admin")
     public String adminPage(Model m)
