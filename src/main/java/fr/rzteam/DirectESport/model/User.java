@@ -12,7 +12,6 @@
  * Christopher JEAMME
  *  ---------------
  */
-
 package fr.rzteam.DirectESport.model;
 
 import fr.rzteam.DirectESport.model.UserRole;
@@ -29,49 +28,68 @@ import javax.persistence.Id;
 import lombok.Data;
 
 /**
- *
- * @Dimitri
+ * User model class
  */
 @Entity
 @Data
-public class User {
+public class User
+{
+
     @Id
     String userName;
-    
+
     String pseudo;
-    
+
     String realName;
-    
+
     String password;
-    
+
     String mail;
-    
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<UserRole> roles = new HashSet<>();
-    
-    public User() 
-    {}
-    
-    public User(String userName,String realName, String password,String mail) 
-	{
+
+    /**
+     * Constructor
+     */
+    public User()
+    {
+    }
+
+    /**
+     * Constructor
+     * @param userName
+     * @param realName
+     * @param password
+     * @param mail
+     */
+    public User(String userName, String realName, String password, String mail)
+    {
         this.userName = userName;
         this.realName = realName;
         this.roles.add(UserRole.ADMIN); // be a user by default
         this.password = password;
-	this.mail = mail;
-	this.pseudo = userName;
+        this.mail = mail;
+        this.pseudo = userName;
     }
-    
-    public User(String userName, String displayName, List<String> roles, String derivedPassword, String mail) 
+
+    /**
+     * Constructor
+     * @param userName
+     * @param displayName
+     * @param roles
+     * @param derivedPassword
+     * @param mail
+     */
+    public User(String userName, String displayName, List<String> roles, String derivedPassword, String mail)
     {
         this.userName = userName;
         this.realName = displayName;
         this.roles.addAll(roles.stream().map(UserRole::valueOf).collect(Collectors.toList()));
         this.password = derivedPassword;
-	this.mail = mail;
-	this.pseudo = userName;
+        this.mail = mail;
+        this.pseudo = userName;
     }
-    
+
 }
