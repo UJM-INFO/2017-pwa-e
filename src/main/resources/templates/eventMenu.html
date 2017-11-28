@@ -32,9 +32,9 @@
                 <div th:each="event : ${events}">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title"> <i class="fa fa-users" aria-hidden="true"></i> Team <span th:text="${event.team1.teamName}"></span></h4>
+                            <h4 class="card-title"> <i class="fa fa-users" aria-hidden="true"></i>  <span th:text="${event.team1.teamName}"></span></h4>
                             
-                            <h4 class="card-title"> <i class="fa fa-users" aria-hidden="true"></i> Team <span th:text="${event.team2.teamName}"></span></h4>
+                            <h4 class="card-title"> <i class="fa fa-users" aria-hidden="true"></i>  <span th:text="${event.team2.teamName}"></span></h4>
                             <a class="btn btn-info" th:href="'/event?id='+${event.id}">Accès à l'evenement</a>
                             <span sec:authorize="hasAuthority('ADMIN')">
                                 <form th:action="@{/remove_event}" method="post">
