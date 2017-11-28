@@ -57,8 +57,7 @@ public class SignupController
             Model m
     )
     {
-        //System.out.println("LA = " + username + " " + realname + " "+ mail + " " + password);
-        if (password.compareTo(password2) != 0) //The 2 passwords are different
+	if (password.compareTo(password2) != 0) //The 2 passwords are different
         {
             m.addAttribute("error", "Les mots de passes sont différents");
             return "forward:/signup";

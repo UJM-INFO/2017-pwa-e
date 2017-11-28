@@ -28,7 +28,6 @@ public class MarkdownTest {
     @Test
     public void testParse()
     {
-        System.out.println("parse");
         String markdown = "a";
         String expResult = "<p>a</p>\n";
         String result = Markdown.parse(markdown);

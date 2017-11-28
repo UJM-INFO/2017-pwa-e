@@ -149,7 +149,6 @@ public class TeamController
 	Team newteam = new Team(teamname, history, plist);
 	teamRepo.save(newteam);
 	Long id = teamRepo.findOneByTeamName(teamname).getId();
-	System.out.println(id);
 	if (!file1.isEmpty()) {
 	    BufferedImage src = ImageIO.read(new ByteArrayInputStream(file1.getBytes()));
 	    File destination = new File("src/main/resources/static/images/team"+id+".png");

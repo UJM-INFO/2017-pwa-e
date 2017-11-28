@@ -33,7 +33,6 @@ public class Markdown
         HtmlRenderer renderer = HtmlRenderer.builder(options).build();
         Node document = parser.parse(markdown);
         String html = renderer.render(document);
-        System.out.println(html);
         return html;
     }
 }
