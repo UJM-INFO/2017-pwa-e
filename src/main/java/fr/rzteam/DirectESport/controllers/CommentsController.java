@@ -84,35 +84,4 @@ public class CommentsController
 	    eventRepo.save(e);
 	return "redirect:/event?id="+id;
     }
-    
-    /**
-     * We redirect to the event page if the id is set, otherwise we redirect to the event menu
-     * @param id
-     * @param m
-     * @return
-     */
-    @RequestMapping("/event")
-    public String event(@RequestParam(value="id", required=false) String id, Model m)
-    {
-        //If the id is set and valid we display this event, otherwise we display the event menu
-        try
-        {
-            if("undefined".equals(id) || eventRepo.findOneById(Long.parseLong(id))==null)
-            {
-                List<Event> list = eventRepo.findAll();
-                m.addAttribute("events",list);
-                return "eventMenu";
-            }
-        }
-        catch(NumberFormatException | NullPointerException e)
-        { 
-            List<Event> list = eventRepo.findAll();
-            m.addAttribute("events",list);
-            return "eventMenu";
-        }
-	m.addAttribute("id",id);
-        return "comment";
-    }  
-    
-
 }

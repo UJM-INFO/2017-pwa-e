@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -79,12 +80,42 @@ public class EventController
         
         return "redirect:/event";
     }
-	
-	@RequestMapping(value = "/remove_event", method = RequestMethod.POST)
-	public String removeEvent(@RequestParam("id") String id)
-	{
-            Long idLong = Long.parseLong(id);
-            eventRepo.deleteOneById(idLong);
+
+    @RequestMapping(value = "/remove_event", method = RequestMethod.POST)
+    public String removeEvent(@RequestParam("id") String id)
+    {
+        Long idLong = Long.parseLong(id);
+        eventRepo.deleteOneById(idLong);
+        return "eventMenu";
+    }
+    
+    /**
+     * We redirect to the event page if the id is set, otherwise we redirect to the event menu
+     * @param id
+     * @param m
+     * @return
+     */
+    @RequestMapping("/event")
+    public String event(@RequestParam(value="id", required=false) String id, Model m)
+    {
+        //If the id is set and valid we display this event, otherwise we display the event menu
+        try
+        {
+            if("undefined".equals(id) || eventRepo.findOneById(Long.parseLong(id))==null)
+            {
+                List<Event> list = eventRepo.findAll();
+                m.addAttribute("events",list);
+                return "eventMenu";
+            }
+        }
+        catch(NumberFormatException | NullPointerException e)
+        { 
+            List<Event> list = eventRepo.findAll();
+            m.addAttribute("events",list);
             return "eventMenu";
-	}
+        }
+	m.addAttribute("id",id);
+        return "event";
+    }  
+    
 }
