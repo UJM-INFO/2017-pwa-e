@@ -24,15 +24,17 @@ and open the template in the editor.
                 
                 <h2> <i class="fa fa-users" aria-hidden="true"></i> Equipes</h2>
                 <h3>Actuelles</h3>
-                <div th:each="team : ${competition.teams}">
-                    <p th:value="${team.teamName}"></p>
+                <div th:each="team : ${teamscompet}">
+                    <p th:text="${team.teamName}"></p>
                 </div>
                 <br />
                 <span id="teamAdd">
                     <h3>Ajout</h3>
                     <form th:action="@{/add_team_in_competition}" method="POST">
-                        <label> Nom de l'équipe : <input type="text" class="form-control" name="teamName"/></label><br/>
-                        <input type="hidden" th:value="${id}"></input>
+                        Team : <select class="form-control" name="idteam">
+                            <option th:each="team: ${teams}" th:value="${team.id}" th:text="${team.teamName}">a</option>
+                        </select>
+                        <input type="hidden" th:name="id" th:value="${#httpServletRequest.getParameter('id')}"></input>
                         <input type="submit" class="btn btn-info" value="Ajout de l'équipe"/>
                     </form>  
                 </span>
@@ -73,8 +75,12 @@ and open the template in the editor.
                             <option value="Petite finale">Petite finale</option>
                             <option value="Finale">Finale</option>
                         </select></label>
-                        <label> Equipe 1 : <input type="text" class="form-control" name="team1"/></label><br/>
-                        <label> Equipe 2 : <input type="text" class="form-control" name="team2"/></label><br/>
+                        <label> Equipe 1 : <select class="form-control" name="team1">
+                            <option th:each="team: ${teamscompet}" th:value="${team.id}" th:text="${team.teamName}">a</option>
+                        </select></label><br/>
+                        <label> Equipe 2 : <select class="form-control" name="team2">
+                            <option th:each="team: ${teamscompet}" th:value="${team.id}" th:text="${team.teamName}">a</option>
+                        </select></label><br/>
                         <input type="hidden" class="form-control" name="idCompetition" th:value="${id}"/>
                         <label> Type match : <select class="form-control" name="type">
                             <option value="1">BO1</option>
