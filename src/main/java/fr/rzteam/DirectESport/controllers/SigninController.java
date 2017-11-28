@@ -18,22 +18,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- *
- * @author chris
+ * Controller to signin page / operation
  */
 @Controller
 public class SigninController
 {
-    
+
+    /**
+     * Request of signin
+     * @return The template "signin"
+     */
     @RequestMapping("/signin")
-    public String page()
+    public String signIn()
     {
         return "signin";
     }
     
+    /**
+     * Method for Spring Security
+     * @return
+     */
     @RequestMapping("appLogin")
     public String setSession()
     {
-		return "";
+        return "";
     }
 }

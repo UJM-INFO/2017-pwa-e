@@ -23,8 +23,6 @@ import fr.rzteam.DirectESport.model.TeamRepository;
 import fr.rzteam.DirectESport.model.User;
 import fr.rzteam.DirectESport.model.UserRepository;
 
-import org.springframework.ui.Model;
-import java.util.List;
 import javax.inject.Inject;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;

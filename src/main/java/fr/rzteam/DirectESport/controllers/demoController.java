@@ -14,23 +14,16 @@
  */
 package fr.rzteam.DirectESport.controllers;
 
-import fr.rzteam.DirectESport.mdparser.Markdown;
 import fr.rzteam.DirectESport.model.CommentRepository;
 import fr.rzteam.DirectESport.model.EventRepository;
 import fr.rzteam.DirectESport.model.UserRepository;
 import javax.inject.Inject;
 import fr.rzteam.DirectESport.model.*;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import fr.rzteam.DirectESport.mdparser.Markdown;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- *
- * @author Tony
+ * Controller to add some demo data to the server
  */
 @Controller
 public class demoController

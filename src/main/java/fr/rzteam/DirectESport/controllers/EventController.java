@@ -31,6 +31,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * Controller for event page and operations
+ */
 @Controller
 public class EventController
 {
@@ -46,7 +49,15 @@ public class EventController
     @Inject
     StatsRepository statsRepo;
 	
-	
+    /**
+     *
+     * @param description
+     * @param team1name
+     * @param team2name
+     * @param type
+     * @param idCompetition
+     * @return
+     */
     @RequestMapping(value = "/add_event", method = RequestMethod.POST)
     public String addEvent(
             @RequestParam("description") String description,
@@ -81,6 +92,11 @@ public class EventController
         return "redirect:/event";
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/remove_event", method = RequestMethod.POST)
     public String removeEvent(@RequestParam("id") String id)
     {
