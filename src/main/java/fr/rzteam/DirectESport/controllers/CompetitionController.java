@@ -79,6 +79,8 @@ public class CompetitionController
 	m.addAttribute("id",id);
         m.addAttribute("events",eventRepo.findAllByCompetitionID(Long.parseLong(id+"")));
         m.addAttribute("competition",competitionRepo.findOneById(Long.parseLong(id+"")));
+	m.addAttribute("teamscompet",competitionRepo.findOneById(Long.parseLong(id+"")).getTeams());
+	m.addAttribute("teams",teamRepo.findAll());
         return "competition";
     }
 	
@@ -118,30 +120,13 @@ public class CompetitionController
      */
     @RequestMapping(value = "/add_team_in_competition", method = RequestMethod.POST)
     public String addCompetition(
-            @RequestParam("name") String name,
-            @RequestParam("id") String idCompetition)            
+            @RequestParam("idteam") String idteam,
+            @RequestParam("id") String id)            
     {
-        /*
-        //We get the competition
-        Competition competition = competitionRepo.findOneById(Long.parseLong(idCompetition));
-        //We create the team or we get the team from teamRepo
-        Team toAddTeam;
-        
-
-        if(teamRepo.findManyByTeamName(name).isEmpty())
-        {
-            //We create the team
-        }
-        else
-        {
-            //We get the team                               A REVOIR QUAND IL Y AURA LA GESTION DES TEAMS OK
-        }
-            
-        
-        //We save
-        competition.addTeam(toAddTeam);
-        competitionRepo.save(competition);
-        */
+       Team temp = teamRepo.findOneById(Long.parseLong(idteam+""));
+       Competition c = competitionRepo.findOneById(Long.parseLong(id+""));
+       c.getTeams().add(temp);
+       competitionRepo.save(c);
         return "redirect:/competition";
     }
 }
