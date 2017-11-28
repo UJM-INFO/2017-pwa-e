@@ -23,11 +23,18 @@ and open the template in the editor.
             <br />
 
             <h1 th:text="${team.teamName}"/>
-            <div th:text="${team.history}">
-            
-                
+            <div th:text="${team.history}">   
             </div>
-
+            
+            <div th:each="player: ${players}">
+                    <div class="card">
+                        <h4 class="card-header"> Nom : <span th:text="${player.playerName}"></span></h4>
+                        <div class="card-body">
+                            <h4 class="card-title"> Role : <span th:text="${player.roles}"></span></h4>
+                            <a class="btn btn-info" th:href="'/player?id='+${player.id}">Plus ...</a>
+                        </div>
+                    </div>
+                </div>
         </section>
 
 
