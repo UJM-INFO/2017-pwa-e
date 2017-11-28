@@ -10,14 +10,33 @@ import javax.transaction.Transactional;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
+ * Repository for Events
  */
 public interface EventRepository extends CrudRepository<Event, Long>
 {
-	@Override
+
+    /**
+     * @return all events
+     */
+    @Override
 	public List<Event> findAll();
-	public Event findOneById(Long id);
-        public List<Event> findAllByCompetitionID(Long competitionID);
-	@Transactional
+
+    /**
+     * @param id
+     * @return the event with the id
+     */
+    public Event findOneById(Long id);
+
+    /**
+     * @param competitionID
+     * @return all event which belongs to a competition
+     */
+    public List<Event> findAllByCompetitionID(Long competitionID);
+
+    /**
+     * delete the event with the id
+     * @param id
+     */
+    @Transactional
 	void deleteOneById(Long id);
 }

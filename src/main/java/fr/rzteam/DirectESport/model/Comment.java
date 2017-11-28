@@ -24,42 +24,41 @@ import javax.persistence.Temporal;
 import lombok.Data;
 
 /**
- *
- * @author chris
+ * Comment model class These are the comments posted by editors
  */
 @Entity
 @Data
 public class Comment
 {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-    
-    String text;
-	
-	@ManyToOne
-    User author;
-	
-	@Temporal(javax.persistence.TemporalType.DATE)
-	Date dateComment;
 
-    public Comment() 
-	{
-    }
-    
-	public Comment(String text, User author)
-	{
-		this.text = text;
-		this.author = author;
-		this.dateComment = new Date();
-	}
-	
-    public Comment(String comment, User author, Date date)
+    String text;
+
+    @ManyToOne
+    User author;
+
+    @Temporal(javax.persistence.TemporalType.DATE)
+    Date dateComment;
+
+    /**
+     * Constructor
+     */
+    public Comment()
     {
-        this.text = comment;
-        this.author = author;
-        this.dateComment = date;
     }
-    
-    
+
+    /**
+     * Constructor
+     * @param text
+     * @param author
+     */
+    public Comment(String text, User author)
+    {
+        this.text = text;
+        this.author = author;
+        this.dateComment = new Date();
+    }
 }

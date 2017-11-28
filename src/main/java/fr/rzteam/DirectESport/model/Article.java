@@ -27,7 +27,7 @@ import javax.persistence.Temporal;
 import lombok.Data;
 
 /**
- *
+ * Article model class
  */
 @Entity
 @Data
@@ -47,10 +47,18 @@ public class Article
     @OneToMany(cascade = CascadeType.ALL)
     List<ArticleComment> comments = new ArrayList<>();
 
+    /**
+     * Constructor
+     */
     public Article()
     {
     }
 
+    /**
+     * Constructor
+     * @param title
+     * @param content
+     */
     public Article(String title, String content)
     {
         this.title = title;

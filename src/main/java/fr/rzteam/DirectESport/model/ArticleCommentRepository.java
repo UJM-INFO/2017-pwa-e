@@ -18,10 +18,14 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
+ * Repository for comments in articles
  */
 public interface ArticleCommentRepository extends CrudRepository<ArticleComment, Long>
-{ 
-	@Override
-	public List<ArticleComment> findAll();
+{
+
+    /**
+     * @return all ArticleComments
+     */
+    @Override
+    public List<ArticleComment> findAll();
 }

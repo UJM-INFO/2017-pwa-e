@@ -21,13 +21,13 @@ import javax.persistence.Id;
 import lombok.Data;
 
 /**
- *
- * @author Clement Colin
+ * Stats model class
  */
 @Entity
 @Data
-public class Stats {
-    
+public class Stats
+{
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
@@ -38,14 +38,17 @@ public class Stats {
     int kill; //number of ennemy killed
     int nashorbuff; //0: nothing 1: the team has the nashorbuff
     int drakebuff; //0: nothing 1; the team has the ancestral drake buff
-    
+
+    /**
+     * Constructor
+     */
     public Stats()
     {
-	this.win = 0;
-	this.tower = 0;
-	this.drake = 0;
-	this.kill = 0;
-	this.nashorbuff = 0;
-	this.drakebuff = 0;
+        this.win = 0;
+        this.tower = 0;
+        this.drake = 0;
+        this.kill = 0;
+        this.nashorbuff = 0;
+        this.drakebuff = 0;
     }
 }

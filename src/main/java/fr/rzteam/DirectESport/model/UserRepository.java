@@ -19,14 +19,26 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
- * @Dimitri
+ * Repository for users
  */
-public interface UserRepository extends CrudRepository<User, String> 
+public interface UserRepository extends CrudRepository<User, String>
 {
 
+    /**
+     * @return all users
+     */
     public List<User> findAllByOrderByUserName();
+
+    /**
+     * @param name
+     * @return return the user with the name
+     */
     public User findByUserName(String name);
+
+    /**
+     * @param mail
+     * @return the user with the mail
+     */
     public User findByMail(String mail);
-    
+
 }

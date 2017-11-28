@@ -19,17 +19,29 @@ import javax.transaction.Transactional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-
 /**
- *
+ * Repository for competitions
  */
 @Repository
 public interface CompetitionRepository extends CrudRepository<Competition, Long>
 {
-	@Override
-	public List<Competition> findAll();
-	public Competition findOneById(Long id);
-        
-	@Transactional
-	public void deleteOneById(Long id);
+
+    /**
+     * @return all the competitions
+     */
+    @Override
+    public List<Competition> findAll();
+
+    /**
+     * @param id
+     * @return the competition with the id
+     */
+    public Competition findOneById(Long id);
+
+    /**
+     * Delete the competition with the id
+     * @param id
+     */
+    @Transactional
+    public void deleteOneById(Long id);
 }

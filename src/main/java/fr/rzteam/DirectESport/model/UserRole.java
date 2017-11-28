@@ -17,17 +17,30 @@ package fr.rzteam.DirectESport.model;
 import org.springframework.security.core.GrantedAuthority;
 
 /**
- *
- * @Dimitri 
+ * Enumerate the different roles a user may have
  */
-public enum UserRole implements GrantedAuthority {
-    
+public enum UserRole implements GrantedAuthority
+{
+
+    /**
+     * User
+     */
     USER,
+    /**
+     * Editor
+     */
     EDITOR,
+    /**
+     * Admin
+     */
     ADMIN;
 
+    /**
+     * @return the user autorithy
+     */
     @Override
-    public String getAuthority() {
+    public String getAuthority()
+    {
         return this.name();
     }
 }

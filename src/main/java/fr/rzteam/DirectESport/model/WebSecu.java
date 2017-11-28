@@ -31,7 +31,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class WebSecu extends WebSecurityConfigurerAdapter {
 
-  @Override
+    /**
+     *
+     * @param http
+     * @throws Exception
+     */
+    @Override
   protected void configure(HttpSecurity http) throws Exception {
       
 
@@ -56,7 +61,12 @@ public class WebSecu extends WebSecurityConfigurerAdapter {
   @Inject
   UserService userDetailsService;
 
-  @Override
+    /**
+     *
+     * @param auth
+     * @throws Exception
+     */
+    @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
       
       /*auth.inMemoryAuthentication()
