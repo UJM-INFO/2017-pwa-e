@@ -111,9 +111,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <error-page>
-        <location>/errors</location>
-    </error-page>
     <build>
         <plugins>
             <plugin>
