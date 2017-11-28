@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="css/vue-pages.css" type="text/css"/>
 </head>
 <body>
-    <div>
+    <div id="app">
         <!-- Menu du haut-->
         <div th:include="fragments/header"></div>
         <!-- END Menu du haut-->
@@ -104,6 +104,7 @@
 
     <!-- Carousel des top articles-->
     <div th:include="fragments/endPageScripts"></div>
+    <script src="js/eventMenu.js"></script>
 </body>
 </html>
 
