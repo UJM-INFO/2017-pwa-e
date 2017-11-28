@@ -4,13 +4,40 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>Team</div>
-    </body>
+        <title>Direct eSport</title>
+    <div th:include="fragments/head"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+</head>
+<body>
+        <!-- Menu du haut-->
+        <div th:include="fragments/header"></div>
+
+        <section>
+
+           <img th:src="@{'/images/team'+${id}+'.png'}"/><br/>
+           <img th:src="@{'/images/logoteam'+${id}+'.png'}"/>
+            <br />
+
+            <h1 th:text="${team.teamName}"/>
+            <div th:text="${team.history}">
+            
+                
+            </div>
+
+        </section>
+
+
+        <footer></footer>
+
+
+    <!-- Carousel des top articles-->
+    <div th:include="fragments/endPageScripts"></div>
+    <script src="/js/vue-websocket.js"></script>
+    <script src="/js/vue-resource.min.js"></script>
+    <script src="/js/comment.js"></script>
+</body>
 </html>

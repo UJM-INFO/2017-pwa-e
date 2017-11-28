@@ -15,9 +15,10 @@ and open the template in the editor.
             <!-- Menu du haut-->
             <div th:include="fragments/header"></div>
             <!-- END Menu du haut-->
-
+            
+              
             <section>
-                             
+                            
                 <h1> <i class="fa fa-trophy" aria-hidden="true"></i> Team</h1>
                 <br />
                 <div th:each="team: ${teams}">
@@ -47,7 +48,7 @@ and open the template in the editor.
                 <button class="btn btn-info btn-lg btn-block display" id="creationDisplayButton" v-on:click="displayCreation"> <i class="fa fa-plus" aria-hidden="true"></i> Créer une équipe</button>
                 <span id="eventCreation" class="undisplay">
                     <h2>Création d'équipe</h2>
-                    <form th:action="@{/add_team}" method="POST">
+                    <form th:action="@{/add_team}" enctype="multipart/form-data" method="POST">
                         <label> Nom : <input type="text" class="form-control" name="teamname"/></label><br/>
                         <label> History : <input type="text" class="form-control" name="history"/></label><br/>
                         
@@ -71,11 +72,14 @@ and open the template in the editor.
                             <option th:each="player: ${playersSupport}" th:value="${player.id}" th:text="${player.playerName}">a</option>
                         </select>
                         </label>
-                        <label> Coach : <select class="form-control" name="coach">
+<!--                        <label> Coach : <select class="form-control" name="coach">
                             <option th:each="player: ${playersCoach}" th:value="${player.id}" th:text="${player.playerName}">a</option>
                         </select>
-                        </label>                        
-                    <input type="submit" class="btn btn-info btn-lg btn-block" value="Valider"/>
+                        </label>                        -->
+                           
+                    <br/><label>File to upload: <input type="file" name="file1" /></label>
+                    <br/><label>Logo to upload: <input type="file" name="file2" /></label>
+                    <br/><input type="submit" class="btn btn-info btn-lg btn-block" value="Valider"/>
                     </form>  
                 </span>
                 
