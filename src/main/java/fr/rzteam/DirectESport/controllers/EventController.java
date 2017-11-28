@@ -77,7 +77,7 @@ public class EventController
         Long idCompetLong = Long.parseLong(idCompetition);
         eventRepo.save(new Event(description, new Date(), team1.get(0), team2.get(0), 0,typel,stats1,stats2,idCompetLong));
         
-        return "redirect:/comment";
+        return "redirect:/event";
     }
 	
 	@RequestMapping(value = "/remove_event", method = RequestMethod.POST)

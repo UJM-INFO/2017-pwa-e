@@ -68,14 +68,4 @@ public class HomeController
             m.addAttribute("articles", articles);
         return isConnected() ? "homeSignedIn" : "homeNotSignedIn";
     }
-    
-    /**
-     * Test websocket
-     */
-    @RequestMapping("/ws")
-    public String ws()
-    {
-        return "index";
-    }
-
 }

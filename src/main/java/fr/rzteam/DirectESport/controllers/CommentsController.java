@@ -34,6 +34,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * Controller for event's comments operations
+ */
 @Controller
 public class CommentsController
 {
@@ -60,8 +63,14 @@ public class CommentsController
         return "";
     }
     
-    
     //HTTP
+
+    /**
+     * Receiving the order to add a comment to an event
+     * @param text Text of the comment
+     * @param id Id of the event we want to add a comment
+     * @return
+     */
     @RequestMapping(value ="/add_comment", method = RequestMethod.POST)
     public String save(
     @RequestParam("text") String text,
@@ -73,11 +82,17 @@ public class CommentsController
 	Event e = eventRepo.findOneById(idlong);
 	    e.getComments().add(new Comment(text,user));
 	    eventRepo.save(e);
-	return "redirect:/comment?id="+id;
+	return "redirect:/event?id="+id;
     }
     
-    @RequestMapping("/comment")
-    public String comment(@RequestParam(value="id", required=false) String id, Model m)
+    /**
+     * We redirect to the event page if the id is set, otherwise we redirect to the event menu
+     * @param id
+     * @param m
+     * @return
+     */
+    @RequestMapping("/event")
+    public String event(@RequestParam(value="id", required=false) String id, Model m)
     {
         //If the id is set and valid we display this event, otherwise we display the event menu
         try
