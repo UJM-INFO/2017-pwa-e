@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Direct eSport</title>
+    <div th:include="fragments/head"></div>
+
+</head>
+<body>
+    <div id="app">
+        <!-- Menu du haut-->
+        <div th:include="fragments/header"></div>
+
+        <section>
+            
+            <p class="text-center" style="font-size: 10em; font-family: 'Saira Semi Condensed', sans-serif; color: #990000;">ERREUR</p>
+            <div class="mx-auto text-center">
+                <a href="/home" class="btn btn-info">Retourner à l'accueil</a>
+            </div>
+
+        </section>
+
+
+    </div>
+
+    <!-- Carousel des top articles-->
+    <div th:include="fragments/endPageScripts"></div>
+    <script src="/js/vue-websocket.js"></script>
+    <script src="/js/vue-resource.min.js"></script>
+    <script src="/js/comment.js"></script>
+</body>
+</html>
