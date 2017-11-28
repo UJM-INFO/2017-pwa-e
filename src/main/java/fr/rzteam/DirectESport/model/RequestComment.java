@@ -14,23 +14,13 @@
  */
 package fr.rzteam.DirectESport.model;
 
+import lombok.Data;
+
 /**
- *
- * @author chris
+ * The class for send and receive id between the two components of websockets
  */
+@Data
 public class RequestComment
 {
     Integer id;
-
-    public Integer getId()
-    {
-        return id;
-    }
-
-    public void setId(Integer id)
-    {
-        this.id = id;
-    }
-    
-    
 }

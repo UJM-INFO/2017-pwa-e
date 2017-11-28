@@ -24,7 +24,7 @@ import javax.persistence.Temporal;
 import lombok.Data;
 
 /**
- *
+ * Comments for Article model class
  */
 @Entity
 @Data
@@ -43,22 +43,23 @@ public class ArticleComment
     @Temporal(javax.persistence.TemporalType.DATE)
     Date dateArticleComment;
 
+    /**
+     * Constructor
+     */
     public ArticleComment()
     {
     }
 
+    /**
+     * Constructor
+     * @param text
+     * @param author
+     */
     public ArticleComment(String text, User author)
     {
         this.text = text;
         this.author = author;
         this.dateArticleComment = new Date();
-    }
-
-    public ArticleComment(String text, User author, Date dateArticleComment)
-    {
-        this.text = text;
-        this.author = author;
-        this.dateArticleComment = dateArticleComment;
     }
 
 }

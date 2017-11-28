@@ -22,7 +22,7 @@ import javax.persistence.Id;
 import lombok.Data;
 
 /**
- *
+ * Player model class
  */
 @Entity
 @Data
@@ -45,10 +45,21 @@ public class Player
 
     HashMap<String, Integer> prizeList; //Contains the name of the competition and the number of player's victories for the competition
 
+    /**
+     * Constructor
+     */
     public Player()
     {
     }
 
+    /**
+     * Constructor
+     * @param playerName
+     * @param roles
+     * @param age
+     * @param favoriteChampion
+     * @param history
+     */
     public Player(String playerName, PlayerRole roles, int age, String favoriteChampion, String history)
     {
         this.playerName = playerName;
@@ -58,6 +69,15 @@ public class Player
         this.history = history;
     }
 
+    /**
+     * Constructor
+     * @param playerName
+     * @param roles
+     * @param age
+     * @param favoriteChampion
+     * @param history
+     * @param prizeList
+     */
     public Player(String playerName, PlayerRole roles, int age, String favoriteChampion, String history, HashMap<String, Integer> prizeList)
     {
         this.playerName = playerName;

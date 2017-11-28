@@ -18,14 +18,38 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
+ * Repository for teams
  */
 public interface TeamRepository extends CrudRepository<Team, Long>
 {
-	@Override
+
+    /** 
+     * @return all teams
+     */
+    @Override
 	public List<Team> findAll();
-	public Team findOneById(Long id);
-        public Team findOneByTeamName(String teamName);
-        public List<Team> findManyByTeamName(String teamName);
-	public List<Player> findManyById(Long id);
+
+    /**
+     * @param id
+     * @return the team with the id
+     */
+    public Team findOneById(Long id);
+
+    /**
+     * @param teamName
+     * @return the team with the name
+     */
+    public Team findOneByTeamName(String teamName);
+
+    /**
+     * @param teamName
+     * @return the list of team with the name
+     */
+    public List<Team> findManyByTeamName(String teamName);
+
+    /**
+     * @param id
+     * @return return the list of player with the id
+     */
+    public List<Player> findManyById(Long id);
 }
