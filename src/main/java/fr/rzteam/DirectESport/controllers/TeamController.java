@@ -102,7 +102,7 @@ public class TeamController
 	Team temp = teamRepo.findOneById(Long.parseLong(id + ""));
 	m.addAttribute("id", id);
 	m.addAttribute("team", temp );
-	m.addAttribute("player", temp.getPlayers() );
+	m.addAttribute("players", temp.getPlayers() );
 	return "team";
     }
 
