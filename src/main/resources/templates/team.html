@@ -13,38 +13,35 @@ and open the template in the editor.
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </head>
 <body>
-        <!-- Menu du haut-->
-        <div th:include="fragments/header"></div>
+    <!-- Menu du haut-->
+    <div th:include="fragments/header"></div>
 
-        <section>
+    <section>
 
-           <img th:src="@{'/images/team'+${id}+'.png'}"/><br/>
-           <img th:src="@{'/images/logoteam'+${id}+'.png'}"/>
-            <br />
+        <img th:src="@{'/images/team'+${id}+'.png'}"/><br/>
+        <img th:src="@{'/images/logoteam'+${id}+'.png'}"/>
+        <br />
 
-            <h1 th:text="${team.teamName}"/>
-            <div th:text="${team.history}">   
-            </div>
-            
-            <div th:each="player: ${players}">
-                    <div class="card">
-                        <h4 class="card-header"> Nom : <span th:text="${player.playerName}"></span></h4>
-                        <div class="card-body">
-                            <h4 class="card-title"> Role : <span th:text="${player.roles}"></span></h4>
-                            <a class="btn btn-info" th:href="'/player?id='+${player.id}">Plus ...</a>
-                        </div>
-                    </div>
+        <h1 th:text="${team.teamName}"/>
+        <div th:text="${team.history}">   
+        </div>
+
+        <div th:each="player: ${players}">
+            <div class="card">
+                <h4 class="card-header"> Nom : <span th:text="${player.playerName}"></span></h4>
+                <div class="card-body">
+                    <h4 class="card-title"> Role : <span th:text="${player.roles}"></span></h4>
+                    <a class="btn btn-info" th:href="'/player?id='+${player.id}">Plus ...</a>
                 </div>
-        </section>
+            </div>
+        </div>
+    </section>
 
 
-        <footer></footer>
+    <footer></footer>
 
 
     <!-- Carousel des top articles-->
     <div th:include="fragments/endPageScripts"></div>
-    <script src="/js/vue-websocket.js"></script>
-    <script src="/js/vue-resource.min.js"></script>
-    <script src="/js/comment.js"></script>
 </body>
 </html>
