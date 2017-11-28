@@ -61,33 +61,23 @@ public class EventController
     @RequestMapping(value = "/add_event", method = RequestMethod.POST)
     public String addEvent(
             @RequestParam("description") String description,
-            @RequestParam("team1") String team1name,
-            @RequestParam("team2") String team2name,
+            @RequestParam("team1") String team1id,
+            @RequestParam("team2") String team2id,
             @RequestParam("type") String type,
             @RequestParam("idCompetition") String idCompetition)
     {
         int typel = Integer.parseInt(type);
-        List<Team> team1 = teamRepo.findManyByTeamName(team1name);
-        List<Team> team2 = teamRepo.findManyByTeamName(team2name);
+        Team team1 = teamRepo.findOneById(Long.parseLong(team1id + ""));
+        Team team2 = teamRepo.findOneById(Long.parseLong(team2id + ""));
         
-        if(team1.isEmpty())
-        {
-            teamRepo.save(new Team(team1name, new Date(), "history", new HashMap<>()));
-            team1 = teamRepo.findManyByTeamName(team1name);
-        }
-            
-        if(team2.isEmpty())
-        {
-            teamRepo.save(new Team(team2name, new Date(), "history", new HashMap<>()));
-            team2 = teamRepo.findManyByTeamName(team2name);
-        }
+
         Stats stats1 = new Stats();
         Stats stats2 = new Stats();
         statsRepo.save(stats1);
         statsRepo.save(stats2);
 	
         Long idCompetLong = Long.parseLong(idCompetition);
-        eventRepo.save(new Event(description, new Date(), team1.get(0), team2.get(0), 0,typel,stats1,stats2,idCompetLong));
+        eventRepo.save(new Event(description, new Date(), team1, team2, 0,typel,stats1,stats2,idCompetLong));
         
         return "redirect:/event";
     }
