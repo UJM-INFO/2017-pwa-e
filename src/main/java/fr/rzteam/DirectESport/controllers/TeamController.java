@@ -19,14 +19,20 @@ import fr.rzteam.DirectESport.model.PlayerRepository;
 import fr.rzteam.DirectESport.model.PlayerRole;
 import fr.rzteam.DirectESport.model.Team;
 import fr.rzteam.DirectESport.model.TeamRepository;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Controller for team page / operations
@@ -83,21 +89,21 @@ public class TeamController
             List<Player> listplayerCoach = playerRepo.findManyByRoles(PlayerRole.Coach);
             m.addAttribute("playersCoach", listplayerCoach);
 
-            List<Player> listplayerSupport = playerRepo.findManyByRoles(PlayerRole.Support);
-            m.addAttribute("playersSupport", listplayerSupport);
-            List<Player> listplayerTop = playerRepo.findManyByRoles(PlayerRole.Top);
-            m.addAttribute("playersTop", listplayerTop);
-            List<Player> listplayerMid = playerRepo.findManyByRoles(PlayerRole.Mid);
-            m.addAttribute("playersMid", listplayerMid);
-            List<Player> listplayerJungle = playerRepo.findManyByRoles(PlayerRole.Jungle);
-            m.addAttribute("playersJungle", listplayerJungle);
-            return "teamMenu";
-        }
-
-        m.addAttribute("id", id);
-        m.addAttribute("team", teamRepo.findOneById(Long.parseLong(id + "")));
-        m.addAttribute("player", teamRepo.findManyById(Long.parseLong(id + "")));
-        return "team";
+	    List<Player> listplayerSupport = playerRepo.findManyByRoles(PlayerRole.Support);
+	    m.addAttribute("playersSupport", listplayerSupport);
+	    List<Player> listplayerTop = playerRepo.findManyByRoles(PlayerRole.Top);
+	    m.addAttribute("playersTop", listplayerTop);
+	    List<Player> listplayerMid = playerRepo.findManyByRoles(PlayerRole.Mid);
+	    m.addAttribute("playersMid", listplayerMid);
+	    List<Player> listplayerJungle = playerRepo.findManyByRoles(PlayerRole.Jungle);
+	    m.addAttribute("playersJungle", listplayerJungle);
+	    return "teamMenu";
+	}
+	Team temp = teamRepo.findOneById(Long.parseLong(id + ""));
+	m.addAttribute("id", id);
+	m.addAttribute("team", temp );
+	m.addAttribute("player", temp.getPlayers() );
+	return "team";
     }
 
     /**
@@ -110,38 +116,57 @@ public class TeamController
      * @param idmid
      * @param idjungle
      * @param idtop
-     * @param idcoach
+     * @param file1
+     * @param file2
      * @return Redirection to "/team"
      */
     @RequestMapping(value = "/add_team", method = RequestMethod.POST)
     public String addteam(@RequestParam("teamname") String teamname,
-            @RequestParam("history") String history,
-            @RequestParam("adc") String idadc,
-            @RequestParam("support") String idsupport,
-            @RequestParam("mid") String idmid,
-            @RequestParam("jungle") String idjungle,
-            @RequestParam("top") String idtop,
-            @RequestParam("coach") String idcoach)
-    {
+	    @RequestParam("history") String history,
+	    @RequestParam("adc") String idadc,
+	    @RequestParam("support") String idsupport,
+	    @RequestParam("mid") String idmid,
+	    @RequestParam("jungle") String idjungle,
+	    @RequestParam("top") String idtop,
+	    @RequestParam("file1") MultipartFile file1,
+	    @RequestParam("file2") MultipartFile file2
+	    /*@RequestParam("coach") String idcoach*/) throws IOException {
 
-        Player adc = playerRepo.findOneById(Long.parseLong(idadc + ""));
-        Player mid = playerRepo.findOneById(Long.parseLong(idmid + ""));
-        Player top = playerRepo.findOneById(Long.parseLong(idtop + ""));
-        Player jgl = playerRepo.findOneById(Long.parseLong(idjungle + ""));
-        Player sup = playerRepo.findOneById(Long.parseLong(idsupport + ""));
-        Player coach = playerRepo.findOneById(Long.parseLong(idcoach + ""));
-        List<Player> plist = new ArrayList<>();
-        plist.add(adc);
-        plist.add(mid);
-        plist.add(top);
-        plist.add(jgl);
-        plist.add(sup);
-        plist.add(coach);
-        Team newteam = new Team(teamname, history, plist);
-        teamRepo.save(newteam);
-
-        return "redirect:/team";
+	
+	Player adc = playerRepo.findOneById(Long.parseLong(idadc + ""));
+	Player mid = playerRepo.findOneById(Long.parseLong(idmid + ""));
+	Player top = playerRepo.findOneById(Long.parseLong(idtop + ""));
+	Player jgl = playerRepo.findOneById(Long.parseLong(idjungle + ""));
+	Player sup = playerRepo.findOneById(Long.parseLong(idsupport + ""));
+//	Player coach = playerRepo.findOneById(Long.parseLong(idcoach + ""));
+	List<Player> plist = new ArrayList<>();
+	plist.add(adc);
+	plist.add(mid);
+	plist.add(top);
+	plist.add(jgl);
+	plist.add(sup);
+//	plist.add(coach);
+	Team newteam = new Team(teamname, history, plist);
+	teamRepo.save(newteam);
+	Long id = teamRepo.findOneByTeamName(teamname).getId();
+	System.out.println(id);
+	if (!file1.isEmpty()) {
+	    BufferedImage src = ImageIO.read(new ByteArrayInputStream(file1.getBytes()));
+	    File destination = new File("src/main/resources/static/images/team"+id+".png");
+	    ImageIO.write(src,"png",destination);
+	}
+	
+	if (!file2.isEmpty())
+	{
+	    BufferedImage src = ImageIO.read(new ByteArrayInputStream(file2.getBytes()));
+	    File destination = new File("src/main/resources/static/images/logoteam"+id+".png");
+	    ImageIO.write(src,"png",destination);
+	}
+	return "redirect:/team";
 
     }
+    
+    
+
 
 }

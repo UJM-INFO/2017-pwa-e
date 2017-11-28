@@ -9,30 +9,23 @@ and open the template in the editor.
         <title>Direct eSport</title>
     <div th:include="fragments/head"></div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </head>
 <body>
+    <div id="app">
         <!-- Menu du haut-->
         <div th:include="fragments/header"></div>
 
         <section>
-
-           <img th:src="@{'/images/team'+${id}+'.png'}"/><br/>
-           <img th:src="@{'/images/logoteam'+${id}+'.png'}"/>
-            <br />
-
-            <h1 th:text="${team.teamName}"/>
-            <div th:text="${team.history}">
             
-                
+            <p class="text-center" style="font-size: 10em; font-family: 'Saira Semi Condensed', sans-serif; color: #990000;">ERREUR</p>
+            <div class="mx-auto text-center">
+                <a href="/home" class="btn btn-info">Retourner à l'accueil</a>
             </div>
 
         </section>
 
 
-        <footer></footer>
-
+    </div>
 
     <!-- Carousel des top articles-->
     <div th:include="fragments/endPageScripts"></div>

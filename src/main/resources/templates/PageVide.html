@@ -13,7 +13,12 @@ and open the template in the editor.
         <!-- Menu du haut-->
         <div th:include="fragments/header"></div>
         
-        <section></section>
+        <section>
+            <span sec:authorize="!isAuthenticated()" class="navbar-nav">
+                <a href="/signup" class="btn btn-outline-info">Inscription</a>
+                <a href="/signin" class="btn btn-outline-info">Connexion</a>
+            </span>
+        </section>
         <footer></footer>
         
         <!-- Carousel des top articles-->
