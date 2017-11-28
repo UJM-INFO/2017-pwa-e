@@ -21,7 +21,8 @@ and open the template in the editor.
             </div>
             
             <div class="connectionBox">
-                <form th:action="@{/appLogin}" method="POST"> <br/> <br/>
+                <h2>Identifiez vous</h2>
+                <form th:action="@{/appLogin}" method="POST"> 
                     Utilisateur : <input type="text" th:value="${user}!=null? ${user} : '' " class="form-control" name="app_username"/> <br/>
                     Mot de passe: <input type="password" class="form-control" th:value="${mdp}!=null? ${mdp} : ''"  name="app_password"/> <br/>
                     <div class="form-group login-group-checkbox">
