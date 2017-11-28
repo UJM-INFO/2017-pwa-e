@@ -22,6 +22,7 @@ and open the template in the editor.
                 <h1> <i class="fa fa-trophy" aria-hidden="true"></i> Team</h1>
                 <br />
                 <div th:each="team: ${teams}">
+                    <img th:src="@{'/images/logoteam'+${team.id}+'.png'}"/>
                     <div class="card">
                         <h4 class="card-header"> Team : <span th:text="${team.teamName}"></span></h4>
                         <div class="card-body">
