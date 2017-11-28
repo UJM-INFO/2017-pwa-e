@@ -27,7 +27,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Controller for Admin operations / page
- * @author chris
  */
 @Controller
 public class AdminController
