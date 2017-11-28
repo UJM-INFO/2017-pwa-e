@@ -27,8 +27,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- *
- * @author chris
+ * Controller for home pages and intro
  */
 @Controller
 public class HomeController
@@ -49,12 +48,21 @@ public class HomeController
         return (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser");
     }
     
+    /**
+     * Intro page conroller
+     * @return Redirection to intro template
+     */
     @RequestMapping("/")
     public String intro()
     {
         return "intro";
     }
     
+    /**
+     * Redirect to homeSignedIn if we are connected, and homeNotSignedIn if not
+     * @param m The model to exchange data with Thymeleaf
+     * @return The template "homeSignedIn" or "homeNotSignedIn"
+     */
     @RequestMapping("/home")
     public String home(Model m)
     {
