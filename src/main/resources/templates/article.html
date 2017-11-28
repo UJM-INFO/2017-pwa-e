@@ -8,55 +8,47 @@ and open the template in the editor.
     <head>
         <title>Direct eSport</title>
     <div th:include="fragments/head"></div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </head>
 <body>
-    <div id="app">
-        <!-- Menu du haut-->
-        <div th:include="fragments/header"></div>
+    <!-- Menu du haut-->
+    <div th:include="fragments/header"></div>
 
-        <section>
+    <section>
 
-            <a class="btn btn-info btn-lg btn-block" href="/article">Retour aux articles</a>
-            <br />
+        <a class="btn btn-info btn-lg btn-block" href="/article">Retour aux articles</a>
+        <br />
 
-            <h1 th:text="${article.title}"/>
-            <div th:text="${article.text}"></div>
+        <h1 th:text="${article.title}"/>
+        <div th:text="${article.text}"></div>
 
-        </section>
-        <section>
-            <h5>Ajouter un commentaire</h5>
-            <div sec:authorize="isAuthenticated()">
-                <form th:action="@{/add_articleComment}" method="POST">
-                    <label> Commentaire :  <input type="text" name="text"/></label><br /><br />
-                    <input type="hidden" name="id" th:value="${id}"/>
-                    <input class="btn btn-info" type="submit" value="Envoyer"/><br /><br />
-                </form>
+    </section>
+    <section>
+        <h5>Ajouter un commentaire</h5>
+        <div sec:authorize="isAuthenticated()">
+            <form th:action="@{/add_articleComment}" method="POST">
+                <label> Commentaire :  <input type="text" name="text"/></label><br /><br />
+                <input type="hidden" name="id" th:value="${id}"/>
+                <input class="btn btn-info" type="submit" value="Envoyer"/><br /><br />
+            </form>
 
-            </div>
-            <div sec:authorize="!isAuthenticated()">
-                <div>Vous devez être connectés pour poster un commentaire. <a th:href="signin">Connectez vous</a></div>
+        </div>
+        <div sec:authorize="!isAuthenticated()">
+            <div>Vous devez être connectés pour poster un commentaire. <a th:href="signin">Connectez vous</a></div>
 
-            </div>
+        </div>
 
-            <h5>Commentaires</h5>            
-            <div th:each="comment : ${comments}">
-                <div class="media">
-                    <i class="px-3 fa fa-user-o"></i>
-                    <div class="media-body">
-                        <h5 class="mt-0"><span th:text="${comment.value.userName}"></span></h5>
-                        <span class="ml-3" th:text="${comment.key.text}"></span>
-                        <hr/>
-                    </div>
+        <h5>Commentaires</h5>            
+        <div th:each="comment : ${comments}">
+            <div class="media">
+                <i class="px-3 fa fa-user-o"></i>
+                <div class="media-body">
+                    <h5 class="mt-0"><span th:text="${comment.value.userName}"></span></h5>
+                    <span class="ml-3" th:text="${comment.key.text}"></span>
+                    <hr/>
                 </div>
             </div>
-        </section>
-
-        <footer></footer>
-
-    </div>
+        </div>
+    </section>
 
     <!-- Carousel des top articles-->
     <div th:include="fragments/endPageScripts"></div>
