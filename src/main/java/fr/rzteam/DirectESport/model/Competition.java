@@ -29,46 +29,61 @@ import javax.persistence.Temporal;
 import lombok.Data;
 
 /**
- *
+ * Competition model class
+ * A competition contains events
  */
 @Entity
 @Data
 public class Competition
 {
-	@Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        Long id;
-	
-	@Temporal(javax.persistence.TemporalType.DATE)
-	Date dateCompetition;
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	List<Event> events = new ArrayList<>();
-        
-	@ManyToMany(cascade = CascadeType.ALL)
-	List<Team> teams = new ArrayList<>();
-	
-	@ManyToOne
-	Team winner;
-	
-	String name;
 
-	public Competition()
-	{
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
 
-        public Competition(Date date, String name)
-	{
-            this.dateCompetition = date;
-            this.name = name;
-	}
-        
-	public Competition(Date date, String name, List<Team> teams)
-	{
-            this.dateCompetition = date;
-            this.name = name;
-            this.teams = teams;
-	}
-	
-	
+    @Temporal(javax.persistence.TemporalType.DATE)
+    Date dateCompetition;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    List<Event> events = new ArrayList<>();
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    List<Team> teams = new ArrayList<>();
+
+    @ManyToOne
+    Team winner;
+
+    String name;
+
+    /**
+     * Constructor
+     */
+    public Competition()
+    {
+    }
+
+    /**
+     * Constructor
+     * @param date
+     * @param name
+     */
+    public Competition(Date date, String name)
+    {
+        this.dateCompetition = date;
+        this.name = name;
+    }
+
+    /**
+     * Comstructor
+     * @param date
+     * @param name
+     * @param teams
+     */
+    public Competition(Date date, String name, List<Team> teams)
+    {
+        this.dateCompetition = date;
+        this.name = name;
+        this.teams = teams;
+    }
+
 }

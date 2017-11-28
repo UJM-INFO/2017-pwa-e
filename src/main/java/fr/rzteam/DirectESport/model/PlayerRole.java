@@ -15,14 +15,33 @@
 package fr.rzteam.DirectESport.model;
 
 /**
- *
+ * Enumerate the different roles in League of Legends
  */
 public enum PlayerRole
 {
-	ADC,
-	Support,
-	Mid,
-	Jungle,
-	Top,
-	Coach;
+
+    /**
+     * ADC
+     */
+    ADC,
+    /**
+     * Support
+     */
+    Support,
+    /**
+     * Mid
+     */
+    Mid,
+    /**
+     * Jungle
+     */
+    Jungle,
+    /**
+     * Top
+     */
+    Top,
+    /**
+     * Coach
+     */
+    Coach;
 }

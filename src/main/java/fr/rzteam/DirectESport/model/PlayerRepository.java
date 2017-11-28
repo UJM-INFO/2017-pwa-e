@@ -19,13 +19,26 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
- * @author Marine
+ * Repository for players
  */
 public interface PlayerRepository extends CrudRepository<Player, Long>
 {
-	@Override
-	public List<Player> findAll();
-	public Player findOneById(Long id);
-	public List<Player> findManyByRoles(PlayerRole role);
+
+    /**
+     * @return all players
+     */
+    @Override
+    public List<Player> findAll();
+
+    /**
+     * @param id
+     * @return a player with the id
+     */
+    public Player findOneById(Long id);
+
+    /**
+     * @param role
+     * @return the list of players with the role
+     */
+    public List<Player> findManyByRoles(PlayerRole role);
 }

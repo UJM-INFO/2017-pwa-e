@@ -18,12 +18,25 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
+ * Repository for Articles
  */
 public interface ArticleRepository extends CrudRepository<Article, Long>
 {
-	@Override
-	public List<Article> findAll();
-	public Article findOneById(Long id);
-        public List<Article> findTop3ByOrderByDateDesc();
+
+    /**
+     * @return all Articles
+     */
+    @Override
+    public List<Article> findAll();
+
+    /**
+     * @param id
+     * @return the Article with the id 
+     */
+    public Article findOneById(Long id);
+
+    /**
+     * @return the 3 most recent articles
+     */
+    public List<Article> findTop3ByOrderByDateDesc();
 }

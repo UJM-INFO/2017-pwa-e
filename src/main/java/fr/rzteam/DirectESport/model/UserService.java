@@ -24,61 +24,92 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 /**
- *
- * @Dimitri
+ * Class to communicate with the table User in the database
  */
 @Component
-public class UserService implements UserDetailsService {
-    
+public class UserService implements UserDetailsService
+{
+
     @Inject
     UserRepository repo;
-    
+
+    /**
+     * encoder for passwords 
+     */
     public final PasswordEncoder encoder = new BCryptPasswordEncoder();
-    
+
+    /**
+     * Get the user by username and set the session
+     * @param username
+     * @return UserDetails
+     * @throws UsernameNotFoundException
+     */
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException 
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
     {
         User u = repo.findOne(username);
-        if (u == null) 
-		{
+        if (u == null)
+        {
             throw new UsernameNotFoundException(username);
         }
         return new org.springframework.security.core.userdetails.User(u.userName, u.password, u.getRoles());
     }
-    
+
+    /**
+     * Add user in the database
+     * @param u
+     * @return 0 (good), 1 (username already exists), 2 (mail already exists)
+     */
     public int addUser(User u)
     {
         if (repo.findByUserName(u.userName) != null)
         {
             return 1;	//A user with this userName already exists
         }
-        else if (repo.findByMail(u.mail) != null)
+        else
         {
-            return 2;	//A user with this mail already exists
-        }
-        else 
-        {
-            u.setPassword(encoder.encode(u.password));
-            repo.save(u);
-            return 0;	//The user is added in the database
+            if (repo.findByMail(u.mail) != null)
+            {
+                return 2;	//A user with this mail already exists
+            }
+            else
+            {
+                u.setPassword(encoder.encode(u.password));
+                repo.save(u);
+                return 0;	//The user is added in the database
+            }
         }
     }
-    
-    public void makeUserAdmin(String username) 
+
+    /**
+     * change the role of a user to admin
+     * @param username
+     */
+    public void makeUserAdmin(String username)
     {
         User u = repo.findByUserName(username);
         u.getRoles().add(UserRole.ADMIN);
         repo.save(u);
     }
-    
-    public void makeUserEditor(String username) 
+
+    /**
+     * change the role of a user to editor
+     * @param username
+     */
+    public void makeUserEditor(String username)
     {
         User u = repo.findByUserName(username);
         u.getRoles().add(UserRole.EDITOR);
         repo.save(u);
     }
 
-    public int changeUserPassword(String userName, String newPassword) 
+    /**
+     * change the password of a user 
+     * @param userName
+     * @param newPassword
+     * @return 1 (good) or -1 if the user doesn't exist
+     */
+    public int changeUserPassword(String userName, String newPassword)
     {
         User u = repo.findByUserName(userName);
         if (u != null)
@@ -89,11 +120,5 @@ public class UserService implements UserDetailsService {
         }
         return -1; //Never
     }
-    
-    public void changeRealName(String userName, String newName) 
-    {
-	User u = repo.findByUserName(userName);
-        u.setRealName(newName);
-        repo.save(u);
-    }
+
 }

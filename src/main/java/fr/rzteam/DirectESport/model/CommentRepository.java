@@ -21,11 +21,14 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
- *
- * @author Clement Colin
+ * Repository for comments
  */
 @CrossOrigin("*")
 public interface CommentRepository extends CrudRepository<Comment, Long> 
 {
+
+    /**
+     * @return all the comments
+     */
     public List<Comment> findAll();
 }

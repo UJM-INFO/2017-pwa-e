@@ -14,13 +14,13 @@
  */
 package fr.rzteam.DirectESport.model;
 
+
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
- * @author Clement Colin
+ * Repository for stats
  */
-public interface StatsRepository extends CrudRepository<Stats, Long>  {
-    
-    
+public interface StatsRepository extends CrudRepository<Stats, Long>
+{
+
 }
