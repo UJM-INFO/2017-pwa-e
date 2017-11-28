@@ -43,7 +43,7 @@ public class PlayerController
         @RequestParam("history") String history
     )
     {
-        Player p = new Player(playerName, PlayerRole.valueOf(playerRole), Integer.parseInt(age), favoriteChampion, history);
+        Player p = new Player(playerName,"test", PlayerRole.valueOf(playerRole), Integer.parseInt(age), favoriteChampion, history);
         playerRepo.save(p);
         return "view.name";
     }
