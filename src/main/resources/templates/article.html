@@ -29,7 +29,7 @@
 
         <h1 th:text="${article.title}"/>
         <img th:if="${article.link != null}" th:src="${article.link}" style="height: 300px;"/>
-        <span th:text="${article.text}"></span>
+        <span th:utext="${article.text}"></span>
 
     </section>
     <section>
