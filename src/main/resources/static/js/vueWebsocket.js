@@ -53,17 +53,112 @@ var app = new Vue({
             $("#comments-table").hide();
             $("#comments").html("");
         },
-        showComments: function(commentSet,event)
-        {     
-            var parsedComment = JSON.parse(commentSet.bodyText);
-            var parsedEvent = JSON.parse(event.bodyText);
+        typeMatch: function(type)
+        {
+            if(type=='1')
+                return "BO1";
+            if(type=='3')
+                return "BO3";
+            if(type=="5")
+                return "B05";
+        },
+        getTeam1: function(commentSet,event)
+        {
+           var links = event._links.team1.href;
+           this.test = this.$http.get(links);
+           return this.test.then(
+                    resp =>
+                    {     
+                        var team1 = JSON.parse(resp.bodyText);
+                        this.getTeam2(commentSet,event,team1);
+                    },
+                    resp =>
+                    {
+                        console.log("Error get team1");
+                    }
+                );
+        },
+        getTeam2: function(commentSet,event,team1)
+        {
+           var links = event._links.team2.href;
+           this.test = this.$http.get(links);
+           return this.test.then(
+                    resp =>
+                    {     
+                        var team2 = JSON.parse(resp.bodyText);
+                        this.getStatsTeam1(commentSet,event,team1,team2);
+                    },
+                    resp =>
+                    {
+                        console.log("Error get team2");
+                    }
+                );
+        },
+        getStatsTeam1: function(commentSet,event,team1,team2)
+        {
+           var links = event._links.stats_team1.href;
+           this.test = this.$http.get(links);
+           return this.test.then(
+                    resp =>
+                    {     
+                        var stats_team1 = JSON.parse(resp.bodyText);
+                        this.getStatsTeam2(commentSet,event,team1,team2,stats_team1);
+                    },
+                    resp =>
+                    {
+                        console.log("Error get team1");
+                    }
+                );
+        },
+        getStatsTeam2: function(commentSet,event,team1,team2,stats_team1)
+        {
+           var links = event._links.stats_team2.href;
+           this.test = this.$http.get(links);
+           return this.test.then(
+                    resp =>
+                    {     
+                        var stats_team2 = JSON.parse(resp.bodyText);
+                        this.showComments(commentSet,event,team1,team2,stats_team1,stats_team2);
+                    },
+                    resp =>
+                    {
+                        console.log("Error get team1");
+                    }
+                );
+        },
+        statusMatch: function(status)
+        {
             
-            var display = "";
-            parsedComment._embedded.comments.forEach((comment)=>
+            if(status=='0')
+                return "La partie n'a pas encore commencé!";
+            if(status=='1')
+                return "L'équipe 1 à gagné!";
+            if(status=='2')
+                return "L'équipe 2 à gagné!";
+        },
+        showComments: function(commentSet,event,team1,team2,stats_team1,stats_team2)
+        {     
+
+            
+            console.log(commentSet);
+            console.log(event);
+            console.log(team1);
+            console.log(team2);
+            console.log(stats_team1);
+            console.log(stats_team2);
+            
+            
+            var display = "<p>"+event.description+" en "+this.typeMatch(event.type)+"</p><br/>";
+            
+            
+            display += "<p>"+this.statusMatch(event.status)+"</p><br/>";
+            commentSet._embedded.comments.forEach((comment)=>
             {
-                console.log(comment);
-                display+=("<p>"+comment.text+"</p><br/>");
+                display+=("<p>"+comment.text+" "+comment.dateComment+"</p><br/>");
             });
+            
+            
+            
             $("#comments").html("");
             $("#comments").append(display);
         },
@@ -78,14 +173,15 @@ var app = new Vue({
             r.get({id: parseInt($.urlParam('id'))}).then(
             response1 =>
             {
-                console.log("get comments ok");
+                
                 var r2 = this.$resource('http://localhost:8080/api/events{/id}');
+                
                 r2.get({id: parseInt($.urlParam('id'))}).then(
                 response2 =>
                 {
-                    console.log("get event ok");
-                    this.showComments(response1,response2);
-
+                    var parsedComment = JSON.parse(response1.bodyText);
+                    var parsedEvent = JSON.parse(response2.bodyText);
+                    this.getTeam1(parsedComment,parsedEvent);
                 },
                 response2 =>
                 {
