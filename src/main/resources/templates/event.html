@@ -36,9 +36,10 @@
                 
                 <p id="comments">Les commentaires vont normalement bientôt s'afficher ...</p>
                 <span sec:authorize="hasAuthority('EDITOR')">
-                    <form th:action="@{/add_comment}" method="post">
+                    <form th:action="@{/add_comment}" method="post" id="addCom">
 
-                        <label> Contenu :  <input type="text" name="text" required=""/></label><br /><br />
+                        <!--<label> Contenu :  <input type="text" name="text" required=""/></label><br /><br />-->
+                        <label> Contenu : <textarea class="form-control" form ="addCom" name="text" rows="4" cols="100" wrap="soft" required=""></textarea></label>
                         <input type="hidden" name="id" th:value="${id}"/>
                         <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="Ajouter un commentaire"/><br /><br />
                     </form>
