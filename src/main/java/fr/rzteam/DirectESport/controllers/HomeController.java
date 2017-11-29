@@ -66,7 +66,7 @@ public class HomeController
     @RequestMapping("/home")
     public String home(Model m)
     {
-        List<Article> articles = articleRepo.findTop3ByOrderByDateDesc();
+        List<Article> articles = articleRepo.findAllByOrderByDateDesc();
         for (int i=0; i<articles.size();i++)
         {
             if (articles.get(i).getText().length()>70)
