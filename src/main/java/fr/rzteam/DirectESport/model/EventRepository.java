@@ -19,7 +19,7 @@ public interface EventRepository extends CrudRepository<Event, Long>
      * @return all events
      */
     @Override
-	public List<Event> findAll();
+    public List<Event> findAll();
 
     /**
      * @param id
@@ -38,5 +38,5 @@ public interface EventRepository extends CrudRepository<Event, Long>
      * @param id
      */
     @Transactional
-	void deleteOneById(Long id);
+    void deleteOneById(Long id);
 }
