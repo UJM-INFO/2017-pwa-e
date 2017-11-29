@@ -43,6 +43,7 @@ public class WebSecu extends WebSecurityConfigurerAdapter
 
         http.authorizeRequests()
             .antMatchers("/admin").hasAnyAuthority("ADMIN")
+            .antMatchers("/articleCreation").hasAnyAuthority("EDITOR")
             .and()
             .formLogin()
             .loginPage("/signin")

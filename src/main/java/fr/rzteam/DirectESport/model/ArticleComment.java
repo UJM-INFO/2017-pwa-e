@@ -15,6 +15,7 @@
 package fr.rzteam.DirectESport.model;
 
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,6 +36,7 @@ public class ArticleComment
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
+    @Column(length = 10000)
     String text;
 
     @ManyToOne

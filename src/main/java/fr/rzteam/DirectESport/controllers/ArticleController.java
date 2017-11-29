@@ -20,15 +20,10 @@ import fr.rzteam.DirectESport.model.ArticleComment;
 import fr.rzteam.DirectESport.model.ArticleRepository;
 import fr.rzteam.DirectESport.model.User;
 import fr.rzteam.DirectESport.model.UserRepository;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
+import fr.rzteam.DirectESport.verif.InputDataVerification;
+import static fr.rzteam.DirectESport.verif.InputDataVerification.verifTextLength;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.inject.Inject;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -36,7 +31,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Controller for Article operations / pages
@@ -105,6 +99,11 @@ public class ArticleController
         @RequestParam("article_text") String text,
         @RequestParam("article_image") String link)
     {
+        title = InputDataVerification.escape(title);
+        if (!verifTextLength(text, 1, 9000) || !verifTextLength(title, 1, 254))
+        {
+            return "articleCreation";
+        }
         String parsedText = Markdown.parse(text);
         Article article = new Article(title, parsedText);
         if (!link.isEmpty()) //If there is a link of an imgage
@@ -131,8 +130,12 @@ public class ArticleController
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepo.findByUserName(name);
         Article a = articleRepo.findOneById(idlong);
-        a.getComments().add(new ArticleComment(text, user));
-        articleRepo.save(a);
+        text = InputDataVerification.escape(text);
+        if (verifTextLength(text, 1, 10000))
+        {
+            a.getComments().add(new ArticleComment(text, user));
+            articleRepo.save(a);
+        }
         return "redirect:/article?id=" + id;
     }
 

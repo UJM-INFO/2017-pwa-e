@@ -23,6 +23,7 @@ import fr.rzteam.DirectESport.model.RequestComment;
 import fr.rzteam.DirectESport.model.TeamRepository;
 import fr.rzteam.DirectESport.model.User;
 import fr.rzteam.DirectESport.model.UserRepository;
+import fr.rzteam.DirectESport.verif.InputDataVerification;
 
 import javax.inject.Inject;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -82,9 +83,12 @@ public class CommentsController
 	Long idlong = Long.parseLong(id);
 	String name = SecurityContextHolder.getContext().getAuthentication().getName();
 	User user = userRepo.findByUserName(name);
-	Event e = eventRepo.findOneById(idlong);
-	    e.getComments().add(new Comment(text,user));
-	    eventRepo.save(e);
+	if (InputDataVerification.verifTextLength(text, 1, 10000))
+        {
+            Event e = eventRepo.findOneById(idlong);
+            e.getComments().add(new Comment(text,user));
+            eventRepo.save(e);
+        }
 	return "redirect:/event?id="+id;
     }
 }
