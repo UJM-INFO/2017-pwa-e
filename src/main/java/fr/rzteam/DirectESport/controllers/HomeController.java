@@ -66,14 +66,17 @@ public class HomeController
     @RequestMapping("/home")
     public String home(Model m)
     {
-        List<Article> articles = articleRepo.findAllByOrderByDateDesc();
-        for (int i=0; i<articles.size();i++)
+        List<Article> articles = articleRepo.findTop3ByOrderByIdDesc();
+        
+        if (articles.size()==3)
         {
-            if (articles.get(i).getText().length()>70)
-                articles.get(i).setText(articles.get(i).getText().substring(0, 70).concat("(...)")); //Only the begining of the text for the carousel
-        }
-        if (articles.size()>2)
+            for (int i=0; i<3 ;i++)
+            {
+                if (articles.get(i).getText().length()>70)
+                    articles.get(i).setText(articles.get(i).getText().substring(0, 70).concat("(...)")); //Only the begining of the text for the carousel
+            }
             m.addAttribute("articles", articles);
+        }
         return isConnected() ? "homeSignedIn" : "homeNotSignedIn";
     }
 }

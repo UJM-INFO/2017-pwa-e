@@ -24,8 +24,8 @@
 
     <section>
 
-        <img th:src="@{'/images/team'+${id}+'.png'}"/><br/>
-        <img th:src="@{'/images/logoteam'+${id}+'.png'}"/>
+        <img th:src="@{'/images/team'+${team.teamName}+'.png'}"/><br/>
+        <img th:src="@{'/images/logoteam'+${team.teamName}+'.png'}"/>
         <br />
 
         <h1 th:text="${team.teamName}"/>

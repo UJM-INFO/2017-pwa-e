@@ -35,12 +35,14 @@
                 <br />
                 
                 <p id="comments">Les commentaires vont normalement bientôt s'afficher ...</p>
-                <form th:action="@{/add_comment}" method="post">
-                    
-                    <label> Contenu :  <input type="text" name="text"/></label><br /><br />
-                    <input type="hidden" name="id" th:value="${id}"/>
-                    <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="Ajouter un commentaire"/><br /><br />
-                </form>
+                <span sec:authorize="hasAuthority('EDITOR')">
+                    <form th:action="@{/add_comment}" method="post">
+
+                        <label> Contenu :  <input type="text" name="text" required=""/></label><br /><br />
+                        <input type="hidden" name="id" th:value="${id}"/>
+                        <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="Ajouter un commentaire"/><br /><br />
+                    </form>
+                </span>
             </section>
 
         </div>

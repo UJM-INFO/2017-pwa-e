@@ -44,7 +44,7 @@ public class Player
 
     String favoriteChampion; //Name of the champion the player prefers play with
 
-    @Column(length = 1500)
+    @Column(length = 10000)
     String history;		//Litle description of the player's life
 
     HashMap<String, Integer> prizeList; //Contains the name of the competition and the number of player's victories for the competition

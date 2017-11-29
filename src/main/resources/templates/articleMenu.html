@@ -33,9 +33,13 @@
             <br />
             <div th:each="article : ${articles}">
                 <div class="card">
-                    <h4 class="card-header" th:text="${article.title}"></h4>
-                    <div class="card-body" th:text="${article.text}"></div>
-                    <a class="btn btn-info" th:href="'/article?id='+${article.id}">Lire l'article</a>
+                    <a class="btn btn-block text-muted" th:href="'/article?id='+${article.id}">
+                        <h4 class="card-header" th:text="${article.title}"></h4>
+                        <div class="card-body">
+                            <img style="max-width: 50%;" class="float-left" th:if="article.link != null" th:src="${article.link}" alt="Image"/>
+                            <p style="max-width: 50%;" th:utext="${article.text}"></p>
+                        </div>
+                    </a>
 
                 </div>
                 <hr />
@@ -48,10 +52,10 @@
     </div>
 
     <div th:include="fragments/minimalScripts"></div>
-        <!--Vue.js-->
+    <!--Vue.js-->
     <script src="https://unpkg.com/vue"></script>
     <!--The displaying of content script when we press a button-->
     <script src="/js/automaticDisplay.js"></script>
-    
+
 </body>
 </html>

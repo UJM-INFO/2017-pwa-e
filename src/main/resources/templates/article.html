@@ -28,7 +28,7 @@
         <br />
 
         <h1 th:text="${article.title}"/>
-        <img th:if="${article.link != null}" th:src="${article.link}" style="height: 300px;"/>
+        <img th:if="${article.link != null}" th:src="${article.link}" style="width: 50%;"/>
         <span th:utext="${article.text}"></span>
 
     </section>
@@ -36,7 +36,7 @@
         <h5>Ajouter un commentaire</h5>
         <div sec:authorize="isAuthenticated()">
             <form th:action="@{/add_articleComment}" method="POST">
-                <label> Commentaire :  <input type="text" name="text"/></label><br /><br />
+                <label> Commentaire :  <input type="text" name="text" required=""/></label><br /><br />
                 <input type="hidden" name="id" th:value="${id}"/>
                 <input class="btn btn-info" type="submit" value="Envoyer"/><br /><br />
             </form>
