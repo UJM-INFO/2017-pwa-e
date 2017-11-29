@@ -53,7 +53,7 @@
             <hr />
 
             <!-- Event creation part -->
-            <span sec:authorize="hasAuthority('ADMIN')">
+            <span sec:authorize="hasAuthority('EDITOR')">
             <button class="btn btn-info btn-lg btn-block display" id="creationDisplayButton" v-on:click="displayCreation"> <i class="fa fa-plus" aria-hidden="true"></i> Créer une équipe</button>
             <span id="eventCreation" class="undisplay">
                 <h2>Création d'équipe</h2>
