@@ -27,14 +27,14 @@
 
         <section>
 
-            <h1> <i class="fa fa-trophy" aria-hidden="true"></i> Team</h1>
+            <h1> <i class="fa fa-users" aria-hidden="true"></i> Teams </h1>
             <br />
             <div th:each="team: ${teams}">
                 <img th:src="@{'/images/logoteam'+${team.teamName}+'.png'}"/>
                 <div class="card">
                     <h4 class="card-header"> Team : <span th:text="${team.teamName}"></span></h4>
                     <div class="card-body">
-                        <h4 class="card-title"> Histoire : <span th:text="${team.history}"></span></h4>
+                        <p class="card-title"> <h5>Histoire :</h5> <span th:text="${team.history}"></span></p>
                         <a class="btn btn-info" th:href="'/team?id='+${team.id}">Plus ...</a>
 
 
