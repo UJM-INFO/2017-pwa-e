@@ -1,0 +1,44 @@
+<header>  
+    <nav class="navbar navbar-dark bg-dark">
+        <h1 id="maintitle">Direct eSport</h1>
+        <ul id="nav-links">
+                
+            <li class="item-navigation">
+                <a href="/home"> <i class="fa fa-home"></i> Accueil</a>
+            </li>
+            <li class="item-navigation">
+                <a href="/event"> <i class="fa fa-play"></i> Directs</a>
+            </li>
+            <li class="item-navigation">
+                <a href="/article"> <i class="fa fa-sticky-note"></i> Articles</a>
+            </li>
+            <li class="item-navigation">
+                <a href="/competition"> <i class="fa fa-trophy"></i> Compétitions</a>
+            </li>
+            <li class="item-navigation">
+                <a href="/team"> <i class="fa fa-users"></i> Equipes</a>
+            </li>
+            <li class="item-navigation" sec:authorize="hasAuthority('ADMIN')">
+                <a href="/admin"> <i class="fa fa-lock"></i> Administration</a>
+            </li>
+
+        <!-- We are not connected -->
+            <li sec:authorize="!isAuthenticated()" class="item-navigation">
+                <a href="/signup" class="btn btn-outline-info"> <i class="fa fa-user-plus" aria-hidden="true"></i> Inscription</a>
+            </li>
+            <li sec:authorize="!isAuthenticated()" class="item-navigation">
+                <a href="/signin" class="btn btn-outline-info"> <i class="fa fa-sign-in" aria-hidden="true"></i> Connexion</a>
+            </li>
+        
+        <!-- We are connected -->
+            <li sec:authorize="isAuthenticated()" class="item-navigation">
+                <a href="/profil" class="btn btn-outline-info"> <i class="fa fa-id-card" aria-hidden="true"></i> Profil</a>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="item-navigation">
+                <a th:href="@{/logout}" class="btn btn-outline-info"> <i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a>
+            </li>
+
+        
+        </ul>
+    </nav>
+</header>

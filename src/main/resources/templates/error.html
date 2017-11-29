@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+ *      _____   _                   _            _____                      _   
+ *     |  __ \ (_) Website Project | |          / ____|                    | |  
+ *     | |  | | _  _ __  ___   ___ | |_    ___ | (___   _ __    ___   _ __ | |_ 
+ *     | |  | || || '__|/ _ \ / __|| __|  / _ \ \___ \ | '_ \  / _ \ | '__|| __|
+ *     | |__| || || |  |  __/| (__ | |_  |  __/ ____) || |_) || (_) || |   | |_ 
+ *     |_____/ |_||_|   \___| \___| \__|  \___||_____/ | .__/  \___/ |_|    \__|
+ *                                                     | |                                                                                              
+ *  ____Authors____                                    |_| 
+ * Dimitri BRUYERE
+ * Clément COLIN
+ * Christopher JEAMME
+ *  _______________
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Direct eSport</title>
+    <div th:include="fragments/head"></div>
+
+</head>
+<body>
+    <div id="app">
+        <!-- Menu du haut-->
+        <div th:include="fragments/header"></div>
+
+        <section>
+            
+            <p class="text-center" style="font-size: 10em; font-family: 'Saira Semi Condensed', sans-serif; color: #990000;">ERREUR</p>
+            <p class="text-center" th:text="${error}"/>
+            <div class="mx-auto text-center">
+                <a href="/home" class="btn btn-info">Retourner à l'accueil</a>
+            </div>
+
+        </section>
+
+
+    </div>
+
+    <div th:include="fragments/minimalScripts"></div>
+</body>
+</html>

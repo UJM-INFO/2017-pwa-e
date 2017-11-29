@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+ *      _____   _                   _            _____                      _   
+ *     |  __ \ (_) Website Project | |          / ____|                    | |  
+ *     | |  | | _  _ __  ___   ___ | |_    ___ | (___   _ __    ___   _ __ | |_ 
+ *     | |  | || || '__|/ _ \ / __|| __|  / _ \ \___ \ | '_ \  / _ \ | '__|| __|
+ *     | |__| || || |  |  __/| (__ | |_  |  __/ ____) || |_) || (_) || |   | |_ 
+ *     |_____/ |_||_|   \___| \___| \__|  \___||_____/ | .__/  \___/ |_|    \__|
+ *                                                     | |                                                                                              
+ *  ____Authors____                                    |_| 
+ * Dimitri BRUYERE
+ * Clément COLIN
+ * Christopher JEAMME
+ *  _______________
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Direct eSport</title>
+        <div th:include="fragments/head"></div>
+    </head>
+    <body>
+        <!-- Menu du haut-->
+        <div th:include="fragments/header"></div>
+        
+        <section>
+            <div th:if="${param.error}">
+                <div class="alert alert-danger">
+                    Utilisateur inconnu / Mot de passe incorrect.
+                </div>
+            </div>
+            
+            <div class="connectionBox">
+                <h2>Identifiez vous</h2>
+                <form th:action="@{/appLogin}" method="POST"> 
+                    Utilisateur : <input type="text" th:value="${user}!=null? ${user} : '' " class="form-control" name="app_username" required=""/> <br/>
+                    Mot de passe: <input type="password" class="form-control" th:value="${mdp}!=null? ${mdp} : ''"  name="app_password" required=""/> <br/>
+
+                    <input type="submit" class="btn form-control btn-info" value="Login"/>
+                    
+                    <p >Vous n'avez pas de compte? <a href="signup">Inscrivez-vous</a></p>
+                </form>
+            </div>
+        </section>
+
+        <div th:include="fragments/minimalScripts"></div>
+        
+    </body>
+</html>

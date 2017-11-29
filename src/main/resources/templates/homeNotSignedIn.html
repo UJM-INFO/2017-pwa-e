@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+ *      _____   _                   _            _____                      _   
+ *     |  __ \ (_) Website Project | |          / ____|                    | |  
+ *     | |  | | _  _ __  ___   ___ | |_    ___ | (___   _ __    ___   _ __ | |_ 
+ *     | |  | || || '__|/ _ \ / __|| __|  / _ \ \___ \ | '_ \  / _ \ | '__|| __|
+ *     | |__| || || |  |  __/| (__ | |_  |  __/ ____) || |_) || (_) || |   | |_ 
+ *     |_____/ |_||_|   \___| \___| \__|  \___||_____/ | .__/  \___/ |_|    \__|
+ *                                                     | |                                                                                              
+ *  ____Authors____                                    |_| 
+ * Dimitri BRUYERE
+ * Clément COLIN
+ * Christopher JEAMME
+ *  _______________
+-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <title>Direct eSport</title>
+        <div th:include="fragments/head"></div>
+    </head>
+    <body>
+        <!-- Menu du haut-->
+        <div th:include="fragments/header"></div>
+        
+        <section>
+
+            <div class="jumbotron">
+                <div class="container">
+                    <h1>Compétitions et directs</h1>
+                    <p>Vous pouvez accéder aux matchs qui sont en directs grâces aux liens de la barre de navigation mais pour être commentateur vous devrez posséder un compte et demander les droits!</p>
+                    <p>Vous avez également accès aux articles, mais aussi au détails des compétitions et des équipes</p>
+                </div>
+            </div>
+            
+            <hr/>
+            
+            <!-- Carousel des top articles-->
+            <div th:include="fragments/carousel"></div>
+
+            
+        </section>
+        
+        <div th:include="fragments/minimalScripts"></div>
+    </body>
+</html>

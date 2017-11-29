@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+ *      _____   _                   _            _____                      _   
+ *     |  __ \ (_) Website Project | |          / ____|                    | |  
+ *     | |  | | _  _ __  ___   ___ | |_    ___ | (___   _ __    ___   _ __ | |_ 
+ *     | |  | || || '__|/ _ \ / __|| __|  / _ \ \___ \ | '_ \  / _ \ | '__|| __|
+ *     | |__| || || |  |  __/| (__ | |_  |  __/ ____) || |_) || (_) || |   | |_ 
+ *     |_____/ |_||_|   \___| \___| \__|  \___||_____/ | .__/  \___/ |_|    \__|
+ *                                                     | |                                                                                              
+ *  ____Authors____                                    |_| 
+ * Dimitri BRUYERE
+ * Clément COLIN
+ * Christopher JEAMME
+ *  _______________
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Direct eSport</title>
+        <div th:include="fragments/head"></div>
+    </head>
+    <body>
+        <!-- Menu du haut-->
+        <div th:include="fragments/header"></div>
+        
+        <section>
+            <span sec:authorize="isAuthenticated()" class="navbar-nav">
+                <h1>Profil de <span sec:authentication="name"></span></h1>
+                
+                <div class="row">
+                    <h5 class="col-sm-2">Pseudo</h5>
+                    <span class="col-sm-10" sec:authentication="name"></span>
+                </div>
+                <div class="row">
+                    <h5 class="col-sm-2">Nom</h5>
+                    <span class="col-sm-10" th:text="${u.realName}"></span>
+                </div>
+                <div class="row">
+                    <h5 class="col-sm-2">Mail</h5>
+                    <span class="col-sm-10" th:text="${u.mail}"></span>
+                </div>
+
+                <h3>Changement de mot de passe: </h3>
+                
+                <p th:if="${error}!=null" th:text="${error}" class="alert alert-danger"></p>
+                <p th:if="${success}!=null" th:text="${success}" class="alert alert-success"></p>
+                
+                <form th:action="@{/passwordChanging}" method="post">
+                    <div class="form-group row">
+                      <label for="inputPassword" class="col-sm-2 col-form-label">Nouveau mot de passe</label>
+                      <div class="col-sm-10">
+                        <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Password" required=""/>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="inputPassword" class="col-sm-2 col-form-label">Répétez le mot de passe</label>
+                      <div class="col-sm-10">
+                        <input type="password" class="form-control" id="repeatNewPassword" name="repeatNewPassword" placeholder="Password" required=""/>
+                      </div>
+                    </div>
+
+                    <input type="submit" class="btn form-control btn-outline-info" value="Changer de mot de passe"/>
+                </form>
+            </span>
+        </section>
+        <footer></footer>
+        
+        <div th:include="fragments/minimalScripts"></div>
+        <!--Vue.js-->
+        <script src="https://unpkg.com/vue"></script>
+        <!--The displaying of content script when we press a button-->
+        <script src="/js/automaticDisplay.js"></script>
+        
+    </body>
+</html>

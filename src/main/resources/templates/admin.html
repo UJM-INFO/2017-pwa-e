@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--
+ *      _____   _                   _            _____                      _   
+ *     |  __ \ (_) Website Project | |          / ____|                    | |  
+ *     | |  | | _  _ __  ___   ___ | |_    ___ | (___   _ __    ___   _ __ | |_ 
+ *     | |  | || || '__|/ _ \ / __|| __|  / _ \ \___ \ | '_ \  / _ \ | '__|| __|
+ *     | |__| || || |  |  __/| (__ | |_  |  __/ ____) || |_) || (_) || |   | |_ 
+ *     |_____/ |_||_|   \___| \___| \__|  \___||_____/ | .__/  \___/ |_|    \__|
+ *                                                     | |                                                                                              
+ *  ____Authors____                                    |_| 
+ * Dimitri BRUYERE
+ * Clément COLIN
+ * Christopher JEAMME
+ *  _______________
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Direct eSport</title>
+        <div th:include="fragments/head"></div>
+        
+        <link rel="stylesheet" href="css/vue-pages.css" type="text/css"/>
+    </head>
+    <body>
+        <div id="app">
+            <!-- Menu du haut-->
+            <div th:include="fragments/header"></div>
+
+            <section>
+                     
+            <span sec:authorize="hasAuthority('ADMIN')">
+            
+                <h1> <i class="fa fa-lock" aria-hidden="true"></i> Administration</h1>
+                <br />
+                <h2> <i class="fa fa-user" aria-hidden="true"></i> Utilisateurs</h2>
+                
+                <br />
+                
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm">
+                            <h3>Pseudo</h3>
+                        </div>
+                        <div class="col-sm">
+                            <h3>Nom</h3>
+                        </div>
+                        <div class="col-sm">
+                            <h3>eMail</h3>
+                        </div>
+                        <div class="col-sm">
+                            <h3>Role</h3>
+                        </div>  
+                        <div class="col-sm">
+                        </div>  
+                        <hr />
+                    </div>
+                    <div th:each="user : ${users}">
+                        <div class="row">
+                            <div class="col-sm">
+                                <p th:text="${user.pseudo}"></p>
+                            </div>
+                            <div class="col-sm">
+                                <p th:text="${user.realName}"></p>
+                            </div>
+                            <div class="col-sm">
+                               <p th:text="${user.mail}"></p>
+                            </div>
+                            <div class="col-sm">
+                                <p>
+                                    <span th:each="role : ${user.roles}">
+                                        <span th:text="${role} "></span>
+                                    </span>
+                                </p>
+                            </div>  
+                            <div class="col-sm">
+                                <button class="btn btn-info display" th:id="'displayButton_'+${user.pseudo}" v-on:click="displayUserAdminUI($event)">Modifications</button>
+                                <button class="btn btn-error undisplay" th:id="'hideButton_'+${user.pseudo}" v-on:click="hideUserAdminUI($event)">Fermer</button>
+                            </div>
+                            <hr />
+                        </div>
+                    
+                    <div th:id="'userAdminUI_'+${user.pseudo}"></div>
+                    
+                    </div>
+                </div>
+            
+            </span>
+            </section>
+
+        </div>
+        
+        <div th:include="fragments/minimalScripts"></div>
+        <!--Vue.js-->
+        <script src="https://unpkg.com/vue"></script>
+        <!--Specific file to this page-->
+        <script src="/js/adminPage.js"></script>
+        
+        
+        
+    </body>
+</html>

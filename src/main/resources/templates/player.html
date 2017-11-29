@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+ *      _____   _                   _            _____                      _   
+ *     |  __ \ (_) Website Project | |          / ____|                    | |  
+ *     | |  | | _  _ __  ___   ___ | |_    ___ | (___   _ __    ___   _ __ | |_ 
+ *     | |  | || || '__|/ _ \ / __|| __|  / _ \ \___ \ | '_ \  / _ \ | '__|| __|
+ *     | |__| || || |  |  __/| (__ | |_  |  __/ ____) || |_) || (_) || |   | |_ 
+ *     |_____/ |_||_|   \___| \___| \__|  \___||_____/ | .__/  \___/ |_|    \__|
+ *                                                     | |                                                                                              
+ *  ____Authors____                                    |_| 
+ * Dimitri BRUYERE
+ * Clément COLIN
+ * Christopher JEAMME
+ *  _______________
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Direct eSport</title>
+        <div th:include="fragments/head"></div>
+    </head>
+    <body>
+        <!-- Menu du haut-->
+        <div th:include="fragments/header"></div>
+        
+        <section>
+            <span class="navbar-nav">
+                <h1 th:text="${player.playerName}"></h1>
+                
+                <div class="row">
+                    <h5 class="col-sm-2">Role</h5>
+                    <span class="col-sm-0" th:text="${player.roles}"></span>
+                </div>
+                <div class="row">
+                    <h5 class="col-sm-2">Age</h5>
+                    <span class="col-sm-10" th:text="${player.age}"></span>
+                </div>
+                <div class="row">
+                    <h5 class="col-sm-2">Champion favori</h5>
+                    <span class="col-sm-10" th:text="${player.favoriteChampion}"></span>
+                </div>
+                <div class="row">
+                    <h5 class="col-sm-2">Biographie</h5>
+                    <span class="col-sm-10" th:text="${player.history}"></span>
+                </div>
+
+                
+            </span>
+        </section>
+        <footer></footer>
+        
+        <div th:include="fragments/minimalScripts"></div>
+        <!--Vue.js-->
+        <script src="https://unpkg.com/vue"></script>
+        <!--The displaying of content script when we press a button-->
+        <script src="/js/automaticDisplay.js"></script>
+        
+        
+    </body>
+</html>

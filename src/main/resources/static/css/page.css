@@ -1,0 +1,176 @@
+/* INTRO PAGE*/
+
+#intro
+{
+    background-image: url("../background_blur.jpg");
+    background-size: 100%;
+}
+
+#introtitle
+{
+    font-family: 'Saira Semi Condensed', sans-serif;
+    font-weight: bold;
+    color: white;
+    font-size: 6em;
+    text-align: center;
+}
+
+#intro p
+{
+    text-align: center;
+    color: white;
+}
+
+#intromainblock
+{
+    margin-top: 15%;
+}
+
+/***********************************************/
+
+/* ALL PAGES*/
+
+body
+{
+    color: #212529;
+    background-color: #f4fff5;
+}
+
+p
+{
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.connectionBox
+{
+    background: #ffffff;
+    color: #999999;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin: 10px 30% 10px 30%;
+}
+
+h1,h2,h3,h4,h5,h6
+{
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+}
+
+#maintitle
+{
+    font-size: 2.5em;
+    word-wrap: break-word;
+}
+
+header
+{
+    height: 80px;
+    color: white;
+    padding: 1% 2% 1% 2%;
+}
+
+section, footer
+{
+    padding-top: 5%;
+    padding: 10px;
+    margin: auto;
+    margin-top: 130px;
+    margin-bottom: 5px;
+    width: 60%;
+    background-color: #f8f9fa;
+}
+
+/* Navigation */
+
+header
+{
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    padding: 0;
+    z-index: 99;
+}
+
+#nav-links
+{
+    display: flex;
+    overflow: no-content;
+    flex-direction: row;
+    margin-top: 25px; 
+}
+
+.item-navigation
+{
+    list-style: none;
+    margin: 1%;
+    margin-right: 2px;
+}
+
+.item-navigation a:hover
+{
+    color: #f8f9fa;
+    text-decoration: none;
+}
+
+.item-navigation a
+{
+    color: #9A9DA0;
+}
+
+.item-navigation .btn
+{
+    color: #17A2B8;
+}
+
+/* If we have not enough space to display everuthing on a line, we push link in a second line and center objects*/
+@media only screen and (max-width: 904px)
+{
+    nav h1
+    {
+        margin: auto;
+    }
+    #nav-links
+    {
+        margin: auto;
+    }
+    .item-navigation btn 
+    {
+        margin: auto;
+    }
+    section
+    {
+        margin-top: 200px;
+    }
+}
+
+/*If we have not enough space to display everthing in 2 lines we put every object in column mode */
+@media only screen and (max-width: 730px)
+{ 
+    #nav-links
+    {
+        flex-direction: column;
+    }
+    
+    .item-navigation
+    {
+        margin-top: 10px;
+    }
+    
+    section
+    {
+        margin-left: 2%;
+        margin-right: 2%;
+        width: 96%;
+        margin-top: 300px;
+    }
+}
+
+/*Mobile configuration*/
+@media only screen and (max-width: 500px)
+{ 
+    header
+    {
+        position: static;
+    }
+}

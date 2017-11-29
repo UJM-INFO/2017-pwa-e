@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+ *      _____   _                   _            _____                      _   
+ *     |  __ \ (_) Website Project | |          / ____|                    | |  
+ *     | |  | | _  _ __  ___   ___ | |_    ___ | (___   _ __    ___   _ __ | |_ 
+ *     | |  | || || '__|/ _ \ / __|| __|  / _ \ \___ \ | '_ \  / _ \ | '__|| __|
+ *     | |__| || || |  |  __/| (__ | |_  |  __/ ____) || |_) || (_) || |   | |_ 
+ *     |_____/ |_||_|   \___| \___| \__|  \___||_____/ | .__/  \___/ |_|    \__|
+ *                                                     | |                                                                                              
+ *  ____Authors____                                    |_| 
+ * Dimitri BRUYERE
+ * Clément COLIN
+ * Christopher JEAMME
+ *  _______________
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Direct eSport</title>
+        <div th:include="fragments/head"></div>
+    </head>
+    <body id="intro">
+        <!-- Menu du haut-->
+        <header>              
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top justify-content-between">
+                <h1 class="navbar">Direct eSport</h1>
+                    <ul class="navbar-nav">
+                        
+                        <!-- On n'est pas connecté -->
+                        <span sec:authorize="!isAuthenticated()">
+                            <a href="/signup" class="btn btn-outline-light mr-2">Inscription</a>
+                            <a href="/signin" class="btn btn-outline-light mr-2">Connexion</a>
+                        </span>
+                        
+                        <!-- On est connecté -->
+                        <span sec:authorize="isAuthenticated()">
+                            <form th:action="@{/logout}" method="post">
+                                <input class="btn btn-outline-light mr-2" value="Déconnexion" type="submit"/>
+                            </form>
+                        </span>
+                    </ul>
+            </nav>
+        </header>
+        <!-- Fin Menu du haut-->
+        
+        <!-- Section milieu -->
+        <div id="intromainblock">
+            <h1 id="introtitle">Bienvenue sur Direct eSport</h1>
+            <p>Suivez vos évenements eSport préférés en direct</p>
+
+            <div class="mx-auto text-center">
+                <a href="/home" class="btn btn-outline-light">Accès au site</a>
+            </div>
+        </div>
+        <!-- Fin Section milieu -->
+ 
+        <div th:include="fragments/minimalScripts"></div>
+    </body>
+</html>
