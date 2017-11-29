@@ -12,7 +12,6 @@
  * Christopher JEAMME
  *  ---------------
  */
-
 package fr.rzteam.DirectESport.controllers;
 
 import fr.rzteam.DirectESport.mdparser.Markdown;
@@ -21,8 +20,15 @@ import fr.rzteam.DirectESport.model.ArticleComment;
 import fr.rzteam.DirectESport.model.ArticleRepository;
 import fr.rzteam.DirectESport.model.User;
 import fr.rzteam.DirectESport.model.UserRepository;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.inject.Inject;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -30,6 +36,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Controller for Article operations / pages
@@ -45,7 +52,9 @@ public class ArticleController
     ArticleRepository articleRepo;
 
     /**
-     *  We redirect to the article page if the id is set, otherwise we redirect to the article menu
+     * We redirect to the article page if the id is set, otherwise we redirect
+     * to the article menu
+     *
      * @param id Id of the article we want
      * @param m The model to exchange data with Thymeleaf
      * @return The template articleMenu.html or article.html
@@ -84,17 +93,23 @@ public class ArticleController
 
     /**
      * Receiving the order to add an article
+     *
      * @param title Title of the article
      * @param text Text of the article
+     * @param link Link of the image
      * @return A redirection to /article
      */
     @RequestMapping(value = "/add_article", method = RequestMethod.POST)
     public String addArticle(
         @RequestParam("article_title") String title,
-        @RequestParam("article_text") String text)
+        @RequestParam("article_text") String text,
+        @RequestParam("article_image") String link)
     {
         String parsedText = Markdown.parse(text);
         Article article = new Article(title, parsedText);
+        if (!link.isEmpty()) //If there is a link of an imgage
+            article.setLink(link);
+        
         articleRepo.save(article);
 
         return "redirect:/article";
@@ -102,6 +117,7 @@ public class ArticleController
 
     /**
      * Receiving the order to add a comment to a article
+     *
      * @param text Text of the comment
      * @param id Id of the article to add a comment
      * @return A redirection to the article page
@@ -119,12 +135,11 @@ public class ArticleController
         articleRepo.save(a);
         return "redirect:/article?id=" + id;
     }
-    
+
     @RequestMapping("/articleCreation")
     public String creation()
     {
         return "articleCreation";
     }
-    
 
 }
