@@ -35,8 +35,8 @@
     <section>
         <h5>Ajouter un commentaire</h5>
         <div sec:authorize="isAuthenticated()">
-            <form th:action="@{/add_articleComment}" method="POST">
-                <label> Commentaire :  <input type="text" name="text" required=""/></label><br /><br />
+            <form th:action="@{/add_articleComment}" method="POST" id="addCom">
+                <label> Commentaire : <textarea class="form-control" form ="addCom" name="text" rows="2" cols="100" wrap="soft" required=""></textarea></label>
                 <input type="hidden" name="id" th:value="${id}"/>
                 <input class="btn btn-info" type="submit" value="Envoyer"/><br /><br />
             </form>

@@ -37,7 +37,7 @@
                     <p th:text="${team.teamName}"></p>
                 </div>
                 <br />
-                <span id="teamAdd">
+                <span sec:authorize="hasAuthority('EDITOR')" id="teamAdd">
                     <h3>Ajout</h3>
                     <form th:action="@{/add_team_in_competition}" method="POST">
                         Team : <select class="form-control" name="idteam">
@@ -74,7 +74,7 @@
                 <!-- Event creation part -->
                 
                 <button class="btn btn-info btn-lg btn-block display" id="creationDisplayButton" v-on:click="displayCreation"> <i class="fa fa-plus" aria-hidden="true"></i> Créer un évenement</button>
-                <span id="eventCreation" class="undisplay">
+                <span sec:authorize="hasAuthority('EDITOR')" id="eventCreation" class="undisplay">
                     <h2>Création d'évenement</h2>
                     <form th:action="@{/add_event}" method="POST">
                         <label> Description : <select class="form-control" name="description">
