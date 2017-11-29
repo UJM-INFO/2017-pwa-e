@@ -14,7 +14,6 @@
  */
 package fr.rzteam.DirectESport.model;
 
-import java.io.Serializable;
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 

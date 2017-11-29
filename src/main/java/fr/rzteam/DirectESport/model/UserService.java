@@ -14,7 +14,6 @@
  */
 package fr.rzteam.DirectESport.model;
 
-import java.util.List;
 import javax.inject.Inject;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -23,7 +23,6 @@ import fr.rzteam.DirectESport.model.TeamRepository;
 import fr.rzteam.DirectESport.model.UserRepository;
 import fr.rzteam.DirectESport.verif.InputDataVerification;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
