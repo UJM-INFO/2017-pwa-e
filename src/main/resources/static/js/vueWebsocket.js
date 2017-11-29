@@ -165,7 +165,7 @@ var app = new Vue({
                                 "</div>"+
                             "</div>"+                    
                             "<div class='row justify-content-md-center'>"+
-                                "<div class='col col-lg-1'>"+
+                                "<div class='col col-lg-1'>"+                                
                                     stats_team1.kill+
                                 "</div>"+
                                 "<div class='col-md-auto'>"+
