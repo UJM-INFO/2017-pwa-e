@@ -75,6 +75,7 @@ section, footer
     padding-top: 5%;
     padding: 10px;
     margin: auto;
+    margin-top: 130px;
     margin-bottom: 5px;
     width: 60%;
     background-color: #f8f9fa;
@@ -82,16 +83,13 @@ section, footer
 
 /* Navigation */
 
-section
-{
-    margin-top: 90px;
-}
-
-nav
+header
 {
     position: fixed;
     width: 100%;
     top: 0px;
+    padding: 0;
+    z-index: 99;
 }
 
 #nav-links
@@ -142,7 +140,7 @@ nav
     }
     section
     {
-        margin-top: 150px;
+        margin-top: 200px;
     }
 }
 
@@ -164,15 +162,15 @@ nav
         margin-left: 2%;
         margin-right: 2%;
         width: 96%;
-        margin-top: 250px;
+        margin-top: 300px;
     }
 }
 
 /*Mobile configuration*/
 @media only screen and (max-width: 500px)
 { 
-    section
+    header
     {
-        margin-top: 350px;
+        position: static;
     }
 }
