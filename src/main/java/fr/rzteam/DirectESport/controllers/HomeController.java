@@ -68,13 +68,16 @@ public class HomeController
     {
         List<Article> articles = articleRepo.findTop3ByOrderByIdDesc();
         
+        //We transmit the 3 most recent articles to the page for display in the carousel
         if (articles.size()==3)
         {
             for (int i=0; i<3 ;i++)
             {
+                //We cut a part of the texte
                 if (articles.get(i).getText().length()>70)
                     articles.get(i).setText(articles.get(i).getText().substring(0, 70).concat("(...)")); //Only the begining of the text for the carousel
             }
+            //We transmit the list of the Model
             m.addAttribute("articles", articles);
         }
         return isConnected() ? "homeSignedIn" : "homeNotSignedIn";
