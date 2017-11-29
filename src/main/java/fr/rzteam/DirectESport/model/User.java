@@ -86,7 +86,10 @@ public class User
     {
         this.userName = userName;
         this.realName = displayName;
-        this.roles.addAll(roles.stream().map(UserRole::valueOf).collect(Collectors.toList()));
+        roles.forEach((r) ->
+        {
+            this.roles.add(UserRole.valueOf(r));
+        });
         this.password = derivedPassword;
         this.mail = mail;
         this.pseudo = userName;
