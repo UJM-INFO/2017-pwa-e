@@ -148,65 +148,48 @@ var app = new Vue({
             console.log(stats_team2);
             
             
+            
             var display = "<p>"+event.description+" en "+this.typeMatch(event.type)+"</p><br/>";
             display += "<p>"+this.statusMatch(event.status)+"</p><br/>";
  
- 
-            display+= "<div class='container'>"+
-                            "<div class='row justify-content-md-center'>"+
-                                "<div class='col col-lg-1'>"+
-                                '<img src="/images/logoteam'+team1.teamName+'.png"/>'+
-                                "</div>"+
-                                "<div class='col-md-auto'>"+
-                                    ""+
-                                "</div>"+
-                                "<div class='col col-lg-2'>"+
-                                  '<img src="/images/logoteam'+team2.teamName+'.png"/>'+
-                                "</div>"+
-                            "</div>"+                    
-                            "<div class='row justify-content-md-center'>"+
-                                "<div class='col col-lg-1'>"+                                
-                                    stats_team1.kill+
-                                "</div>"+
-                                "<div class='col-md-auto'>"+
-                                    "KILL"+
-                                "</div>"+
-                                "<div class='col col-lg-2'>"+
-                                  stats_team2.kill+
-                                "</div>"+
-                            "</div>"+
-                            "<div class='row justify-content-md-center'>"+
-                                "<div class='col col-lg-1'>"+
-                                    stats_team1.tower+
-                                "</div>"+
-                                "<div class='col-md-auto'>"+
-                                    "TOWER"+
-                                "</div>"+
-                                "<div class='col col-lg-2'>"+
-                                    stats_team2.tower+
-                                "</div>"+
-                            "</div>"+
-                            "<div class='row justify-content-md-center'>"+
-                                "<div class='col col-lg-1'>"+
-                                    stats_team1.drake+
-                                "</div>"+
-                                "<div class='col-md-auto'>"+
-                                    "DRAKE"+
-                                "</div>"+
-                                "<div class='col col-lg-2'>"+
-                                  stats_team2.drake+
-                                "</div>"+
-                            "</div>"+
-                        "</div>";
-            
-            
+            var imgt1 = '<img src="/images/logoteam'+team1.teamName+'.png"/>';
+            var imgt2 = '<img src="/images/logoteam'+team2.teamName+'.png"/>';
+            var nbkillt1 = ""+stats_team1.kill;
+            var nbkillt2 = ""+stats_team2.kill;
+            var nbtowert1 = ""+stats_team1.tower;
+            var nbtowert2 = ""+stats_team2.tower;
+            var nbdraket1 = ""+stats_team1.drake;
+            var nbdraket2 = ""+stats_team2.drake;
+
             commentSet._embedded.comments.forEach((comment)=>
             {
                 display+=("<p>"+comment.text+"</p><br/>");
             });
             
+            $("#imgt1").html("");
+            $("#imgt1").append(imgt1);
             
+            $("#imgt2").html("");
+            $("#imgt2").append(imgt2);
             
+            $("#nbkillt1").html("");
+            $("#nbkillt1").append(nbkillt1);
+            
+            $("#nbkillt2").html("");
+            $("#nbkillt2").append(nbkillt2);
+            
+            $("#nbtowert1").html("");
+            $("#nbtowert1").append(nbtowert1);
+            
+            $("#nbtowert2").html("");
+            $("#nbtowert2").append(nbtowert2);
+            
+            $("#nbdraket1").html("");
+            $("#nbdraket1").append(nbdraket1);
+            
+            $("#nbdraket2").html("");
+            $("#nbdraket2").append(nbdraket2);
+           
             $("#comments").html("");
             $("#comments").append(display);
         },
