@@ -51,7 +51,7 @@
         <div th:each="comment : ${comments}">
             <div class="media">
                 <i class="px-3 fa fa-user-o"></i>
-                <div class="media-body">
+                <div class="media-body" style="max-width: 100%;">
                     <h5 class="mt-0"><span th:text="${comment.value.userName}"></span></h5>
                     <p class="ml-3" th:text="${comment.key.text}"></p>
                     <hr/>
