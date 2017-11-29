@@ -15,6 +15,7 @@
 
 package fr.rzteam.DirectESport.controllers;
 
+import fr.rzteam.DirectESport.mdparser.Markdown;
 import fr.rzteam.DirectESport.model.Comment;
 import fr.rzteam.DirectESport.model.Event;
 import fr.rzteam.DirectESport.model.EventRepository;
@@ -74,6 +75,10 @@ public class CommentsController
     @RequestParam("text") String text,
     @RequestParam("id") String id)
     {
+        //We parse the comment
+        text = Markdown.parse(text);
+        
+        //We add the comment to the event
 	Long idlong = Long.parseLong(id);
 	String name = SecurityContextHolder.getContext().getAuthentication().getName();
 	User user = userRepo.findByUserName(name);
