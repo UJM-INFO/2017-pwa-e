@@ -17,6 +17,7 @@ package fr.rzteam.DirectESport.controllers;
 import fr.rzteam.DirectESport.model.Player;
 import fr.rzteam.DirectESport.model.PlayerRepository;
 import fr.rzteam.DirectESport.model.PlayerRole;
+import fr.rzteam.DirectESport.verif.InputDataVerification;
 import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,9 +44,12 @@ public class PlayerController
         @RequestParam("history") String history
     )
     {
-        Player p = new Player(playerName,"test", PlayerRole.valueOf(playerRole), Integer.parseInt(age), favoriteChampion, history);
-        playerRepo.save(p);
-        return "view.name";
+        if (InputDataVerification.verifTextLength(playerName, 1, 50) && InputDataVerification.verifTextLength(history, 1, 10000))
+        {
+            Player p = new Player(playerName,"test", PlayerRole.valueOf(playerRole), Integer.parseInt(age), favoriteChampion, history);
+            playerRepo.save(p);
+        }
+        return "redirect:/team";
     }
     
     @RequestMapping("/player")
