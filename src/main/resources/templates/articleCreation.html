@@ -1,8 +1,17 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+ *      _____   _                   _            _____                      _   
+ *     |  __ \ (_) Website Project | |          / ____|                    | |  
+ *     | |  | | _  _ __  ___   ___ | |_    ___ | (___   _ __    ___   _ __ | |_ 
+ *     | |  | || || '__|/ _ \ / __|| __|  / _ \ \___ \ | '_ \  / _ \ | '__|| __|
+ *     | |__| || || |  |  __/| (__ | |_  |  __/ ____) || |_) || (_) || |   | |_ 
+ *     |_____/ |_||_|   \___| \___| \__|  \___||_____/ | .__/  \___/ |_|    \__|
+ *                                                     | |                                                                                              
+ *  ____Authors____                                    |_| 
+ * Dimitri BRUYERE
+ * Clément COLIN
+ * Christopher JEAMME
+ *  _______________
 -->
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
@@ -17,10 +26,11 @@ and open the template in the editor.
             <section>
 
                 <h2 id="eventCreation">Création d'article</h2>
-                <form th:action="@{/add_article}" method="POST">
+                <form th:action="@{/add_article}" method="POST" id="addArt">
                     <label> Titre de l'article: <input type="text" class="form-control" name="article_title"/></label><br/>
-                    <label> Texte : <input type="text" class="form-control" name="article_text"/></label><br/>
-                    <label> Image : <input type="file" name="article_image" /></label>
+                    <label> Texte : <textarea class="form-control" form ="addArt" name="article_text" cols="50" wrap="soft"></textarea></label>
+                    <br/>
+                    <label> Image : <input class="form-control" type="file" name="article_image" /></label>
                 <input type="submit" class="btn btn-info btn-lg btn-block" value="Créez un article"/>
                 </form>
                 
