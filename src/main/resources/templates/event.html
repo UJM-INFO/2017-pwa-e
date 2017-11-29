@@ -18,9 +18,12 @@
         <title>Direct eSport</title>
         <div th:include="fragments/head"></div>
         
+        <!--2 libraries for websocket exchange-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+        
     </head>
+    
     <body>
         <div id="app">
             <!-- Menu du haut-->
@@ -36,18 +39,14 @@
                     
                     <label> Contenu :  <input type="text" name="text"/></label><br /><br />
                     <input type="hidden" name="id" th:value="${id}"/>
-                    <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="Ajouter un commentairer"/><br /><br />
+                    <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="Ajouter un commentaire"/><br /><br />
                 </form>
             </section>
 
-            <footer></footer>
-
         </div>
         
-        <!-- Carousel des top articles-->
-        <div th:include="fragments/endPageScripts"></div>
-        <script src="/js/vue-websocket.js"></script>
-        <script src="/js/vue-resource.min.js"></script>
-        <script src="/js/urlParamFunction.js"></script>
+        <div th:include="fragments/minimalScripts"></div>
+        <script src="https://unpkg.com/vue"></script>
+        <div th:include="fragments/vueWebsocketScripts"></div>
     </body>
 </html>
