@@ -47,7 +47,7 @@ public class Competition
     @OneToMany(cascade = CascadeType.ALL)
     List<Event> events = new ArrayList<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     List<Team> teams = new ArrayList<>();
 
     @ManyToOne
