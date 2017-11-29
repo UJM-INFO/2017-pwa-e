@@ -41,6 +41,8 @@ public class Article
 
     String text;
     
+    String link;
+    
     @Temporal(javax.persistence.TemporalType.DATE)
     Date date;
 
@@ -63,6 +65,20 @@ public class Article
     {
         this.title = title;
         this.text = content;
+        this.date = new Date();
+    }
+
+    /**
+     * Constructor
+     * @param title
+     * @param text
+     * @param link
+     */
+    public Article(String title, String text, String link)
+    {
+        this.title = title;
+        this.text = text;
+        this.link = link;
         this.date = new Date();
     }
 	
