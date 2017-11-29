@@ -37,7 +37,7 @@
                         <h4 class="card-header" th:text="${article.title}"></h4>
                         <div class="card-body">
                             <img class="pull-left" width="50%" th:if="article.link != null" th:src="${article.link}" alt="Image"/>
-                            <p style="overflow: hidden;" th:text="${#strings.abbreviate(article.text,50)}"></p>
+                            <p style="overflow: hidden;" th:utext="${#strings.abbreviate(article.text,50)}"></p>
                         </div>
                     </a>
 
