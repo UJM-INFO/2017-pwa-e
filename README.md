@@ -27,7 +27,11 @@ Pour ajouter les données du sites, allez sur l’adresse /demo.
 Vous pouvez créer un compte auquel cas vous serez identifié en tant qu’utilisateur, mais si vous désirez avoir les fonctionnalités administrateur, vous pouvez vous connecter avec le login : **admin** et le mot de passe : **pass** 
 
 ## Architecture du projet
+
 Notre projet respecte une architecture Modèle-Vue-Contrôleur. Nous utilisons Spring, Thymeleaf et Vue.js.
+La majeur partie des données sont affichés en Tymeleaf, donnés par le controleur et qui sont géré par CrudRepository.
+Par contre l'affichage des commentaires en direct et des scores en direct utilisent les websockets pour être averti d'un changement et raffraichissent les données par l'api REST.
+La gestion de la connexion est faite par Spring Security.
 
 ## Code externe
 
