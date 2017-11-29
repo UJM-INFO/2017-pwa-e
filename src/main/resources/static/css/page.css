@@ -1,3 +1,5 @@
+/* INTRO PAGE*/
+
 #intro
 {
     background-image: url("../background_blur.jpg");
@@ -25,6 +27,8 @@
 }
 
 /***********************************************/
+
+/* ALL PAGES*/
 
 body
 {
@@ -54,17 +58,17 @@ h1,h2,h3,h4,h5,h6
 
 header
 {
-	height: 80px;
-	color: white;
-	padding: 1% 2% 1% 2%;
+    height: 80px;
+    color: white;
+    padding: 1% 2% 1% 2%;
 }
 
 section, footer
 {
-	margin: auto;
-	margin-top: 15px;
-	margin-bottom: 5px;
-	width: 60%;
-	padding: 10px;
-	background-color: #f8f9fa;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    width: 60%;
+    padding: 10px;
+    background-color: #f8f9fa;
 }
