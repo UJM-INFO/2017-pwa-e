@@ -20,6 +20,7 @@ import fr.rzteam.DirectESport.model.EventRepository;
 import fr.rzteam.DirectESport.model.Team;
 import fr.rzteam.DirectESport.model.TeamRepository;
 import fr.rzteam.DirectESport.model.UserRepository;
+import fr.rzteam.DirectESport.verif.InputDataVerification;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
@@ -92,9 +93,16 @@ public class CompetitionController
     @RequestMapping(value = "/add_competition", method = RequestMethod.POST)
     public String addCompetition(@RequestParam("name") String name)            
     {
-        Competition competition = new Competition(new Date(), name);
+        name=InputDataVerification.escape(name);
         
-        competitionRepo.save(competition);
+        if (InputDataVerification.verifTextLength(name, 1, 200))
+        {
+            Competition competition = new Competition(new Date(), name);
+            Long id = competition.getId();
+            competitionRepo.save(competition);
+            
+            return "redirect:/competition?id="+id;
+        }
         
         return "redirect:/competition";
     }
@@ -127,6 +135,6 @@ public class CompetitionController
        Competition c = competitionRepo.findOneById(Long.parseLong(id+""));
        c.getTeams().add(temp);
        competitionRepo.save(c);
-        return "redirect:/competition";
+        return "redirect:/competition?id="+id;
     }
 }
