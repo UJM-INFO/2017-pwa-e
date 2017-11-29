@@ -48,8 +48,12 @@ public class demoController
      */
     @RequestMapping("/demo")
     public String demo()
-    {        
-        User user1 = new User("admin", "Administrateur", "$2a$10$cGONBnlF98pG2tLYV5GcfODgvLEbeMlRm1z/4yjpG.pRQ4SoP8nd6"/*=pass*/, "admin@rzteam.fr");
+    {
+        List<String> roles = new ArrayList<>();
+        roles.add("ADMIN");
+        roles.add("EDITOR");
+        roles.add("USER");
+        User user1 = new User("admin", "Administrateur", roles, "$2a$10$cGONBnlF98pG2tLYV5GcfODgvLEbeMlRm1z/4yjpG.pRQ4SoP8nd6"/*=pass*/, "admin@rzteam.fr");
         userRepo.save(user1);
 
 	
