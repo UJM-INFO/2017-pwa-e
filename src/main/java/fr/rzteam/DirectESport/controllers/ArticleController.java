@@ -20,25 +20,17 @@ import fr.rzteam.DirectESport.model.ArticleComment;
 import fr.rzteam.DirectESport.model.ArticleRepository;
 import fr.rzteam.DirectESport.model.User;
 import fr.rzteam.DirectESport.model.UserRepository;
-import static fr.rzteam.DirectESport.verif.FormVerification.verifTextLength;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
+import fr.rzteam.DirectESport.verif.InputDataVerification;
+import static fr.rzteam.DirectESport.verif.InputDataVerification.verifTextLength;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.inject.Inject;
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Controller for Article operations / pages
@@ -107,7 +99,7 @@ public class ArticleController
         @RequestParam("article_text") String text,
         @RequestParam("article_image") String link)
     {
-        title = StringEscapeUtils.escapeHtml4(title);
+        title = InputDataVerification.escape(title);
         if (!verifTextLength(text, 1, 9000) || !verifTextLength(title, 1, 254))
         {
             return "articleCreation";
