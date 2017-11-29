@@ -28,12 +28,159 @@
         <div id="app">
             <!-- Menu du haut-->
             <div th:include="fragments/header"></div>
-            
+
             <section>
-                
+
                 <a class="btn btn-info btn-lg btn-block" href="/event">Retour aux évenements</a>
                 <br />
-                
+
+                <div class="container">
+                    <div class="row justify-content-md-center">
+                        <div class="col ">
+                            <p id="imgt1"></p>     
+                        </div>
+                        <div class="col">
+
+                        </div>
+                        <div class="col">
+                            <p id="imgt2"></p>
+                        </div>
+                    </div>                    
+                    <div class="row justify-content-md-center">
+                        <div class="col col-lg-1">
+                            <span sec:authorize="hasAuthority('EDITOR')">                
+                                <form th:action="@{/addkillt1}" method="post">
+                                    <input type="hidden" name="id" th:value="${id}"/>
+                                    <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="+"/>
+                                </form>
+                            </span>
+                        </div>
+                        <div class="col col-lg-1">
+                            <span sec:authorize="hasAuthority('EDITOR')">
+                                <form th:action="@{/subkillt1}" method="post">
+                                    <input type="hidden" name="id" th:value="${id}"/>
+                                    <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="-"/><br /><br />
+                                </form>
+                            </span>
+                        </div>
+                        <div class="col col-lg-1"> 
+
+                            <p id="nbkillt1"></p>
+                        </div>
+                        <div class="col-md-auto">
+                            KILL
+                        </div>
+                        <div class="col col-lg-2">
+                            <p id="nbkillt2"></p>
+                        </div>
+                        <div class="col col-lg-1">
+                            <span sec:authorize="hasAuthority('EDITOR')">                
+                                <form th:action="@{/addkillt2}" method="post">
+                                    <input type="hidden" name="id" th:value="${id}"/>
+                                    <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="+"/>
+                                </form>
+                            </span>
+                        </div>
+                        <div class="col col-lg-1">
+                            <span sec:authorize="hasAuthority('EDITOR')">
+                                <form th:action="@{/subkillt2}" method="post">
+                                    <input type="hidden" name="id" th:value="${id}"/>
+                                    <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="-"/><br /><br />
+                                </form>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col col-lg-1">
+                            <span sec:authorize="hasAuthority('EDITOR')">                
+                                <form th:action="@{/addtowert1}" method="post">
+                                    <input type="hidden" name="id" th:value="${id}"/>
+                                    <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="+"/>
+                                </form>
+                            </span>
+                        </div>
+                        <div class="col col-lg-1">
+                            <span sec:authorize="hasAuthority('EDITOR')">
+                                <form th:action="@{/subtowert1}" method="post">
+                                    <input type="hidden" name="id" th:value="${id}"/>
+                                    <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="-"/><br /><br />
+                                </form>
+                            </span>
+                        </div>
+                        <div class="col col-lg-1">
+                            <p id="nbtowert1"></p>
+                        </div>
+                        <div class="col-md-auto">
+                            TOWER
+                        </div>
+                        <div class="col col-lg-2">
+                            <p id="nbtowert2"></p>
+                        </div>
+                        <div class="col col-lg-1">
+                            <span sec:authorize="hasAuthority('EDITOR')">                
+                                <form th:action="@{/addtowert2}" method="post">
+                                    <input type="hidden" name="id" th:value="${id}"/>
+                                    <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="+"/>
+                                </form>
+                            </span>
+                        </div>
+                        <div class="col col-lg-1">
+                            <span sec:authorize="hasAuthority('EDITOR')">
+                                <form th:action="@{/subtowert2}" method="post">
+                                    <input type="hidden" name="id" th:value="${id}"/>
+                                    <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="-"/><br /><br />
+                                </form>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col col-lg-1">
+                            <span sec:authorize="hasAuthority('EDITOR')">                
+                                <form th:action="@{/adddraket1}" method="post">
+                                    <input type="hidden" name="id" th:value="${id}"/>
+                                    <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="+"/>
+                                </form>
+                            </span>
+                        </div>
+                        <div class="col col-lg-1">
+                            <span sec:authorize="hasAuthority('EDITOR')">
+                                <form th:action="@{/subdraket1}" method="post">
+                                    <input type="hidden" name="id" th:value="${id}"/>
+                                    <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="-"/><br /><br />
+                                </form>
+                            </span>
+                        </div>
+                        <div class="col col-lg-1">
+                            <p id="nbdraket1"></p>
+                        </div>
+                        <div class="col-md-auto">
+                            DRAKE
+                        </div>
+                        <div class="col col-lg-2">
+                            <p id="nbdraket2"></p>
+                        </div>
+                        <div class="col col-lg-1">
+                            <span sec:authorize="hasAuthority('EDITOR')">                
+                                <form th:action="@{/adddraket2}" method="post">
+                                    <input type="hidden" name="id" th:value="${id}"/>
+                                    <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="+"/>
+                                </form>
+                            </span>
+                        </div>
+                        <div class="col col-lg-1">
+                            <span sec:authorize="hasAuthority('EDITOR')">
+                                <form th:action="@{/subdraket2}" method="post">
+                                    <input type="hidden" name="id" th:value="${id}"/>
+                                    <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="-"/><br /><br />
+                                </form>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
                 <p id="comments">Les commentaires vont normalement bientôt s'afficher ...</p>
                 <span sec:authorize="hasAuthority('EDITOR')">
                     <form th:action="@{/add_comment}" method="post" id="addCom">
@@ -44,82 +191,8 @@
                         <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="Ajouter un commentaire"/><br /><br />
                     </form>
                 </span>
-                </section>
-                <span sec:authorize="hasAuthority('EDITOR')">                
-                    <form th:action="@{/addkillt1}" method="post">
-                        <input type="hidden" name="id" th:value="${id}"/>
-                        <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="Ajouter un kill à l'équipe 1"/><br /><br />
-                    </form>
-                </span>
-            <span sec:authorize="hasAuthority('EDITOR')">
-                    <form th:action="@{/addkillt2}" method="post">
-                        <input type="hidden" name="id" th:value="${id}"/>
-                        <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="Ajouter un kill à l'équipe 2"/><br /><br />
-                    </form>
-                        </span>
-                        <span sec:authorize="hasAuthority('EDITOR')">
-                    <form th:action="@{/subkillt1}" method="post">
-                        <input type="hidden" name="id" th:value="${id}"/>
-                        <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="Enlever un kill à l'équipe 1"/><br /><br />
-                    </form>
-                        </span>
-                        <span sec:authorize="hasAuthority('EDITOR')">
-                    <form th:action="@{/subkillt2}" method="post">
-                        <input type="hidden" name="id" th:value="${id}"/>
-                        <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="Enlever un kill à l'équipe 2"/><br /><br />
-                    </form>
-                        </span>
-                        <span sec:authorize="hasAuthority('EDITOR')">
-                
-                    <form th:action="@{/addtowert1}" method="post">
-                        <input type="hidden" name="id" th:value="${id}"/>
-                        <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="Ajouter une tower à l'équipe 1"/><br /><br />
-                    </form>
-                        </span>
-                        <span sec:authorize="hasAuthority('EDITOR')">
-                    <form th:action="@{/addtowert2}" method="post">
-                        <input type="hidden" name="id" th:value="${id}"/>
-                        <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="Ajouter une tower à l'équipe 2"/><br /><br />
-                    </form>
-                        </span>
-                        <span sec:authorize="hasAuthority('EDITOR')">
-                    <form th:action="@{/subtowert1}" method="post">
-                        <input type="hidden" name="id" th:value="${id}"/>
-                        <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="Enlever une tower à l'équipe 1"/><br /><br />
-                    </form>
-                        </span>
-                        <span sec:authorize="hasAuthority('EDITOR')">
-                    <form th:action="@{/subtowert2}" method="post">
-                        <input type="hidden" name="id" th:value="${id}"/>
-                        <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="Enlever une tower à l'équipe 2"/><br /><br />
-                    </form>
-                        </span>
-                        <span sec:authorize="hasAuthority('EDITOR')">
-                    <form th:action="@{/adddraket1}" method="post">
-                        <input type="hidden" name="id" th:value="${id}"/>
-                        <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="Ajouter une drake à l'équipe 1"/><br /><br />
-                    </form>
-                        </span>
-                        <span sec:authorize="hasAuthority('EDITOR')">
-                    <form th:action="@{/adddraket2}" method="post">
-                        <input type="hidden" name="id" th:value="${id}"/>
-                        <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="Ajouter une drake à l'équipe 2"/><br /><br />
-                    </form>
-                        </span>
-                        <span sec:authorize="hasAuthority('EDITOR')">
-                    <form th:action="@{/subdraket1}" method="post">
-                        <input type="hidden" name="id" th:value="${id}"/>
-                        <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="Enlever une drake à l'équipe 1"/><br /><br />
-                    </form>
-                        </span>
-                        <span sec:authorize="hasAuthority('EDITOR')">
-                    <form th:action="@{/subdraket2}" method="post">
-                        <input type="hidden" name="id" th:value="${id}"/>
-                        <input class="btn btn-info" id="update" v-on:click="saveComments" type="submit" value="Enlever une drake à l'équipe 2"/><br /><br />
-                    </form>
-                        </span>
-                        
-            
+            </section>
+
 
         </div>
         
