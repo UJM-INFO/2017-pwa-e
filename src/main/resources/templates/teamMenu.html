@@ -41,7 +41,7 @@
 
                         <span sec:authorize="hasAuthority('ADMIN')">
                             <form th:action="@{/remove_team}" method="post">
-                                <input type="hidden" name="id" th:value="${competition.id}"/>
+                                <input type="hidden" name="id" th:value="${team.id}"/>
                                 <input class="btn btn-danger" type="submit" value="Supprimer l'équipe"/>
                             </form>
                         </span>
