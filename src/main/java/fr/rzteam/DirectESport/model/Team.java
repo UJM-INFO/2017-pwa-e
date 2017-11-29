@@ -45,7 +45,7 @@ public class Team
     @OneToMany
     List<Player> players = new ArrayList<>(); //The list of players of the team
 
-    @Column(length = 1500)
+    @Column(length = 10000)
     String history; //A description of the team
 
     HashMap<String, Integer> prizeList; //Contains the name of the competition and the number of team's victories for the competition
