@@ -20,13 +20,13 @@ import com.vladsch.flexmark.parser.Parser;
 import com.vladsch.flexmark.util.options.MutableDataSet;
 
 /**
- * Markdown tools
+ * Markdown tools using flexmark library
  */
 public class Markdown
 {
 
     /**
-     * Parse a text in markdown to HTML
+     * Parse a text from Markdown to HTML
      * @param markdown
      * @return HTML String
      */
@@ -41,7 +41,7 @@ public class Markdown
     }
     
     /**
-     * Remove some keyword from the text
+     * Remove some keywords from the text
      * @param text HTML not secured
      * @return Secured HTML String
      */
