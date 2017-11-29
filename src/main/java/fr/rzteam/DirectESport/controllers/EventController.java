@@ -21,6 +21,7 @@ import fr.rzteam.DirectESport.model.StatsRepository;
 import fr.rzteam.DirectESport.model.Team;
 import fr.rzteam.DirectESport.model.TeamRepository;
 import fr.rzteam.DirectESport.model.UserRepository;
+import fr.rzteam.DirectESport.verif.InputDataVerification;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -52,8 +53,8 @@ public class EventController
     /**
      *
      * @param description
-     * @param team1name
-     * @param team2name
+     * @param team1id
+     * @param team2id
      * @param type
      * @param idCompetition
      * @return
@@ -66,19 +67,24 @@ public class EventController
             @RequestParam("type") String type,
             @RequestParam("idCompetition") String idCompetition)
     {
-        int typel = Integer.parseInt(type);
-        Team team1 = teamRepo.findOneById(Long.parseLong(team1id + ""));
-        Team team2 = teamRepo.findOneById(Long.parseLong(team2id + ""));
-        
+        description = InputDataVerification.escape(description);
+        if (InputDataVerification.verifTextLength(description, 1, 255))
+        {
+            int typel = Integer.parseInt(type);
+            Team team1 = teamRepo.findOneById(Long.parseLong(team1id + ""));
+            Team team2 = teamRepo.findOneById(Long.parseLong(team2id + ""));
 
-        Stats stats1 = new Stats();
-        Stats stats2 = new Stats();
-        statsRepo.save(stats1);
-        statsRepo.save(stats2);
-	
-        Long idCompetLong = Long.parseLong(idCompetition);
-        eventRepo.save(new Event(description, new Date(), team1, team2, 0,typel,stats1,stats2,idCompetLong));
-        
+            Stats stats1 = new Stats();
+            Stats stats2 = new Stats();
+            statsRepo.save(stats1);
+            statsRepo.save(stats2);
+
+            Long idCompetLong = Long.parseLong(idCompetition);
+            Event e = new Event(description, new Date(), team1, team2, 0,typel,stats1,stats2,idCompetLong);
+
+            eventRepo.save(e);
+            
+        }
         return "redirect:/event";
     }
 
@@ -92,7 +98,7 @@ public class EventController
     {
         Long idLong = Long.parseLong(id);
         eventRepo.deleteOneById(idLong);
-        return "eventMenu";
+        return "redirect:/event";
     }
     
     /**

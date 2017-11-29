@@ -165,7 +165,14 @@ public class TeamController
 
     }
     
-    
+    @RequestMapping(value = "/remove_team", method = RequestMethod.POST)
+    public String removeEvent(@RequestParam("id") String id)
+    {
+        System.out.println("Coucou je wuis bien la avec l'id :"+id);
+        Long idLong = Long.parseLong(id);
+        teamRepo.deleteOneById(idLong);
+        return "redirect:/team";
+    }
 
 
 }
