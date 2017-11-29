@@ -24,16 +24,15 @@ var app = new Vue({
                 app.showContent();
 
 
+                //When we receive a signal from the server we update comments
                 stompClient.subscribe('/topic/comments', function(comments)
                 {
                     console.log("UPDATE");
                     setTimeout(app.updateComments,100);
                 });
                 
+                //The first displaying of comments
                 app.updateComments();
-                
-                //We send the id of the page for begin the data receiving
-                //app.sendId();
             });
         },
         disconnect: function()
@@ -42,9 +41,7 @@ var app = new Vue({
             {
                 stompClient.disconnect();
             }
-            this.app.hideContent();
-            
-            console.log("Déconnecté");   
+            this.app.hideContent(); 
         },
         showContent()
         {
@@ -62,11 +59,9 @@ var app = new Vue({
             var parsedEvent = JSON.parse(event.bodyText);
             
             var display = "";
-            //var display ="";
             parsedComment._embedded.comments.forEach((comment)=>
             {
                 console.log(comment);
-                //display+=("<p><strong>Commentaire de "+comment.author+"</strong> ("+comment.date+")<br /> "+comment.text+"</p><br/><br/>");
                 display+=("<p>"+comment.text+"</p><br/>");
             });
             $("#comments").html("");
@@ -79,12 +74,12 @@ var app = new Vue({
         },
         updateComments: function()
         {
-            var r = this.$resource('http://localhost:8080/api/events{/id}/comments') //POUR RAJOUTER L'ID IL FAUDRA REQUETER SUR DES EVENT
+            var r = this.$resource('http://localhost:8080/api/events{/id}/comments');
             r.get({id: parseInt($.urlParam('id'))}).then(
             response1 =>
             {
                 console.log("get comments ok");
-                var r2 = this.$resource('http://localhost:8080/api/events{/id}') //POUR RAJOUTER L'ID IL FAUDRA REQUETER SUR DES EVENT
+                var r2 = this.$resource('http://localhost:8080/api/events{/id}');
                 r2.get({id: parseInt($.urlParam('id'))}).then(
                 response2 =>
                 {
