@@ -18,12 +18,12 @@ Nous estimons avoir tous travaillé une cinquantaine d'heures sur ce projet.
 ### Au sujet de git:
 - commit/push souvent, pour ne pas avoir peur de faire des changements
 
-20/20 : 
+   * 20/20 : 
 Chacun de nous a fait des commits à chaque fois qu’il travaillait sur une partie. Nous avons réalisé des commits atomiques afin de repérer facilement les changements.
 
 * utiliser des messages de commit qui décrivent le changement et surtout la raison du changement
 
-15/20 : 
+   * 15/20 : 
 Nous n’avions pas pris consciences de ce point quand on effectuait les premiers commits, mais nous l’avons fait quasiment tout le temps après. Les commits étant conseillé d’être sous une certaine limite de caractère, nous n’avons pas pu détaillé à chaque fois mais il y a sauf exception toujours le minimum. De plus, nous utilisons des préfixes de commit (feat, fix, refact, doc …) pour encore plus de clarté.
 
 * utiliser des messages en anglais
