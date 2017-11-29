@@ -24,18 +24,18 @@
 
         <!-- We are not connected -->
             <li sec:authorize="!isAuthenticated()" class="item-navigation">
-                <a href="/signup" class="btn btn-outline-info mr-2"> <i class="fa fa-user-plus" aria-hidden="true"></i> Inscription</a>
+                <a href="/signup" class="btn btn-outline-info"> <i class="fa fa-user-plus" aria-hidden="true"></i> Inscription</a>
             </li>
             <li sec:authorize="!isAuthenticated()" class="item-navigation">
-                <a href="/signin" class="btn btn-outline-info mr-2"> <i class="fa fa-sign-in" aria-hidden="true"></i> Connexion</a>
+                <a href="/signin" class="btn btn-outline-info"> <i class="fa fa-sign-in" aria-hidden="true"></i> Connexion</a>
             </li>
         
         <!-- We are connected -->
             <li sec:authorize="isAuthenticated()" class="item-navigation">
-                <a href="/profil" class="btn btn-outline-info mr-2"> <i class="fa fa-id-card" aria-hidden="true"></i> Profil</a>
+                <a href="/profil" class="btn btn-outline-info"> <i class="fa fa-id-card" aria-hidden="true"></i> Profil</a>
             </li>
             <li sec:authorize="isAuthenticated()" class="item-navigation">
-                <a th:href="@{/logout}" class="btn btn-outline-info mr-2"> <i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a>
+                <a th:href="@{/logout}" class="btn btn-outline-info"> <i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a>
             </li>
 
         
