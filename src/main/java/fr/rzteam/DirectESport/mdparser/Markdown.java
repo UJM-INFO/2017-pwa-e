@@ -19,10 +19,17 @@ import com.vladsch.flexmark.html.HtmlRenderer;
 import com.vladsch.flexmark.parser.Parser;
 import com.vladsch.flexmark.util.options.MutableDataSet;
 
-
+/**
+ * Markdown tools
+ */
 public class Markdown
 {
 
+    /**
+     * Parse a text in markdown to HTML
+     * @param markdown
+     * @return HTML String
+     */
     public static String parse(String markdown)
     {
         MutableDataSet options = new MutableDataSet();
@@ -33,6 +40,11 @@ public class Markdown
         return secure(html);
     }
     
+    /**
+     * Remove some keyword from the text
+     * @param text HTML not secured
+     * @return Secured HTML String
+     */
     public static String secure(String text)
     {
         return text.replaceAll("<script", "||CENSORED SCRIPT||");
