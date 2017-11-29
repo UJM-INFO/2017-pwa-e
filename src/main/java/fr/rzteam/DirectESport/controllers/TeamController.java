@@ -148,17 +148,17 @@ public class TeamController
 //	plist.add(coach);
 	Team newteam = new Team(teamname, history, plist);
 	teamRepo.save(newteam);
-	Long id = teamRepo.findOneByTeamName(teamname).getId();
+	String name = teamRepo.findOneByTeamName(teamname).getTeamName();
 	if (!file1.isEmpty()) {
 	    BufferedImage src = ImageIO.read(new ByteArrayInputStream(file1.getBytes()));
-	    File destination = new File("src/main/resources/static/images/team"+id+".png");
+	    File destination = new File("src/main/resources/static/images/team"+name+".png");
 	    ImageIO.write(src,"png",destination);
 	}
 	
 	if (!file2.isEmpty())
 	{
 	    BufferedImage src = ImageIO.read(new ByteArrayInputStream(file2.getBytes()));
-	    File destination = new File("src/main/resources/static/images/logoteam"+id+".png");
+	    File destination = new File("src/main/resources/static/images/logoteam"+name+".png");
 	    ImageIO.write(src,"png",destination);
 	}
 	return "redirect:/team";
