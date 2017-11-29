@@ -200,12 +200,11 @@ var app = new Vue({
         },
         updateComments: function()
         {
-            var r = this.$resource('http://localhost:8080/api/events{/id}/comments');
+            var r = this.$resource('http://'+window.location.host+'/api/events{/id}/comments');
             r.get({id: parseInt($.urlParam('id'))}).then(
             response1 =>
             {
-                
-                var r2 = this.$resource('http://localhost:8080/api/events{/id}');
+                var r2 = this.$resource('http://'+window.location.host+'/api/events{/id}');
                 
                 r2.get({id: parseInt($.urlParam('id'))}).then(
                 response2 =>
