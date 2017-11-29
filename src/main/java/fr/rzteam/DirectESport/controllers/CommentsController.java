@@ -12,7 +12,6 @@
  * Christopher JEAMME
  *  ---------------
  */
-
 package fr.rzteam.DirectESport.controllers;
 
 import fr.rzteam.DirectESport.mdparser.Markdown;
@@ -40,19 +39,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class CommentsController
 {
+
     @Inject
     EventRepository eventRepo;
-    
+
     @Inject
     UserRepository userRepo;
-    
+
     @Inject
     TeamRepository teamRepo;
-    
+
     //WEBSOCKET
-    
     /**
-     *  When we receive a adding signal of a comment, we request to all websocket to update
+     * When we receive a adding signal of a comment, we request to all websocket
+     * to update
+     *
      * @param request adding signal from client who add a comment
      * @return a signal to all active websocket
      */
@@ -62,33 +63,33 @@ public class CommentsController
     {
         return "";
     }
-    
-    //HTTP
 
+    //HTTP
     /**
      * Receiving the order to add a comment to an event
+     *
      * @param text Text of the comment
      * @param id Id of the event we want to add a comment
      * @return
      */
-    @RequestMapping(value ="/add_comment", method = RequestMethod.POST)
+    @RequestMapping(value = "/add_comment", method = RequestMethod.POST)
     public String save(
-    @RequestParam("text") String text,
-    @RequestParam("id") String id)
+        @RequestParam("text") String text,
+        @RequestParam("id") String id)
     {
-        //We parse the comment
-        text = Markdown.parse(text);
-        
-        //We add the comment to the event
-	Long idlong = Long.parseLong(id);
-	String name = SecurityContextHolder.getContext().getAuthentication().getName();
-	User user = userRepo.findByUserName(name);
-	if (InputDataVerification.verifTextLength(text, 1, 10000))
+        if (InputDataVerification.verifTextLength(text, 1, 9000))
         {
+            //We parse the comment
+            text = Markdown.parse(text);
+
+            //We add the comment to the event
+            Long idlong = Long.parseLong(id);
+            String name = SecurityContextHolder.getContext().getAuthentication().getName();
+            User user = userRepo.findByUserName(name);
             Event e = eventRepo.findOneById(idlong);
-            e.getComments().add(new Comment(text,user));
+            e.getComments().add(new Comment(text, user));
             eventRepo.save(e);
         }
-	return "redirect:/event?id="+id;
+        return "redirect:/event?id=" + id;
     }
 }
