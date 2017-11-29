@@ -30,11 +30,11 @@
             <h2>Créez une compte</h2>
 
             <form th:action="@{/register}" method="POST">
-                Un pseudo (visible par les autres utilisateurs): <input type="text" class="form-control" name="username"/>
-                Votre nom (ça reste entre nous): <input type="text" class="form-control" name="realname"/>
-                E-Mail: <input type="text" class="form-control"  name="mail"/>
-                Mot de passe: <input type="password" class="form-control"  name="password"/>
-                Répétez le mot de passe: <input type="password" class="form-control"  name="password2"/>
+                Un pseudo (visible par les autres utilisateurs): <input type="text" class="form-control" name="username" required=""/>
+                Votre nom (ça reste entre nous): <input type="text" class="form-control" name="realname" required=""/>
+                E-Mail: <input type="text" class="form-control"  name="mail" required=""/>
+                Mot de passe: <input type="password" class="form-control"  name="password" required=""/>
+                Répétez le mot de passe: <input type="password" class="form-control"  name="password2" required=""/>
 
                 <div class="form-group login-group-checkbox">
                     <label for="reg_agree">
