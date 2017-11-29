@@ -130,8 +130,12 @@ public class ArticleController
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepo.findByUserName(name);
         Article a = articleRepo.findOneById(idlong);
-        a.getComments().add(new ArticleComment(text, user));
-        articleRepo.save(a);
+        text = InputDataVerification.escape(text);
+        if (verifTextLength(text, 1, 10000))
+        {
+            a.getComments().add(new ArticleComment(text, user));
+            articleRepo.save(a);
+        }
         return "redirect:/article?id=" + id;
     }
 
