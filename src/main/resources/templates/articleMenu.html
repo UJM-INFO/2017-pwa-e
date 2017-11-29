@@ -34,10 +34,10 @@
             <div th:each="article : ${articles}">
                 <div class="card">
                     <a class="btn btn-block text-muted" th:href="'/article?id='+${article.id}">
-                        <h4 class="card-header" th:text="${article.title}"></h4>
+                        <h4 class="card-header displayText" th:text="${article.title}"></h4>
                         <div class="card-body">
                             <img class="pull-left" width="50%" th:if="article.link != null" th:src="${article.link}" alt="Image"/>
-                            <p style="overflow: hidden;" th:utext="${#strings.abbreviate(article.text,50)}"></p>
+                            <p th:text="${#strings.abbreviate(article.text,50)}"></p>
                         </div>
                     </a>
 
