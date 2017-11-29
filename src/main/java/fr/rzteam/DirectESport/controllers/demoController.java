@@ -48,8 +48,12 @@ public class demoController
      */
     @RequestMapping("/demo")
     public String demo()
-    {        
-        User user1 = new User("admin", "Administrateur", "$2a$10$cGONBnlF98pG2tLYV5GcfODgvLEbeMlRm1z/4yjpG.pRQ4SoP8nd6"/*=pass*/, "admin@rzteam.fr");
+    {
+        List<String> roles = new ArrayList<>();
+        roles.add("ADMIN");
+        roles.add("EDITOR");
+        roles.add("USER");
+        User user1 = new User("admin", "Administrateur", roles, "$2a$10$cGONBnlF98pG2tLYV5GcfODgvLEbeMlRm1z/4yjpG.pRQ4SoP8nd6"/*=pass*/, "admin@rzteam.fr");
         userRepo.save(user1);
         
 	Player p1 = new Player("Christian tiensuu","Sleeping", PlayerRole.Top, 22, "Gnar", "La ROG SCHOOL est un projet initié par Asus afin de dénicher les petites pépites françaises. Cette année, la promotion guidée par le coach Louis-Victor « Mephisto » Legendre a eu quelques difficultés dans les compétitions françaises, malgré une mention honorable aux play-offs des Underdogs. En position d’outsiders, les jeunes talents d’Asus ROG souhaitent surprendre les grosses écuries. ");
