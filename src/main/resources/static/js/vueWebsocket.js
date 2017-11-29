@@ -154,7 +154,7 @@ var app = new Vue({
             display += "<p>"+this.statusMatch(event.status)+"</p><br/>";
             commentSet._embedded.comments.forEach((comment)=>
             {
-                display+=("<p>"+comment.text+" "+comment.dateComment+"</p><br/>");
+                display+=("<p>"+comment.text+"</p><br/>");
             });
             
             
