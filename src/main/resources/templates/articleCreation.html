@@ -27,11 +27,13 @@
 
             <h2 id="eventCreation">Création d'article</h2>
             <form th:action="@{/add_article}" method="POST" id="addArt">
-                <label> Titre de l'article: <input type="text" class="form-control" name="article_title" required=""/></label><br/>
-                <label> Texte : <textarea class="form-control" form ="addArt" name="article_text" cols="50" wrap="soft" required=""></textarea></label>
-                <br/>
-                <label> Image : <input class="form-control" type="text" name="article_image" placeholder="http://.."/></label>
-                <input type="submit" class="btn btn-info btn-lg btn-block" value="Créez un article"/>
+                <div class="form-group">
+                    <label> Titre de l'article: <input type="text" class="form-control" name="article_title" required=""/></label><br/>
+                    <label> Texte : <textarea class="form-control" form ="addArt" name="article_text" rows="6" cols="100" wrap="soft" required=""></textarea></label>
+                    <br/>
+                    <label> Image : <input class="form-control" type="text" name="article_image" placeholder="http://.."/></label>
+                    <input type="submit" class="btn btn-info btn-lg btn-block" value="Créez un article"/>
+                </div>
             </form>
 
         </section>
