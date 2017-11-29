@@ -15,6 +15,7 @@
 package fr.rzteam.DirectESport.model;
 
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -23,11 +24,11 @@ import org.springframework.data.repository.CrudRepository;
 public interface TeamRepository extends CrudRepository<Team, Long>
 {
 
-    /** 
+    /**
      * @return all teams
      */
     @Override
-	public List<Team> findAll();
+    public List<Team> findAll();
 
     /**
      * @param id
@@ -52,4 +53,12 @@ public interface TeamRepository extends CrudRepository<Team, Long>
      * @return return the list of player with the id
      */
     public List<Player> findManyById(Long id);
+
+    /**
+     * Delete the team with the id
+     *
+     * @param id
+     */
+    @Transactional
+    public void deleteOneById(Long id);
 }
