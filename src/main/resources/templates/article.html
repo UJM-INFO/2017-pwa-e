@@ -28,7 +28,7 @@
         <br />
 
         <h1 th:text="${article.title}"/>
-        <img th:if="${article.link != null}" th:src="${article.link}" style="height: 300px;"/>
+        <img th:if="${article.link != null}" th:src="${article.link}" style="width: 50%;"/>
         <span th:utext="${article.text}"></span>
 
     </section>
