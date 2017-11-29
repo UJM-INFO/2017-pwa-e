@@ -20,6 +20,7 @@ import fr.rzteam.DirectESport.model.UserRepository;
 import javax.inject.Inject;
 import fr.rzteam.DirectESport.model.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,7 +43,10 @@ public class demoController
     ArticleRepository articleRepo;
     @Inject
     PlayerRepository playerRepo;
-    
+    @Inject
+    CompetitionRepository competitionRepo;
+    @Inject
+    StatsRepository statsRepo;
     /**
      * Demo data
      */
@@ -55,17 +59,107 @@ public class demoController
         roles.add("USER");
         User user1 = new User("admin", "Administrateur", roles, "$2a$10$cGONBnlF98pG2tLYV5GcfODgvLEbeMlRm1z/4yjpG.pRQ4SoP8nd6"/*=pass*/, "admin@rzteam.fr");
         userRepo.save(user1);
-
+        
+	Article a1 = new Article("Venez vivre la finale du Challenge France !","L'événement Challenge France : Project touche à sa fin et dans quelques jours, la Webedia Esport Arena accueillera la grande finale de la compétition. Envie de rencontrer les joueurs et de vivre l’évènement avec nous ? C’est possible, et nous vous proposons aujourd’hui de tenter de gagner vos places !\n" +
+"\n" +
+"Depuis près d’un mois, vous avez suivi avec nous les prémices de ce que cette huitième saison peut offrir, guidés par les combats des meilleures équipes françaises. Aujourd’hui il n’en reste plus que deux et vendredi 1er décembre, Gamers Origin et Millenium livreront l’ultime Best ot 5 pour s’emparer du titre !\n" +
+"challenge france\n" +
+"\n" +
+"La finale se déroulera en région parisienne à Levallois, au cœur de la Webedia Esport Arena où un show se tiendra tout au long de la soirée. Sur place, le cast sera assuré par les commentateurs O'Gaming. Vous pourrez rencontrer des Rioters mais aussi des influenceurs comme Gob, Doigby et différents streamers Solary ! À côté de l'arène, un cocktail vous sera proposé dans une ambiance intimiste pour profiter et discuter au mieux de la compétition et de cette nouvelle saison.","https://eu.lolesports.com/darkroom/940/02ba5281d28007c313c5c424b5e170c7:2ea8a4bec64c7fd0049e0368db59ad81");
+        
 	
-        Article a1 = new Article("Titre de l'article","Pas d'idée ...","http://www.develop-online.net/cimages/8912a1d9e678bb3ea1d8811dc9a29267.jpg");
-        Article a2 = new Article("Qui va gagner le trophée des pineur ?", "La compétition est enfin lancée ! Qui de Pineur Alpha, pinoir, puneur, pineur escalier ou encore Malaise Man va remporter le titre ?","http://www.develop-online.net/cimages/8912a1d9e678bb3ea1d8811dc9a29267.jpg");
-        Article a3 = new Article("Clément, petite pute ?", "La question que tout le monde se pose. Clément Colin, appelé familièrement Petite Pute, aurait démenti toute forme de prostitution. Affaire à suivre...","http://www.develop-online.net/cimages/8912a1d9e678bb3ea1d8811dc9a29267.jpg");
-        Article a4 = new Article("Christopher remporte le prix du meilleur maçon !", "Sa famille était réunie. José, Manuel, Rui, tout trois chemise ouverte sur leur torse poilu, la larme à l'oeil quand leur petit frère souleva le parpaings en or, synonyme de meilleur maçon de la région. Quel beau moment d'émotion...","http://www.develop-online.net/cimages/8912a1d9e678bb3ea1d8811dc9a29267.jpg");
+	Article a2 = new Article("La présaison vue de la voie du haut", "Entre refonte complète des runes et maîtrises et rééquilibrages variés, la présaison apporte – forcément – son lot de changements dans la méta, que ce soit en file individuelle ou en équipe. Si les tanks restent au sommet de la voie du haut, ce ne sont pas tout à fait les mêmes qu'il y a deux mois. Ils sont, de plus, accompagnés par de nouveaux prétendants à la domination du nord de la carte. Petit tour d'horizon, vu du dessus.\n" +
+"\n" +
+"Fin de saison, changements en pagaille ou non, une chose ne change pas sur la voie du haut depuis plusieurs mois : les tanks restent toujours aussi fort, comme nous le confirment en chœur Arthur « Brosak » Lesueur et Damien « Shemek » Soulagnet. Le joueur de Gentside Esports et celui de GamersOrigin notent toutefois l'arrivée d'une nouvelle trinité au sommet de la méta. Ornn, Shen et Maokai dominent aujourd'hui le haut de la carte, en particulier en équipe.\n" +
+"Ornn\n" +
+"\n" +
+"Le dieu forgeron forge sa légende sur la voie du haut.\n" +
+"\n" +
+"Tous trois présentent deux avantages clairs : une force intrinsèque non négligeable et une grande capacité à rester le temps nécessaire sur leur voie. Pour ne rien gâcher, ils sont également « forts sur la carte et lors des combats d'équipe », résume Brosak. Ornn a en particulier su s'imposer au fil des patchs comme un incontournable. Non seulement il a une excellente tenue de voie et n'a que très peu besoin de revenir à la base grâce à son passif – qui lui permet d'acheter de l'équipement sans passer par la boutique – mais bénéficie en plus de « la meilleure engage du jeu », s'exclame le joueur de Gentside. « C'est le meilleur champion actuellement : il a des contrôles, des dégâts, de la résistance, une énorme initiative, il a trop de tout », renchérit Shemek.\n" +
+"\n" +
+"Juste derrière le Dieu de la forge volcanique, on retrouve donc deux anciens de la ligue, qu'il est difficile de départager. Tant Brosak que Shemek hésitent un temps, avant de les placer à égalité dans leur classement personnel. Shen se distingue comme toujours par son ultime, sa capacité à être n'importe où dès qu'on a besoin de lui. Attention toutefois, c'est un champion qui est meilleur en équipe, avec un jeu coordonné, qu'en file individuelle. Maokai, quant à lui, profite à plein de sa capacité à survivre indéfiniment sur sa voie.\n" +
+"Derrière la trinité, les suiveurs s'empilent\n" +
+"Gangplank\n" +
+"\n" +
+"Gangplank, le retour du fléau des mers !\n" +
+"\n" +
+"En dehors de cette solide trinité, de nombreux champions font leur retour ou leur apparition. C'est le cas de Gangplank , remis au goût du jour par la présaison et la rune Kleptomancie, qui permet de gagner un peu d'or et de portée d'attaque, mais surtout de récupérer aléatoirement des consommables. Avec elle, le pirate « abuse de son A », explique Brosak, D'après Shemek, le champion est pourtant « même fort même sans la Kleptomancie. L'effet de mode passé, les joueurs ont réalisé qu'il avait toujours été puissant ». Quoiqu'il en soit, pour Brosak, « c'est vraiment très fort, mais le champion est facile à sortir de sa voie ». Lui le voit « bien en équipe, mais seulement face à certaines compositions, contre des champions assez passifs au top et dans la jungle ».\n" +
+"\n" +
+"Parmi ceux qui en profitent pour revenir sur le devant de la scène, on retrouve aussi Rumble, toujours très fort contre les tanks. Le champion apprécie particulièrement la force actuelle de la pénétration magique, explicable par la disparition des runes de résistance magique. Panthéon – sorti avec succès par Andrea « Katare » Suchodolski lors de la victoire de Solary contre Asus Rog – repointe également le bout de sa lance, grâce à sa capacité à dominer son vis-à-vis dès les premiers instants de la partie et à son ultime, jamais inutile. Pas avare de conseils, Shemek s'attend enfin à retrouver Poppy, Urgot, voire Lissandra ou même Teemo (en file individuelle, rassurez-vous, ou pas) face à lui dans les prochaines semaines, alors que Brosak apprécie Yorick. Les deux joueurs ont d'ailleurs sorti Poppy et Yorick l'un contre l'autre, dimanche 19 novembre au Challenge France, un match remporté par Gamers Origin.\n" +
+"Les runes tanks changent la donne\n" +
+"\n" +
+"Au-delà des effets de mode, ces évolutions de la méta top s'expliquent évidemment aussi par la refonte des runes et maîtrises. Tanks oblige, l'arbre volonté est le plus employé par les compétiteurs du Challenge France.\n" +
+"Volonté et inspiration\n" +
+"\n" +
+"Un exemple de page de runes pour un tank sur la voie du haut.\n" +
+"\n" +
+"Le toplaner de Gentside y voit deux runes fondamentales particulièrement intéressantes à son poste. La Poigne de l'immortel « pour tous les champions qui combattent d'abord à l’auto-attaque » et l'Après-coup, particulièrement efficace sur les champions avec de forts contrôles, puisque non seulement elle leur apporte des dégâts mais qu'en plus l'efficacité de cette rune augmente avec les points de vie accumulés. Il est toutefois impossible d'avoir les deux, il faut donc choisir en fonction de son champion mais aussi de son adversaire direct. Dans tous les cas, ces deux runes rendent l'arbre vert plus rentable que d'autres plus agressifs. Brosak apprécierait d'ailleurs « peut-être une augmentation de la puissance des arbres précision et domination ».\n" +
+"\n" +
+"Dans le reste de l'arbre, plusieurs choix s'offrent au toplaner avisé. Démolition s'améliore en fonction des points de vie maximum et peut faire très mal aux tours adverses, tandis que fontaine de vie remplace bien la force des âges. Enfin, si le choix d'une rune sur la troisième branche est situationnel, Shemek souligne que Second souffle – qui rend des points de vie après avoir subi une attaque – est quasi incontournable sur la dernière branche.\n" +
+"Deuxième arbre, l'embarras du choix\n" +
+"\n" +
+"La question se complique un peu au moment de choisir un arbre secondaire. Brosak montre une vraie préférence pour l'inspiration. Il trouve le marché du futur « génial sur Ornn » et les chaussures magiques lui apparaissent un choix évident sur de nombreux champions. Il sélectionne ensuite « soit la livraison de biscuit pour encore accentuer la tenue de voie soit le chronomètre du timing parfait », pour préparer l'ange gardien ou le Zhonya.\n" +
+"\n" +
+"Shemek, au contraire, privilégie « la plupart du temps l'arbre sorcellerie pour la mana » qu'apporte le ruban régénérateur et, pour certains matchs, « l'arbre précision avec triomphe et légende : ténacité », les deux permettant – encore une fois – de rester en vie le plus longtemps possible. Il trouve l'inspiration « sympa, mais globalement moins forte que sorcellerie ».\n" +
+"Dominer sa voie avant tout\n" +
+"\n" +
+"Les capitaines de leurs équipes respectives se retrouvent en revanche dans leur analyse de la méta dans son ensemble. Vous l'aurez compris, la phase initiale de rencontre des joueurs sur leur voie est singulièrement importante en ce moment. Mais elle ne constitue pas une fin en soi. Il s'agit surtout de prendre le contrôle sur son opposant pour agir ailleurs sur la carte, que ce soit grâce à un ultime global (Shen, Panthéon, Gangplank) ou par sa contribution aux combats d'équipe (Ornn, Maokai). Comme le résume Brosak, qui voit là le cœur du jeu actuel, le but est de forcer son adversaire à retourner à la base pour prendre l'ascendant et « agir en cinq contre quatre ou exploiter un avantage par rapport à la téléportation ». A ses yeux, pas de doute, « c'est vraiment une des clés pour remporter la victoire en ce moment ».","https://eu.lolesports.com/darkroom/1265/322bd2f8ef1c57627b946cd412cfbdd5:c9285046ae11d76fa301970e54f9ec34/shen-skin-official-artwork");
+        
+	Article a3 = new Article("La voie du milieu à l'aube de la saison 8", "Pas le temps de niaiser ! Les championnats du monde sont à peine terminés que la compétition a déjà repris. Et nous avons de la chance, puisque c’est le fleuron de la scène française qui s’affronte depuis vendredi dernier dans un Challenge France à la hauteur des attentes. L’occasion de jeter un œil aux premiers matches joués sur le nouveau patch de présaison ; aujourd’hui, nous nous intéressons à la voie du milieu.\n" +
+"\n" +
+"Changement ambitieux et profond, la refonte du système de runes et de maîtrises a de quoi perturber. Si un temps d’adaptation sera nécessaire pour évaluer précisément les héros les plus favorisés par ces changements, et pour équilibrer ces nouvelles compétences, les six équipes participant au Challenge France n’ont pas eu ce luxe et ont dû se lancer dans la bataille rapidement. Nous avons pu interroger deux midlaners du tournoi : Jérémy « Eika » Valdenaire (Team LDLC), et Scott « Tonerre » Menard (GamersOrigin). Voici leurs impressions.\n" +
+"Champions, le grand ménage… ou pas ?\n" +
+"\n" +
+"Lors des championnats du monde, différentes stratégies ont été employées par les équipes, mais parmi les personnages fréquemment utilisés, nous retrouvions notamment Galio. Que tout le monde se réjouisse, le Colosse a définitivement quitté la midlane, et ce patch marque le véritable retour des mages, voire, temporairement, des assassins, bien que les avis divergent à leur sujet. Selon Tonerre, « tout n’est pas encore clair au sujet des runes, mais les assassins et les mages à gros dégâts semblent en profiter. Je ne serais pas surpris de voir des héros un peu exotiques faire leur apparition. » Malgré une excellente prestation sur Fizz face à Solary, Eika se montre lui plus mesuré : « Avec le nouveau Zhonya, les assassins vont devenir de plus en plus situationnels. Il est déjà difficile d’en jouer dans l’état actuel des choses, alors à l’avenir… ».\n" +
+"Gravelord_Azir\n" +
+"\n" +
+"De retour des enfers, c'est bien Azir qui s'impose comme l'une des références sur la midlane en cette présaison, avec 93% de présence.\n" +
+"\n" +
+"Parmi les retours au premier plan, on peut surtout noter celui de Corki, qui n’a certes jamais vraiment été mis de côté, mais qui voit sa popularité exploser grâce à la rune Kleptomancie : conséquence, 5 bans et 6 sélections sur un total de 15 parties jouées. Syndra et Ryze reprennent eux aussi des couleurs, avec 53 % et 27 % de présence respectivement. Mais l’arrivée la plus remarquée est sans conteste celle d’Azir : avec 10 bans, 4 sélections et 3 victoires, l’Empereur de Shurima inquiète toutes les équipes tant les nouvelles runes semblent accélérer sa montée en puissance, sans oublier la forte pression qu’il peut exercer en début de partie.\n" +
+"\n" +
+"Un dernier revenant à évoquer est Viktor, utilisé par Eika, qui nous justifie ce choix : « Le gros coup dur subi par Viktor il y a déjà quelques mois était l'augmentation du prix de la première évolution du cœur Hextech, qui était passé de 1000 à 1250 pièces d’or. Grâce à la rune permettant au joueur de contracter une dette, ce problème est quasiment annulé, et Viktor peut à nouveau nettoyer les vagues de sbires relativement tôt. Pour cette raison, je pense qu’il devrait réapparaître régulièrement. »\n" +
+"Nouvelles runes : premiers choix pour les joueurs pros\n" +
+"\n" +
+"C'est évidemment la grande attraction de cette reprise, et nous avons pu observer les premières tendances. Sans grande surprise, l'arbre Sorcellerie est assez populaire, avec quelques subtilités. Dans l'ensemble, l'invocation d'Aery est favorisée sur les mages classiques tels que Ryze ou Orianna ; Azir, Syndra, Orianna, ou encore Cassiopeia ont eux (elles) aussi été joué(e)s au moins une fois avec cette rune fondamentale, ce qui semble confirmer sa puissance dans la plupart des situations. Au niveau de la rune majeure, le Ruban de mana est plébiscité grâce à la régénération de mana qu'il confère ; malgré quelques rares apparitions, le Chapeau Ultime ne semble pas convenir aux joueurs, qui choisissent un renforcement de leur début de partie plutôt qu'un atout se révélant en milieu ou fin de partie.\n" +
+"ChineseCorki\n" +
+"\n" +
+"Six sélections pour cinq victoires, et cinq bans en parallèle : grâce à la Kleptomancie, Corki est la plus grosse menace sur la voie du milieu en ce moment.\n" +
+"\n" +
+"L'arbre Sorcellerie est parfois combiné avec l'arbre Inspiration, qui grâce à son Timing Parfait permet notamment d'accélérer la récupération du Sablier de Zhonya. Certains joueurs plus agressifs lui préfèrent le soin conféré par Goût du Sang, et la vitesse de déplacement octroyée par Chasseur Acharné, que l'on retrouve toutes deux dans l'arbre Domination. D'ailleurs, s'il est rare de voir un midlaner s'orienter vers l'arbre Inspiration comme arbre principal – hormis sur Corki, comme nous l'expliquions plus haut, qui profite parfaitement de la Kleptomancie - la Domination est l'alternative la plus populaire à la Sorcellerie. Les assassins tels que Zed, Fizz, LeBlanc ou même Ahri bénéficient pleinement de l'électrocution, mais ce choix a également été fait sur Syndra, qui nous rappelle qu'un saut n'est pas nécessaire pour désintégrer une cible.\n" +
+"\n" +
+"Le dernier arbre à parfois être employé est bien sûr « Précision », dont le Tempo Mortel sied parfaitement à Azir, ou Lucian, apparu une fois dans le tournoi. L'augmentation de la vitesse d'attaque dont peut bénéficier l'Empereur de Shurima est la raison pour laquelle nous évoquions son début de partie beaucoup plus efficace ; les joueurs ont d'ailleurs complètement délaissé la Dent de Nashor, jusque-là considérée comme indispensable sur le champion, au profit d'achats plus classiques comme le Morellonomicon et le Sceptre de Rylai. L'assouplissement du choix d'objets sur Azir est sans conteste l'une des raisons expliquant la priorité dont il est l'objet depuis le début du tournoi.\n" +
+"Le rôle du midlaner en 2018\n" +
+"\n" +
+"A partir des changements constatés, il faut maintenant se demander comment la voie du milieu va s’articuler autour des autres rôles. « Je pense que les nouvelles runes sont assez équilibrées : Aery est assez efficace, combinée à Brûlure pour les champions disposant de sorts mono-cibles, comme Kassadin ou Viktor, mais aussi sur les champions à bouclier, par exemple Karma, Lulu ou Orianna. Électrocution est un bon atout pour les champions agressifs voués à assassiner une cible (Syndra, Fizz ou encore Zed), et la Kleptomancie profite surtout à Corki. Beaucoup d’approches semblent donc viables », selon Eika. Si les mages auxquels nous sommes habitués depuis plusieurs années devraient conserver une popularité élevée – Syndra, Orianna, Ryze – nous pouvons espérer voir les équipes exploiter les multiples possibilités offertes par le nouveau système de runes pour créer des situations très spécifiques ouvrant la porte à des champions moins courants.\n" +
+"LDLC_GamersOrigin_Week1\n" +
+"\n" +
+"Tonerre a opté pour une Syndra dominatrice, qui a fait souffrir le Lucian de Eika. Toutefois, c'est la Team LDLC qui a remporté ce match.\n" +
+"\n" +
+"Pour Tonerre, les choses risquent plutôt de suivre la tendance observée depuis le milieu de l’année : « Je pense que le rôle du midlaner sera de gérer le début et le milieu de partie, afin de permettre à son tireur d’évoluer tranquillement, et de lui déléguer le gros du travail en fin de partie. » S’il s’agit bien sûr d’un schéma auquel on est habitué, les tireurs infligeant généralement beaucoup plus de dégâts que les autres rôles dans les dernières phases de jeu, il ne faut pas enterrer les situations de 1-3-1, moins fréquentes depuis quelques temps, mais qui permettent toujours aux équipes de rester dans un match malgré une composition à la croissance plus faible que celle de leurs opposants.\n" +
+"\n" +
+"Alors finalement, beaucoup de bruit pour rien ? Tous ces changements ne feraient-ils finalement pas bouger les choses de façon aussi radicale que d’autres patches de présaison au fil des ans ? N’oublions pas qu’après huit ans de compétition, il est plus difficile de créer du renouveau, chaque champion ou presque ayant eu son heure de gloire. La réapparition de Viktor ou Azir, par exemple, ne doit pas passer inaperçue, et illustre une véritable rupture avec la méta des championnats du monde. D’autre part, le Challenge France nous fournit certes quelques indicateurs, mais nous n’en sommes qu’aux balbutiements du League of Legends version 2018. Le retour aux affaires des meilleures équipes du monde devrait nous permettre de voir ces modifications d’un nouvel œil, et, peut-être, de découvrir d’agréables surprises.\n" +
+"\n" +
+"Quel changement apporté par le patch 7.22 jugez-vous le plus intéressant ? Quels champions espérez-vous voir revenir sur la voie du milieu ?","https://eu.lolesports.com/darkroom/1265/b0038e5a3d80538de441bd2ab26ab669:bd8ab680d5f31eab28c216d36a8d3426");
+        Article a4 = new Article("Solary : Le seul plafond qu’on a, c’est celui que l’on se fixe ", "Entre conseils avisés et ambiance de franche camaraderie, ils se sont construit une audience fidèle, qu’ils divertissent sept jours sur sept. Mais au-delà de leur activité d’animateur, les joueurs de Solary sont avant tout avides de compétition. C’est particulièrement le cas de Wakz et Caëlan, qui évoluent en duo sur la voie du bas et avec qui nous avons pu échanger. L’occasion de mieux les connaître.\n" +
+"\n" +
+"Des six participants du Challenge France, Solary sort évidemment du lot. Pas que cette équipe soit meilleure que les autres, pas qu’elle soit plus ancienne, pas qu’elle se soit qualifiée différemment, mais parce qu’elle est différente, intrinsèquement. \n" +
+"\n" +
+"Une équipe professionnelle comme Fnatic s’entraîne dans l’ombre, travaille sur ses stratégies en veillant à ce qu’elles ne soient pas analysées par ses adversaires. L’objectif premier de Fnatic est la compétition. S’entraîner pour gagner, jouer pour remplir les armoires de trophées. À leur échelle, les équipes du Challenge France appliquent le même processus. Mais pas Solary. Quand Solary s’entraîne, c’est en diffusant aussi bien son jeu que la communication entre ses joueurs, sans aucun filtre, laissant à ses adversaires tout le loisir de s’informer pour préparer aux mieux les rencontres. Si on était sur The Witcher 3, on dirait que la difficulté a été réglée sur « Marche de la mort ». \n" +
+"Jeu et locaux en chantier\n" +
+"\n" +
+"Heureusement, en ce moment « tout le monde est un peu dans le flou » souligne César « Wakz » Hugues. La faute au chamboulement annuel de la présaison. Par la suite, il précise : « C’est à notre avantage. On peut jouer de ça pour mettre les équipes en danger et aller chercher des games ». Pour l’instant, les résultats ne sont pas au rendez-vous. Solary pointe, seul, en position de lanterne rouge. Mais on retrouve ce que nous a décrit le carry AD : une victoire face à l’un des favoris, GamersOrigin, et des parties qui auraient pu tourner autrement. \n" +
+"Caëlan, Wakz et Chap à la Paris Games Week - Photo Corbier\n" +
+"\n" +
+"Caëlan, Wakz et Chap à la Paris Games Week - Photo Corbier\n" +
+"\n" +
+"Outre les conditions de préparation singulières, la récente actualité de l’équipe a également joué en sa défaveur. « Ce qui nous a surtout manqué, c’est que l’on a trop peu joué en équipe sur les deux derniers mois, nous explique Romain « Caëlan » Albesa. Il y a eu le lancement du projet Solary, les travaux. Certains n’ont pas joué du tout pendant un mois. Ça rend les choses plus complexes ». ","https://eu.lolesports.com/darkroom/1265/677197242f5466b9d4b7fc72d757b251:4e32438a4a27822497265e0716d98a78");
         articleRepo.save(a1);
         articleRepo.save(a2);
         articleRepo.save(a3);
         articleRepo.save(a4);
-        
+	
+	
+	
 	Player p1 = new Player("Christian tiensuu","Sleeping", PlayerRole.Top, 22, "Gnar", "La ROG SCHOOL est un projet initié par Asus afin de dénicher les petites pépites françaises. Cette année, la promotion guidée par le coach Louis-Victor « Mephisto » Legendre a eu quelques difficultés dans les compétitions françaises, malgré une mention honorable aux play-offs des Underdogs. En position d’outsiders, les jeunes talents d’Asus ROG souhaitent surprendre les grosses écuries. ");
 	Player p2 = new Player("Cantoursna An","NJI", PlayerRole.Jungle, 18, "Sejuani", "#17 KDA au challenge france");
 	Player p3 = new Player("Quentin Viguie","Zeph", PlayerRole.Mid, 19, "Azir", "#19 KDA au challenge france");
@@ -225,9 +319,28 @@ public class demoController
 "Dans cette optique, le vétéran de la scène française et internationale, Bora « YellOwStaR » Kim a fait son entrée au sein de l’équipe en tant que coach. LDLC a d’ailleurs récemment remporté le tournoi Clash of Nations avec la star française à ses côtés et nous découvrirons bientôt si cela les aidera à récupérer leur couronne du Challenge France laissée en 2016. ", list6);
 	teamRepo.save(newteam6);
 	
+	Competition competition = new Competition(new Date(), "ChallengeFrance");
+	competition.getTeams().add(newteam1);
+	competition.getTeams().add(newteam2);
+	competition.getTeams().add(newteam3);
+	competition.getTeams().add(newteam4);
+	competition.getTeams().add(newteam5);
+        competitionRepo.save(competition);
 	
+	Stats stats1 = new Stats();
+	Stats stats2 = new Stats();
+	Stats stats3 = new Stats();
+	Stats stats4 = new Stats();
+	statsRepo.save(stats1);
+	statsRepo.save(stats2);
+	statsRepo.save(stats3);
+	statsRepo.save(stats4);
 	
+	Event e1 = new Event("Quart de finale", new Date(), newteam1, newteam2, 0,3,stats1,stats2,Long.parseLong("1"));
+	Event e2 = new Event("Demi-finale", new Date(), newteam3, newteam4, 0,1,stats3,stats4,Long.parseLong("1"));
 	
+	eventRepo.save(e1);
+	eventRepo.save(e2);
         return "redirect:/home";
     }
     

@@ -39,4 +39,9 @@ public interface ArticleRepository extends CrudRepository<Article, Long>
      * @return the 3 most recent articles
      */
     public List<Article> findTop3ByOrderByIdDesc();
+    
+    /**
+     * @return all articles with the most recent in first
+     */
+    public List<Article> findAllByOrderByIdDesc();
 }

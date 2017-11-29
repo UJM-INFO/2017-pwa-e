@@ -67,7 +67,7 @@ public class ArticleController
             }
         } catch (NumberFormatException | NullPointerException e)
         {
-            List<Article> list = articleRepo.findAll();
+            List<Article> list = articleRepo.findAllByOrderByIdDesc();
             m.addAttribute("articles", list);
             return "articleMenu";
         }
