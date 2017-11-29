@@ -50,14 +50,15 @@
                 <hr />
                 
                 <!-- Event creation part -->
-                
-                <button class="btn btn-info btn-lg btn-block display" id="creationDisplayButton" v-on:click="displayCreation"> <i class="fa fa-plus" aria-hidden="true"></i> Créer une compétition</button>
-                <span id="eventCreation" class="undisplay">
-                    <h2>Création de compétition</h2>
-                    <form th:action="@{/add_competition}" method="POST">
-                        <label> Nom : <input type="text" class="form-control" name="name"/></label><br/>
-                    <input type="submit" class="btn btn-info btn-lg btn-block" value="Valider"/>
-                    </form>  
+                <span sec:authorize="hasAuthority('ADMIN')">
+                    <button class="btn btn-info btn-lg btn-block display" id="creationDisplayButton" v-on:click="displayCreation"> <i class="fa fa-plus" aria-hidden="true"></i> Créer une compétition</button>
+                    <span id="eventCreation" class="undisplay">
+                        <h2>Création de compétition</h2>
+                        <form th:action="@{/add_competition}" method="POST">
+                            <label> Nom : <input type="text" class="form-control" name="name"/></label><br/>
+                            <input type="submit" class="btn btn-info btn-lg btn-block" value="Valider"/>
+                        </form>  
+                    </span>
                 </span>
                 
                 
