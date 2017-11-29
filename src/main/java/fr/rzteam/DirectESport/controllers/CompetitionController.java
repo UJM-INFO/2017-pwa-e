@@ -127,6 +127,6 @@ public class CompetitionController
        Competition c = competitionRepo.findOneById(Long.parseLong(id+""));
        c.getTeams().add(temp);
        competitionRepo.save(c);
-        return "redirect:/competition";
+        return "redirect:/competition?id="+id;
     }
 }
