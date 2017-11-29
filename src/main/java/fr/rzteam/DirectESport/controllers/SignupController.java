@@ -17,6 +17,7 @@ package fr.rzteam.DirectESport.controllers;
 import fr.rzteam.DirectESport.model.User;
 import fr.rzteam.DirectESport.model.UserRepository;
 import fr.rzteam.DirectESport.model.UserService;
+import fr.rzteam.DirectESport.verif.InputDataVerification;
 import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,6 +61,12 @@ public class SignupController
 	if (password.compareTo(password2) != 0) //The 2 passwords are different
         {
             m.addAttribute("error", "Les mots de passes sont différents");
+            return "forward:/signup";
+        }
+        
+        if (!InputDataVerification.verifEmailAddress(mail))
+        {
+            m.addAttribute("error", "L'adresse e-mail n'est pas valide");
             return "forward:/signup";
         }
 

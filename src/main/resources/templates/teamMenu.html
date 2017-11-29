@@ -39,7 +39,7 @@
 
 
 
-                        <span sec:authorize="hasAuthority('ADMIN')">
+                        <span sec:authorize="hasAuthority('EDITOR')">
                             <form th:action="@{/remove_team}" method="post">
                                 <input type="hidden" name="id" th:value="${team.id}"/>
                                 <input class="btn btn-danger" type="submit" value="Supprimer l'équipe"/>
@@ -53,31 +53,31 @@
             <hr />
 
             <!-- Event creation part -->
-            <span sec:authorize="hasAuthority('ADMIN')">
+            <span sec:authorize="hasAuthority('EDITOR')">
             <button class="btn btn-info btn-lg btn-block display" id="creationDisplayButton" v-on:click="displayCreation"> <i class="fa fa-plus" aria-hidden="true"></i> Créer une équipe</button>
             <span id="eventCreation" class="undisplay">
                 <h2>Création d'équipe</h2>
                 <form th:action="@{/add_team}" enctype="multipart/form-data" method="POST">
-                    <label> Nom : <input type="text" class="form-control" name="teamname"/></label><br/>
-                    <label> History : <input type="text" class="form-control" name="history"/></label><br/>
+                    <label> Nom : <input type="text" class="form-control" name="teamname" required=""/></label><br/>
+                    <label> History : <input type="text" class="form-control" name="history" required=""/></label><br/>
 
-                    <label> Top : <select class="form-control" name="top">
+                    <label> Top : <select class="form-control" name="top" required="">
                             <option th:each="player: ${playersTop}" th:value="${player.id}" th:text="${player.playerName}">a</option>
                         </select>
                     </label>
-                    <label> Jungle : <select class="form-control" name="jungle">
+                    <label> Jungle : <select class="form-control" name="jungle" required="">
                             <option th:each="player: ${playersJungle}" th:value="${player.id}" th:text="${player.playerName}">a</option>
                         </select>
                     </label>
-                    <label> Mid : <select class="form-control" name="mid">
+                    <label> Mid : <select class="form-control" name="mid" required="">
                             <option th:each="player: ${playersMid}" th:value="${player.id}" th:text="${player.playerName}">a</option>
                         </select>
                     </label>
-                    <label> ADC : <select class="form-control" name="adc">
+                    <label> ADC : <select class="form-control" name="adc" required="">
                             <option th:each="player: ${playersAdc}" th:value="${player.id}" th:text="${player.playerName}">a</option>
                         </select>
                     </label>
-                    <label> Support : <select class="form-control" name="support">
+                    <label> Support : <select class="form-control" name="support" required="">
                             <option th:each="player: ${playersSupport}" th:value="${player.id}" th:text="${player.playerName}">a</option>
                         </select>
                     </label>
